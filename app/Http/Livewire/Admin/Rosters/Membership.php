@@ -46,6 +46,8 @@ class Membership extends Component
 
     public function remove(User $user)
     {
+        session()->flash('success',  $user->name.' has been removed.');
+
         $user->delete();
     }
 

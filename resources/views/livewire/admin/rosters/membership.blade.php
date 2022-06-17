@@ -1,4 +1,10 @@
 <div>
+    {{-- SUCCESS MESSAGE --}}
+    @if(session()->has('success'))
+        <div style="background-color: rgba(0,255,0,0.1); color: darkgreen; border: 1px solid darkgreen;font-size: 0.8rem; margin: auto; margin-top: 1rem; padding: 0 0.5rem; ">
+            {{ session()->get('success') }}
+        </div>
+    @endif
 
     {{-- TABLE --}}
     <style>
