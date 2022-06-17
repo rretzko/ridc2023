@@ -26,34 +26,34 @@
         </tr>
         </thead>
         <tbody>
-        @forelse($xusers AS $user)
+        @forelse($invitations AS $invitation){{ dd($invitation) }}
             <tr>
-                <td style="text-align: left;" title="Sys.Id. {{ $user->id }}">
-                    <div>{{ $user->last.', '.$user->first.' '.$user->middle }}</div>
-                    <div class="text-xs ml-4">{{ $user->schools->first()->shortname }}</div>
+                <td style="text-align: left;" title="Sys.Id. {{ $invitation['user']->id }}">
+                    <div>{{ $invitation['user']->last.', '.$invitation['user']->first.' '.$invitation['user']->middle }}</div>
+                    <div class="text-xs ml-4">{{ $invitation['user']->schools->first()->shortname }}</div>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <button wire:click="invite({{ $user }})"
-                        class="{{ $user->invitationStatus }}"
+                    <button wire:click="invite({{ $invitation['user'] }})"
+                            class="{{ $invitation['user']->invitationStatus }}"
                             style="border-radius: 0.25rem; padding: 0 0.25rem;"
-                            title = "{{ $user->eventInvitationsButtonTitle }}"
+                            title = "{{ $invitation['user']->eventInvitationsButtonTitle }}"
                     >
-                        {{ ucfirst($user->invitationStatus) }}
+                        {{ ucfirst($invitation['user']->invitationStatus) }}
                     </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <button wire:click="accept({{ $user }})"
-                        class="{{ $user->acceptedStatus }}"
-                        style="border-radius: 0.25rem; padding: 0 0.25rem;"
+                    <button wire:click="accept({{ $invitation['user'] }})"
+                            class="{{ $invitation['user']->acceptedStatus }}"
+                            style="border-radius: 0.25rem; padding: 0 0.25rem;"
                     >
-                        {{ ucfirst($user->acceptedStatus) }}
+                        {{ ucfirst($invitation['user']->acceptedStatus) }}
                     </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                        <button wire:click="remove({{ $user }})"
+                    <button wire:click="remove({{ $invitation['user'] }})"
                             style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
-                            Remove
-                        </button>
+                        Remove
+                    </button>
                 </td>
             </tr>
         @empty
@@ -64,6 +64,7 @@
 
     {{-- Pagination links --}}
     <div class="mt-4">
-        {{ $xusers->links() }}
+        {{ $invitations->links() }}
     </div>
 </div>
+

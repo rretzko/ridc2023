@@ -11,16 +11,16 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Membership extends Component
+class MembershipComponent extends Component
 {
 
     use WithPagination;
 
     public function render()
     {
-        return view('livewire.admin.rosters.membership',
+        return view('livewire.admin.rosters.membership-component',
         [
-            'xusers' => User::orderBy('last')->orderBy('first')->select('id', 'last','first','middle')->paginate(15),
+            'users' => User::orderBy('last')->orderBy('first')->select('id', 'last','first','middle')->paginate(15),
         ]);
     }
 

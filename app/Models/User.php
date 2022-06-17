@@ -136,6 +136,11 @@ class User extends Authenticatable
         );
     }
 
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
     public function pendingemails()
     {
         return $this->hasMany(Pendingemail::class);
