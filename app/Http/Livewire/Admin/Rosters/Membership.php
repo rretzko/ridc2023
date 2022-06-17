@@ -44,4 +44,11 @@ class Membership extends Component
         );
     }
 
+    public function remove(User $user)
+    {
+        $user->delete();
+    }
+
+
+
 }

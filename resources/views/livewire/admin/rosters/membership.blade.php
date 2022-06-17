@@ -44,11 +44,10 @@
                     </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <a href="">
-                        <button style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
+                        <button wire:click="remove({{ $user }})"
+                            style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
                             Remove
                         </button>
-                    </a>
                 </td>
             </tr>
         @empty
