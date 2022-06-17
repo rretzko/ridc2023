@@ -27,24 +27,21 @@
                     <div class="text-xs ml-4">{{ $user->schools->first()->shortname }}</div>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <!-- {{-- <a href="{{ route('admin.invite',['user' => $user]) }}"> --}} -->
-                        <button wire:click="invite({{$user}})"
-                            class="{{ $user->invitationStatus }}"
-                                style="border-radius: 0.25rem; padding: 0 0.25rem;"
-                                title = "{{ $user->eventInvitationsButtonTitle }}"
-                        >
-                            {{ ucfirst($user->invitationStatus) }}
-                        </button>
-                    <!-- {{-- </a> --}} -->
+                    <button wire:click="invite({{ $user }})"
+                        class="{{ $user->invitationStatus }}"
+                            style="border-radius: 0.25rem; padding: 0 0.25rem;"
+                            title = "{{ $user->eventInvitationsButtonTitle }}"
+                    >
+                        {{ ucfirst($user->invitationStatus) }}
+                    </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <a href="{{ route('admin.accept', ['user' => $user]) }}">
-                        <button class="@if($user->accepted) accepted @else accept @endif"
-                                style="border-radius: 0.25rem; padding: 0 0.25rem;"
-                        >
-                            @if($user->accepted) Accepted @else Accept @endif
-                        </button>
-                    </a>
+                    <button wire:click="accept({{ $user }})"
+                        class="{{ $user->acceptedStatus }}"
+                        style="border-radius: 0.25rem; padding: 0 0.25rem;"
+                    >
+                        {{ ucfirst($user->acceptedStatus) }}
+                    </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
                     <a href="">

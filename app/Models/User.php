@@ -57,6 +57,13 @@ class User extends Authenticatable
             ->where('event_id', CurrentEvent::currentEvent()->id);
     }
 
+    public function getAcceptedStatusAttribute(): string
+    {
+        return (Accepted::where('user_id', $this->id)->where('event_id', CurrentEvent::currentEvent()->id)->exists())
+            ? 'accepted'
+            : 'accept';
+    }
+
     public function getEventInvitationsAttribute(): Collection
     {
         return Invitation::where('user_id', $this->id)

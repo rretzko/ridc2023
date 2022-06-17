@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Rosters;
 
+use App\Models\Accepted;
 use App\Models\CurrentEvent;
 use App\Models\Invitation;
 use App\Models\Pendingemail;
@@ -23,6 +24,16 @@ class Membership extends Component
         ]);
     }
 
+    public function accept(User $user)
+    {
+        Accepted::updateOrCreate(
+            [
+                'user_id' => $user->id,
+                'event_id' => CurrentEvent::currentEvent()->id,
+            ]
+        );
+    }
+
     public function invite(User $user)
     {
         Pendingemail::updateOrCreate(
@@ -31,7 +42,6 @@ class Membership extends Component
                 'pendingemailtype_id' => Pendingemailtype::INVITATION,
             ]
         );
-
     }
 
 }
