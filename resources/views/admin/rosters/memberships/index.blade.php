@@ -34,70 +34,11 @@
                         </div>
                     @endif
 
-                    {{-- TABLE --}}
-                    <style>
-                        table{border-collapse: collapse; margin: auto;  margin-top: 1rem;}
-                        td,th{border: 1px solid black; padding: 0 0.25rem; text-align: center;}
-                        .accept{background-color: rgba(0,255,0,0.1); color: darkgreen; border: 1px solid darkgreen;}
-                        .accepted{background-color: darkgreen; color: lightgreen; border: 1px solid rgba(0,255,0,0.1);}
-                        .invite{background-color: lemonchiffon; color: brown; border: 1px solid darkgoldenrod; }
-                        .invited{background-color: brown; color: lemonchiffon; border: 1px solid darkgoldenrod; }
-                    </style>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Invite</th>
-                            <th>Accept</th>
-                            <th>Remove</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @forelse($users AS $user)
-                            <tr>
-                                <td style="text-align: left;">
-                                    <div>{{ $user->last.', '.$user->first.' '.$user->middle }}</div>
-                                    <div class="text-xs ml-4">{{ $user->schools->first()->shortname }}</div>
-                                </td>
-                                <td style="padding: 0.25rem; font-size: small;">
-                                    <a href="{{ route('admin.invite',['user' => $user]) }}">
-                                        <button class="@if($user->eventInvitationsCount) invited @else invite @endif"
-                                                style="border-radius: 0.25rem; padding: 0 0.25rem;"
-                                                title = "{{ $user->eventInvitationsButtonTitle }}"
-                                        >
-                                            @if($user->eventInvitationsCount) Invited @else Invite @endif
-                                        </button>
-                                    </a>
-                                </td>
-                                <td style="padding: 0.25rem; font-size: small;">
-                                    <a href="{{ route('admin.accept', ['user' => $user]) }}">
-                                        <button class="@if($user->accepted) accepted @else accept @endif"
-                                            style="border-radius: 0.25rem; padding: 0 0.25rem;"
-                                        >
-                                            @if($user->accepted) Accepted @else Accept @endif
-                                        </button>
-                                    </a>
-                                </td>
-                                <td style="padding: 0.25rem; font-size: small;">
-                                    <a href="">
-                                        <button style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
-                                            Remove
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr><td>No members found</td></tr>
-                        @endforelse
-                        </tbody>
-                    </table>
-
-                    {{-- Pagination links --}}
-                    <div class="mt-4>
-                        {{ $users->links() }}
-                    </div>
-
                 </div>
+
+                {{-- LIVEWIRE --}}
+                @livewire('admin.rosters.membership')
+
             </div>
         </div>
     </div>

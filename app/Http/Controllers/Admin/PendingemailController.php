@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CurrentEvent;
+use App\Models\Invitation;
 use App\Models\Pendingemail;
+use App\Models\Pendingemailtype;
 use App\Services\TransactionEmailService;
 use Illuminate\Http\Request;
 
@@ -29,7 +32,7 @@ class PendingemailController extends Controller
      * @param  \App\Models\Pendingemail $pendingemail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendingemail $pendingemail=NULL, $recursive=false)
+    public function update(Request $request, Pendingemail $pendingemail=NULL)
     {
         $mssgs = [];
 
@@ -37,11 +40,15 @@ class PendingemailController extends Controller
 
             $mssgs[] = $this->sendEmail($pendingemail);
 
+            $this->updateInvitation($pendingemail);
+
         } else { //user wants ALL pending emails sent
 
             foreach (Pendingemail::all() as $pendingemail) {
 
                 $mssgs[] = $this->sendEmail($pendingemail);
+
+                $this->updateInvitation($pendingemail);
             }
         }
 
@@ -77,5 +84,25 @@ class PendingemailController extends Controller
         $pendingemail->delete();
 
         return $mssg;
+    }
+
+    /**
+     * If $pendingemail is an invitation, updateOrCreate invitations table
+     * @param Pendingemail $pendingemail
+     * @return void
+     */
+    private function updateInvitation(Pendingemail $pendingemail)
+    {
+        static $currenteventid = 0;
+
+        if(! $currenteventid){ $currenteventid = CurrentEvent::currentEvent()->id;}
+
+        if($pendingemail['pendingemailtype']->id === Pendingemailtype::INVITATION){
+
+            Invitation::create([
+               'user_id' => $pendingemail['user']->id,
+               'event_id' => $currenteventid,
+            ]);
+        }
     }
 }

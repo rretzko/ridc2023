@@ -99,6 +99,22 @@ class User extends Authenticatable
             ->count();
     }
 
+    public function getInvitationStatusAttribute(): string
+    {
+        $eventid = CurrentEvent::currentEvent()->id;
+
+        if(Pendingemail::where('user_id', $this->id)->where('pendingemailtype_id', Pendingemailtype::INVITATION)->count()){
+
+            return 'pending';
+        }
+
+        if(Invitation::where('user_id', $this->id)->where('event_id', $eventid)->count()){
+            return 'invited';
+        }
+
+        return 'invite';
+    }
+
     public function getNameAlphaAttribute() : string
     {
         return $this->last.', '.$this->first.' '.$this->middle;
