@@ -14,6 +14,8 @@ class MembershipController extends Controller
         $admin_active = 'rosters';
         $roster_active = 'membership';
 
-        return view('admin.rosters.memberships.index', compact('admin_active','roster_active'));
+        return view('admin.rosters.memberships.index',
+            compact('admin_active','roster_active')
+        );
     }
 }

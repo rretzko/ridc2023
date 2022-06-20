@@ -15,6 +15,8 @@
         .invite{background-color: lemonchiffon; color: brown; border: 1px solid darkgoldenrod; }
         .invited{background-color: brown; color: lemonchiffon; border: 1px solid darkgoldenrod; }
         .pending{background-color: lightgray; color: black; border: 1px solid darkgrey; font-size: small; }
+        .withdraw{background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred;}
+        .withdrew{background-color: darkred; color: pink; border: 1px solid pink;}
     </style>
     <table>
         <thead>
@@ -22,11 +24,11 @@
             <th>Name</th>
             <th>Invite</th>
             <th>Accept</th>
-            <th>Remove</th>
+            <th>Withdraw</th>
         </tr>
         </thead>
         <tbody>
-        @forelse($invitations AS $invitation){{ dd($invitation) }}
+        @forelse($invitations AS $invitation)
             <tr>
                 <td style="text-align: left;" title="Sys.Id. {{ $invitation['user']->id }}">
                     <div>{{ $invitation['user']->last.', '.$invitation['user']->first.' '.$invitation['user']->middle }}</div>
@@ -50,14 +52,15 @@
                     </button>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
-                    <button wire:click="remove({{ $invitation['user'] }})"
-                            style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
-                        Remove
+                    <button wire:click="withdraw({{ $invitation['user'] }})"
+                            class="{{ $invitation['user']->withdrawStatus }}"
+                            style="border-radius: 0.25rem; padding: 0 0.25rem;">
+                        {{ ucfirst($invitation['user']->withdrawStatus) }}
                     </button>
                 </td>
             </tr>
         @empty
-            <tr><td>No members found</td></tr>
+            <tr><td colspan="4">No invitations found</td></tr>
         @endforelse
         </tbody>
     </table>

@@ -136,6 +136,13 @@ class User extends Authenticatable
         );
     }
 
+    public function getWithdrawStatusAttribute(): string
+    {
+        return (Withdraw::where('user_id', $this->id)->where('event_id', CurrentEvent::currentEvent()->id)->exists())
+            ? 'withdrew'
+            : 'withdraw';
+    }
+
     public function invitations()
     {
         return $this->hasMany(Invitation::class);

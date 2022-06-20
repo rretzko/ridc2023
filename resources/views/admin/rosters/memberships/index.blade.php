@@ -37,7 +37,7 @@
                 </div>
 
                 {{-- LIVEWIRE --}}
-                @livewire('admin.rosters.membership')
+                @livewire('admin.rosters.membership-component')
 
             </div>
         </div>
