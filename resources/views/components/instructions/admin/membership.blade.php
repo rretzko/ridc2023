@@ -1,7 +1,7 @@
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around; ">
 
     {{-- INVITE --}}
-    <div x-data="{invite: false}"
+    <div x-cloak x-data="{invite: false}" x-cloak
          role="region"
          class="rounded-lg shadow mt-1"
          style="background-color: lemonchiffon; border: 1px solid brown; color: brown;"
@@ -32,7 +32,7 @@
     </div>
 
     {{-- ACCEPT --}}
-    <div x-data="{accept: false}"
+    <div x-cloak x-data="{accept: false}"
          role="region"
          class="rounded-lg shadow mt-1"
          style="background-color: rgba(0,255,0,0.1); border: 1px solid darkgreen; color: darkgreen;"
@@ -63,7 +63,7 @@
     </div>
 
     {{-- REMOVE --}}
-    <div x-data="{remove: false}"
+    <div x-cloak x-data="{remove: false}"
          role="region"
          class="rounded-lg shadow mt-1"
          style="background-color: rgba(255,0,0,0.1); border: 1px solid darkred; color: darkred;"
@@ -94,7 +94,7 @@
     </div>
 
     {{-- EMAILS --}}
-    <div x-data="{emails: false}"
+    <div x-cloak x-data="{emails: false}"
          role="region"
          class="rounded-lg shadow mt-1"
          style="background-color: rgba(0,0,0,0.8); border: 1px solid black; color: white;"
