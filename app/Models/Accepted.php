@@ -12,9 +12,10 @@ class Accepted extends Model
 
     protected $fillable = ['ensemble_count','event_id','user_id'];
 
+    protected $with = ['user'];
+
     public function user()
     {
-        return $this->belongsTo(User::class)
-            ->where('event_id', CurrentEvent::currentEvent()->id);
+        return $this->belongsTo(User::class);
     }
 }

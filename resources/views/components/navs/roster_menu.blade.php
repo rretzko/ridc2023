@@ -24,7 +24,7 @@
         </a>
     </div>
     <div class="">
-        <a href=""
+        <a href="{{ route('admin.rosters.accepteds') }}"
            class="{{ ($roster_active && ($roster_active === 'accepteds')) ? 'roster_active' : 'text-white' }}"
         >
             Accepteds

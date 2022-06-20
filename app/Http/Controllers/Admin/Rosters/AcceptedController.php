@@ -17,7 +17,10 @@ class AcceptedController extends Controller
      */
     public function index()
     {
-        //
+        $admin_active = 'rosters';
+        $roster_active = 'accepteds';
+
+        return view('admin.rosters.accepteds.index', compact('admin_active','roster_active'));
     }
 
     /**
