@@ -32,13 +32,21 @@ Route::middleware(['auth'])->group( function(){
     Route::get('admin/accepted/{user}', [App\Http\Controllers\Admin\Rosters\AcceptedController::class, 'update'])
         ->name('admin.accept');
 
-    //admin: main menu
-    Route::get('admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])
-        ->name('admin.index');
+    //admin: change password
+    Route::get('admin/changepw', [App\Http\Controllers\Admin\ChangePasswordController::class, 'index'])
+        ->name('admin.changePassword');
 
     //admin: invitation
     Route::get('admin/invite/{user}', App\Http\Controllers\Admin\InvitationController::class)
         ->name('admin.invite');
+
+    //admin: log In as
+    Route::get('admin/loginAs', [App\Http\Controllers\Admin\LoginAsController::class, 'index'])
+        ->name('admin.loginAs');
+
+    //admin: main menu
+    Route::get('admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])
+        ->name('admin.index');
 
     //admin: pending emails
     Route::get('admin/pendingemails', [App\Http\Controllers\Admin\PendingemailController::class, 'index'])

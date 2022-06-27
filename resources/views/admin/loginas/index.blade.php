@@ -20,20 +20,10 @@
                     <x-navs.admin_menu :admin_active="$admin_active"/>
 
                 </div>
-
                 <div id="utility_actions" class="flex items-start justify-center h-screen p-2">
-                    <ol class="ml-4 list-decimal">
-                        <li>
-                            <a href="{{ route('admin.loginAs') }}" class="text-anchor-blue">
-                                Log In As...
-                            </a>
-                        </li>
-                        <li class="text-anchor-blue">
-                            <a href="{{ route('admin.changePassword') }}" class="text-anchor-blue">
-                                Change Password
-                            </a>
-                        </li>
-                    </ol>
+
+                   @livewire('admin.loginas-component')
+
                 </div>
             </div>
         </div>
