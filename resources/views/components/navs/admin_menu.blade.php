@@ -8,7 +8,26 @@
     .admin_active{color: yellow;}
 </style>
 
-<div id="admin_menu_items" class="flex flex-row flex-wrap justify-around mx-2 ">
+<div id="admin_menu_items" class="flex flex-row flex-wrap justify-around mx-4 ">
+
+    {{-- HOME --}}
+    <div class="">
+        <a href="{{ route('admin.index') }}"
+           class="{{ ($admin_active === 'home') ? 'admin_active' : 'text-white' }}"
+           title="Admin Home page"
+        >
+            Home
+        </a>
+    </div>
+
+    {{-- ROSTERS --}}
+    <div class="">
+        <a href="{{ route('admin.rosters') }}"
+           class="{{ ($admin_active && ($admin_active === 'rosters')) ? 'admin_active' : 'text-white' }}"
+        >
+            Rosters
+        </a>
+    </div>
 
     {{-- EMAILS --}}
     <div class="">
@@ -27,15 +46,6 @@
            class="{{ ($admin_active && ($admin_active === 'downloads')) ? 'admin_active' : 'text-white' }}"
         >
             Downloads
-        </a>
-    </div>
-
-    {{-- ROSTERS --}}
-    <div class="">
-        <a href="{{ route('admin.rosters') }}"
-            class="{{ ($admin_active && ($admin_active === 'rosters')) ? 'admin_active' : 'text-white' }}"
-        >
-            Rosters
         </a>
     </div>
 

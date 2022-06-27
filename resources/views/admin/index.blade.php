@@ -17,7 +17,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     {{-- ADMIN MENU --}}
-                    <x-navs.admin_menu />
+                    <x-navs.admin_menu :admin_active="$admin_active"/>
 
                 </div>
             </div>

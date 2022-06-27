@@ -12,6 +12,6 @@ class AdminController extends Controller
         //quick exit
         if(! auth()->user()->isAdmin){ abort(404);}
 
-        return view('admin.index');
+        return view('admin.index',['admin_active' => 'home']);
     }
 }

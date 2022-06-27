@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('guest.home');
 
+Route::get('contact',function(){
+   return view('contact');
+})->name('guest.contact');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])

@@ -4,5 +4,5 @@
 >
     <a href="{{ route('guest.home') }}" style="color: #9d8400;">Home</a>
     <a href="{{ route('guest.home') }}" style="color: #9d8400;">About</a>
-    <a href="{{ route('guest.home') }}" style="color: #9d8400;">Contact</a>
+    <a href="{{ route('guest.contact') }}" style="color: #9d8400;">Contact</a>
 </div>
