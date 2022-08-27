@@ -1,6 +1,6 @@
 <div>
     <p>Hi Patrick - </p>
-    <p>The following was just created on the Contact form from RoxburyInvitational.com:</p>
+    <p>The following was just created on the RoxburyInvitational.com Contact form:</p>
     <div>
         @foreach($inputs AS $key => $input)
             @if($key === 'geostate_id')
