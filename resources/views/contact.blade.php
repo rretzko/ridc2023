@@ -39,79 +39,112 @@
             {{-- WELCOME EVENT HEADER --}}
             <x-welcome-banner />
 
+            <style>
+                form{font-size: 1.3rem;}
+                .input-group{display: flex; flex-direction: column; font-size: 1rem; margin-bottom: 0.25rem;}
+                .input-group label{font-size: 1rem; min-width: 8rem;}
+                .input-group input,select{border: 1px solid black; font-size: 1rem;}
+                .input-group input{padding: 0.25rem;}
+                .input-group select{font-size: 0.8rem;}
+                @media only screen and (min-width:800px){
+                    .input-group{display: flex; flex-direction: row; font-size: 1rem; margin-bottom: 0.25rem;}
+                }
+            </style>
 
             {{-- CONTACT FORM  --}}
             <div class="justify-center p-6 border" style="border: 1px solid black; border-radius: 1rem;">
+                <h3 style="padding: 0; margin: 0; margin-bottom: 1rem;font-size: 1.25rem;">Contact Form</h3>
 
-                <style>
-                    form{font-size: 1.3rem;}
-                    input{border: 1px solid black; font-size: 1.3rem;}
-                    label{ font-size: 1.5rem;}
-                </style>
-                <form action="#" method="POST">
-                    <div class="">
-                        <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
-                            <div>
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">Contact Form</h3>
-                                <p class="mt-1 text-sm text-gray-500">
-                                    Thanks for reaching out!  What questions do you have?
-                                </p>
+                {{-- SUCCESS MESSAGE --}}
+                @if(\Illuminate\Support\Facades\Session::has('success'))
+                   <div style="padding: 0.25rem; border: 1px solid darkgreen; background-color: rgba(0,255,0,0.1); color: black;">
+                       {!! \Illuminate\Support\Facades\Session::get('success') !!}
+                   </div>
+                @endif
+
+                <form action="{{ route('contact.update') }}" method="POST" >
+
+                    @csrf
+
+                    <x-honeypot />
+                    <input name="myField" type="text">
+
+                    <div class="input-group">
+                        <label>First name</label>
+                        <input type="text" name="firstname"
+                               style="@error('firstname') border: 1px solid darkred; background-color: rgba(255,0,0,0.1); @enderror"
+                                value="{{ old('firstname') }}"
+                        />
+                        @error('firstname')
+                            <div style="color: red; margin-left: 0.25rem;">
+                                {{ $message }}
                             </div>
-
-                            <div class="grid grid-cols-6 gap-6">
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
-                                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-4">
-                                    <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                                    <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                                    <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>Mexico</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-span-6">
-                                    <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-                                    <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                                    <input type="text" name="city" id="city" autocomplete="address-level2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                                    <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-                                    <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                                    <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
-                                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label>Last name</label>
+                        <input type="text" name="lastname"
+                               style="@error('lastname') border: 1px solid darkred; background-color: rgba(255,0,0,0.1); @enderror"
+                               value="{{ old('lastname') }}"
+                        />
+                         @error('lastname')
+                            <div style="color: red; margin-left: 0.25rem;">
+                                {{ $message }}
                             </div>
-                        </div>
-                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button type="submit" class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-                        </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="text" name="email"
+                               style="@error('email') border: 1px solid darkred; background-color: rgba(255,0,0,0.1); @enderror"
+                               value="{{ old('email') }}"
+                        />
+                         @error('email')
+                            <div style="color: red; margin-left: 0.25rem;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label>School name</label>
+                        <input type="text" name="school"
+                               style="@error('school') border: 1px solid darkred; background-color: rgba(255,0,0,0.1); @enderror"
+                               value="{{ old('school') }}"
+                        />
+                         @error('school')
+                            <div style="color: red; margin-left: 0.25rem;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label>State</label>
+                        <select name="geostate_id">
+                            @foreach(\App\Models\Geostate::all() AS $geostate)
+                                <option value="{{ $geostate->id }}"
+                                    @if(old('geostate_id') == $geostate->id) selected @endif
+                                >
+                                    {{ $geostate->descr }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Comment</label>
+                        <textarea cols="40" rows="5" name="comment" style="border: 1px solid black; @error('comment') border: 1px solid darkred; background-color: rgba(255,0,0,0.1); @enderror" placeholder="Thanks for reaching out!  What questions do you have?">{{ old('comment') }}</textarea>
+                         @error('comment')
+                            <div style="color: red; margin-left: 0.25rem;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="input-group">
+                        <label></label>
+                        <input type="submit" name="submit" style="border-radius: 0.5rem; margin-top: 1rem; "value="Send" />
                     </div>
                 </form>
-
-
             </div>
+
 
         </div>
 

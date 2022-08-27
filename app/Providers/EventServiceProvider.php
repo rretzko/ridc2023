@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\AdminInvitationEvent;
+use App\Events\SendContactFormEvent;
 use App\Listeners\AdminInvitationListener;
+use App\Listeners\SendContactFormListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        SendContactFormEvent::class => [
+            SendContactFormListener::class,
+        ]
     ];
 
     /**

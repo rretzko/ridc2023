@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 Route::get('contact',function(){
    return view('contact');
 })->name('guest.contact');
+Route::post('contact/update', [App\Http\Controllers\ContactController::class, 'update'])->middleware(ProtectAgainstSpam::class)
+    ->name('contact.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
