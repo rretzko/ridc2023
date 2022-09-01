@@ -11,5 +11,5 @@
     }
 </style>
 <div id="logo_container" class="mt-6">
-    <img src="assets/images/ridc_logo.png" />
+    <img src="{{ asset('assets/images/ridc_logo.png') }}" />
 </div>

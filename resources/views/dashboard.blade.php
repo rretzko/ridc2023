@@ -10,51 +10,18 @@
         <div style="font-size: 3rem; font-family: 'Brush Script MT'; font-style: italic; color: navy;">Roxbury Invitational</div>
         <div style="font-weight: bold; color: navy;">{{ \App\Models\CurrentEvent::currentEvent()->eventDateDMdY }}</div>
     </div>
-<!--
-    <div class="py-12">
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    {{-- NAVIGATION --}}
+    <nav class="m-6 flex flex-row justify-around text-md border border-blue-800 rounded">
+        <div>Application </div>
+        <div>Contact</div>
+    </nav>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
+        <h1 class="mb-2 text-lg font-bold">Festival Application Form</h1>
 
-                <div class="p-6 bg-white border-b border-gray-200">
+        <x-forms.application />
 
-                    {{-- STATUS BADGES --}}
-                    <div id="status_badges" class="flex flex-col">
-                        <style>
-                            .badge{
-                                background-color: lightgrey;
-                                border: 1px solid darkgrey;
-                                border-radius: .5rem;
-                                color: darkgrey;
-                                margin-left: 0.5rem;
-                                padding:0 0.25rem;
-                                text-align: center;
-                            }
-                            .active_badge{
-                                background-color: rgba(0,255,0,0.1);
-                                border: 1px solid darkgreen;
-                                color: darkgreen;
-                            }
-                        </style>
-                        <div id="col1" class="flex flex-row">
-                            <span>You are:</span>
-                            <div class="ml-4 badge active_badge">Guest</div>
-                            <div class="ml-4 badge ">Invited</div>
-                            <div class="ml-4 badge">Fee</div>
-                            <div class="ml-4 badge">Accepted</div>
-                        </div>
-                        <div class="flex flex-row justify-between mt-1 px-6">
-                            <div class="badge">Students</div>
-                            <div class="badge">Repertoire</div>
-                            <div class="badge">Ensembles</div>
-                            <div class="badge">Soloists</div>
-                        </div>
-                    </div>
+    </section>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    --}} -->
 </x-app-layout>

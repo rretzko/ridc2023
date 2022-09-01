@@ -18,11 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('guest.home');
 
+//guest: contact
 Route::get('contact',function(){
    return view('contact');
 })->name('guest.contact');
 Route::post('contact/update', [App\Http\Controllers\ContactController::class, 'update'])->middleware(ProtectAgainstSpam::class)
     ->name('contact.update');
+
+//guest: about
+Route::get('about', function(){
+    return view('about');
+})->name('guest.about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,6 +37,16 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group( function(){
 
+    //admin: about sections
+    Route::get('admin/about', [App\Http\Controllers\Admin\AboutController::class, 'index'])
+        ->name('admin.about');
+    Route::get('admin/about/edit/{about}', [App\Http\Controllers\Admin\AboutController::class, 'edit'])
+        ->name('admin.about.edit');
+    Route::post('admin/about/add', [App\Http\Controllers\Admin\AboutController::class, 'store'])
+        ->name('admin.about.store');
+    Route::post('admin/about/update/{about}', [App\Http\Controllers\Admin\AboutController::class, 'update'])
+        ->name('admin.about.update');
+
     //admin: accepted participants
     Route::get('admin/accepted/{user}', [App\Http\Controllers\Admin\Rosters\AcceptedController::class, 'update'])
         ->name('admin.accept');
@@ -38,6 +54,18 @@ Route::middleware(['auth'])->group( function(){
     //admin: change password
     Route::get('admin/changepw', [App\Http\Controllers\Admin\ChangePasswordController::class, 'index'])
         ->name('admin.changePassword');
+
+    //admin: event management
+    Route::get('admin/events', [App\Http\Controllers\Admin\EventsController::class, 'index'])
+        ->name('admin.events');
+    Route::get('admin/events/destroy/{event}', [App\Http\Controllers\Admin\EventsController::class, 'destroy'])
+        ->name('admin.events.destroy');
+    Route::get('admin/events/edit/{event}', [App\Http\Controllers\Admin\EventsController::class, 'edit'])
+        ->name('admin.events.edit');
+    Route::post('admin/events/add', [App\Http\Controllers\Admin\EventsController::class, 'store'])
+        ->name('admin.events.store');
+    Route::post('admin/events/update/{event}', [App\Http\Controllers\Admin\EventsController::class, 'update'])
+        ->name('admin.events.update');
 
     //admin: invitation
     Route::get('admin/invite/{user}', App\Http\Controllers\Admin\InvitationController::class)

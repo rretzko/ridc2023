@@ -33,6 +33,16 @@
                                 Change Password
                             </a>
                         </li>
+                        <li class="text-anchor-blue">
+                            <a href="{{ route('admin.about') }}" class="text-anchor-blue">
+                                Update 'About' sections
+                            </a>
+                        </li>
+                        <li class="text-anchor-blue">
+                            <a href="{{ route('admin.events') }}" class="text-anchor-blue">
+                                Event Management
+                            </a>
+                        </li>
                     </ol>
                 </div>
             </div>

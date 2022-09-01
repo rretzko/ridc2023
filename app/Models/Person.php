@@ -9,9 +9,18 @@ class Person extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['phone_mobile','phone_work'];
+
+    protected $with = ['school'];
+
     public function user()
     {
         return $this->belongsTo(Person::class);
+    }
+
+    public function school()
+    {
+        return $this->hasOne(School::class,'id','school_id');
     }
 
 }

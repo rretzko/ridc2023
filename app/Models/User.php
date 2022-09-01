@@ -39,7 +39,7 @@ class User extends Authenticatable
      * eager loading
      */
     protected $with = [
-        'person',
+        'person','person.school',
     ];
 
     /**
@@ -164,9 +164,9 @@ class User extends Authenticatable
             ->withPivot('event_id');
     }
 
-    public function schools()
-    {
-        return $this->belongsToMany(school::class);
-    }
+    //public function school()
+    //{
+    //    return $this->hasOne(school::class);
+    //}
 
 }

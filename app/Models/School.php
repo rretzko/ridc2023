@@ -9,6 +9,16 @@ class School extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['address_1','address_2','city','colors','geostate_id','postal_code','school_name',
+        'student_body'];
+
+    protected $with = ['ensembles'];
+
+    public function ensembles()
+    {
+        return $this->belongsToMany(Ensemble::class);
+    }
+
     public function getShortnameAttribute()
     {
         $name = $this->name;

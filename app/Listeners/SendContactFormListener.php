@@ -28,7 +28,7 @@ class SendContactFormListener
      */
     public function handle(SendContactFormEvent $event)
     {
-       Mail::to('phachey@roxbury.org')
+       Mail::to('phachey@roxburyinvitational.com')
            ->bcc('rick@mfrholdings.com')
            ->send(new SendContactFormMail($event->input));
     }

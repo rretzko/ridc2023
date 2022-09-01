@@ -48,7 +48,7 @@
                     It is very exciting for us to host a festival of this nature, and we are thrilled at your interest in joining us!
                 </div>
                 <div>
-                    If you have <b><i>not</i></b> participated in the past, please <a href="" style="color:blue">click here</a> to let us know of your interest!
+                    If you have <b><i>not</i></b> participated in the past, please <a href="{{ route('guest.contact') }}" style="color:blue">click here</a> to let us know of your interest!
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
 
             {{-- CONTACT --}}
             <div id="contact" style="margin: 1rem 0; text-align: center;">
-                If you have any questions, feel free to <a href="mailto: phachey@roxbury.org?subject=Roxbury Invitational Questions&body=Hi, Patrick - " style="color: blue;">send me an email</a>, call me at 973-584-1200 x1250 or fax me at 973-584-7854.
+                If you have any questions, feel free to <a href="{{ route('guest.contact') }}" style="color: blue;">send me an email</a>, call me at 973-584-1200 x1250 or fax me at 973-584-7854.
             </div>
 
             {{-- HOSTS --}}

@@ -20,8 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(GeostatesTableSeeder::class);
         $this->call(SchoolsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(CategorySeeder::class);
 
 
-        $this->call(SchoolUserTableSeeder::class);
+        //$this->call(SchoolUserTableSeeder::class);
+        $this->call(EnsembleSeeder::class);
+        $this->call(EnsembleSchoolSeeder::class);
     }
 }

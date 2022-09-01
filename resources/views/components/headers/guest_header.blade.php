@@ -85,7 +85,7 @@
             @guest
                 <a href="{{ route('login') }}" >LogIn</a>
 
-                <a href="{{ route('register') }}" >Register</a>
+               <!-- {{-- <a href="{{ route('register') }}" >Register</a> --}} -->
             @endguest
 
             @auth
