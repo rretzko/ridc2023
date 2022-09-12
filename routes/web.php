@@ -102,6 +102,23 @@ Route::middleware(['auth'])->group( function(){
     //admin: rosters: membership
     Route::get('rosters/membership', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'index'])
         ->name('admin.rosters.membership');
+
+    //user: application
+    Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])
+        ->name('user.application.edit');
+    Route::post('application/update', [App\Http\Controllers\User\ApplicationController::class, 'update'])
+        ->name('user.application.update');
+    Route::get('user/application/ensemble/remove/{ensemble}',[App\Http\Controllers\User\ApplicationController::class,'destroy'])
+        ->name('user.application.ensemble.destroy');
+    Route::get('user/application/pdf', [App\Http\Controllers\User\ApplicationController::class, 'pdf'])
+        ->name('user.application.pdf');
+
+    //user: contact
+    Route::get('user/contact',function(){
+        return view('user.contact');
+    })->name('user.contact');
+    Route::post('user/contact/update', [App\Http\Controllers\ContactController::class, 'update'])->middleware(ProtectAgainstSpam::class)
+        ->name('user.contact.update');
 });
 
 require __DIR__.'/auth.php';
