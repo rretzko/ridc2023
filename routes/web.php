@@ -113,9 +113,14 @@ Route::middleware(['auth'])->group( function(){
     Route::get('user/application/pdf', [App\Http\Controllers\User\ApplicationController::class, 'pdf'])
         ->name('user.application.pdf');
 
+    //user: about
+    Route::get('user/about', function(){
+        return view('users.about.show');
+    })->name('user.about');
+
     //user: contact
     Route::get('user/contact',function(){
-        return view('user.contact');
+        return view('users.contact.show');
     })->name('user.contact');
     Route::post('user/contact/update', [App\Http\Controllers\ContactController::class, 'update'])->middleware(ProtectAgainstSpam::class)
         ->name('user.contact.update');

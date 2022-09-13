@@ -32,7 +32,6 @@
             {{-- GUEST PAGE HEADER --}}
             <x-headers.guest_header />
 
-
             {{-- MAIN NAVIGATION MENU --}}
             <x-navs.guest_nav />
 

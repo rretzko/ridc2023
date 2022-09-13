@@ -32,9 +32,14 @@
             {{-- GUEST PAGE HEADER --}}
             <x-headers.guest_header />
 
-
             {{-- MAIN NAVIGATION MENU --}}
-            <x-navs.guest_nav />
+            @auth()
+                <x-navs.application />
+            @endauth
+
+            @guest
+                <x-navs.guest_nav />
+            @endguest
 
             {{-- WELCOME EVENT HEADER --}}
             <x-welcome-banner />

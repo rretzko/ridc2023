@@ -19,6 +19,11 @@ class School extends Model
         return $this->belongsToMany(Ensemble::class);
     }
 
+    public function getGeostateAbbrAttribute(): string
+    {
+        return Geostate::find($this->geostate_id)->abbr;
+    }
+
     public function getShortnameAttribute()
     {
         $name = $this->name;

@@ -2,6 +2,9 @@
     <a href="{{ route('user.application.edit') }}" class="text-blue-600">
         Application
     </a>
+
+    <a href="{{ route('user.about') }}" style="color: #9d8400;">About</a>
+
     <a href="{{ route('user.contact') }}" class="text-blue-600">
         Contact
     </a>
