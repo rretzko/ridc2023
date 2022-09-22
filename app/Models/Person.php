@@ -9,7 +9,7 @@ class Person extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['phone_mobile','phone_work'];
+    protected $fillable = ['phone_mobile','phone_work','school_id'];
 
     protected $with = ['school'];
 

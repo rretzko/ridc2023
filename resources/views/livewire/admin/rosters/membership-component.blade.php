@@ -29,7 +29,11 @@
         @forelse($users AS $user)
             <tr>
                 <td style="text-align: left;" title="Sys.Id. {{ $user->id }}">
-                    <div>{{ $user->last.', '.$user->first.' '.$user->middle }}</div>
+                    <div>
+                        <a href="{{ route('admin.rosters.membership.edit', ['user' => $user]) }}" class="text-blue-600">
+                            {{ $user->last.', '.$user->first.' '.$user->middle }}
+                        </a>
+                    </div>
                     <div class="text-xs ml-4">{!!  $user->person && $user->person->school ? $user->person->school->shortname : '<span style="color:red">No school found</span>' !!}</div>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
