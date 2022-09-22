@@ -133,6 +133,7 @@ class MembershipController extends Controller
             $school_id = School::where('school_name', $inputs['school_name'])->exists()
                 ? School::where('school_name', $inputs['school_name'])->first()->id
                 : School::create(['school_name' => $inputs['school_name']])->id;
+
         }
 
         Person::updateOrCreate(

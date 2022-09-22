@@ -13,6 +13,8 @@ class Person extends Model
 
     protected $with = ['school'];
 
+    protected $primaryKey = 'user_id';
+
     public function user()
     {
         return $this->belongsTo(Person::class);
