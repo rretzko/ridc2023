@@ -102,8 +102,12 @@ Route::middleware(['auth'])->group( function(){
     //admin: rosters: membership
     Route::get('rosters/membership', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'index'])
         ->name('admin.rosters.membership');
+    Route::get('rosters/membership/add', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'create'])
+        ->name('admin.rosters.membership.add');
     Route::get('rosters/membership/edit/{user}', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'edit'])
         ->name('admin.rosters.membership.edit');
+    Route::post('rosters/membership/save', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'store'])
+        ->name('admin.rosters.membership.store');
     Route::post('rosters/membership/update/{user}', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'update'])
         ->name('admin.rosters.membership.update');
 

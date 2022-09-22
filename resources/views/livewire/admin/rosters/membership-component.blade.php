@@ -16,8 +16,16 @@
         .invited{background-color: brown; color: lemonchiffon; border: 1px solid darkgoldenrod; }
         .pending{background-color: lightgray; color: black; border: 1px solid darkgrey; font-size: small; }
     </style>
+
     <table>
         <thead>
+        <tr>
+            <td colspan="4" class="py-2 px-2">
+                <a href="{{ route('admin.rosters.membership.add') }}" class="border border-green-800 text-green-800 rounded-full px-2 bg-green-100">
+                    Add New Member
+                </a>
+            </td>
+        </tr>
         <tr>
             <th>Name</th>
             <th>Invite</th>

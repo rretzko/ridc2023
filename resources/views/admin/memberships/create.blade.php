@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Membership Edit') }}
+            {{ __('Admin Membership Add') }}
         </h2>
     </x-slot>
 
@@ -43,21 +43,21 @@
 
                 {{-- FORM --}}
                 <div style="width: 80%; margin: 1rem auto; padding: 1rem; border: 1px solid darkgrey; border-radius: 0.5rem; ">
-                    <form method="post" action="{{ route('admin.rosters.membership.update', ['user' => $dto]) }}" class="bg-gray-100 p-4 rounded" >
+                    <form method="post" action="{{ route('admin.rosters.membership.store') }}" class="bg-gray-100 p-4 rounded" >
                         <style>
                             label{font-size: 1rem;}
                             .input-group{display: flex; flex-direction: column; margin-bottom: 0.5rem;}
 
                         </style>
                         @csrf
-                        <h3 class="mb-2"> Editing: {{ $dto->nameAlpha }}</h3>
+                        <h3 class="mb-2"> Add New Member</h3>
                         {{-- NAME --}}
                         <div class="input-group">
                             <label for="first">Name</label>
                             <div class="flex flex-row space-x-1">
-                                <input type="text" name="first" value="{{ $dto->first }}" placeholder="Mary"/>
-                                <input type="text" name="middle" value="{{ $dto->middle }}" />
-                                <input type="text" name="last" value="{{ $dto->last }}" placeholder="Washington"/>
+                                <input type="text" name="first" value="" placeholder="Mary"/>
+                                <input type="text" name="middle" value="" />
+                                <input type="text" name="last" value="" placeholder="Washington"/>
                             </div>
                             <div>
                                 @error('first')
@@ -70,7 +70,7 @@
                         <div class="input-group">
                             <label for="email">eMail</label>
                             <div class="flex flex-row space-x-1">
-                                <input type="text" name="email" value="{{ $dto->email }}" placeholder="name@example.com"/>
+                                <input type="text" name="email" value="" placeholder="name@example.com"/>
                             </div>
                         </div>
 
@@ -81,9 +81,7 @@
                                 <div class="">
                                     <select name="school_id">
                                         @foreach(\App\Models\School::orderBy('school_name')->get() AS $school)
-                                            <option value="{{ $school->id }}"
-                                                    @if($dto['person'] && $dto['person']['school']->id == $school->id) selected @endif
-                                            >
+                                            <option value="{{ $school->id }}" >
                                                 {{ $school->school_name }}
                                             </option>
                                         @endforeach
@@ -100,7 +98,7 @@
                         <div class="input-group">
                             <label></label>
                             <div class="element">
-                                <input type="submit" name="submit" value="Update" class="border border-gray-600 p-2 rounded-full shadow-lg"/>
+                                <input type="submit" name="submit" value="Add" class="border border-gray-600 p-2 rounded-full shadow-lg"/>
                             </div>
                         </div>
                     </form>

@@ -8,6 +8,7 @@ use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class MembershipController extends Controller
 {
@@ -19,6 +20,14 @@ class MembershipController extends Controller
         return view('admin.rosters.memberships.index',
             compact('admin_active','roster_active')
         );
+    }
+
+    public function create()
+    {
+        $admin_active = 'rosters';
+        $roster_active = 'membership';
+
+        return view('admin.memberships.create', compact('admin_active','roster_active'));
     }
 
     /**
@@ -35,6 +44,40 @@ class MembershipController extends Controller
         $dto = $user;
 
         return view('admin.memberships.edit', compact('dto','admin_active','roster_active'));
+    }
+
+    public function store(Request $request)
+    {
+        $inputs = $request->validate(
+            [
+                'email' => ['email','required'],
+                'first' => ['string','required'],
+                'last' => ['string','required'],
+                'middle' => ['string', 'nullable'],
+                'school_id' => ['numeric','required','exists:schools,id'],
+                'school_name' => ['string','nullable'],
+            ]
+        );
+
+        $user = User::create(
+            [
+                'email' => $inputs['email'],
+                'first' => $inputs['first'],
+                'last' => $inputs['last'],
+                'middle' => $inputs['middle'],
+                'name' => $inputs['first'].' '.$inputs['middle'].' '.$inputs['last'],
+                'password' => Hash::make($inputs['email'].'*234'), //default
+            ]
+        );
+
+        $this->updateSchool($user->refresh(), $inputs);
+
+        $admin_active = 'rosters';
+        $roster_active = 'membership';
+
+        session('success', $user->nameAlpha.' successfully added');
+
+        return $this->index();
     }
 
     /**
@@ -92,7 +135,14 @@ class MembershipController extends Controller
                 : School::create(['school_name' => $inputs['school_name']])->id;
         }
 
-        Person::where('user_id', $user->id)->update(['school_id' => $school_id]);
+        Person::updateOrCreate(
+            [
+                'user_id' => $user->id,
+            ],
+            [
+                'school_id' => $school_id
+            ]
+        );
     }
 
 }
