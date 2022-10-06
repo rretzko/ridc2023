@@ -141,16 +141,20 @@ class User extends Authenticatable
 
     public function getPhoneMobileAttribute() : string
     {
-        return Phone::where('user_id', $this->id)
+        return  Phone::where('user_id', $this->id)
             ->where('mobile',1)
-            ->first()->phone;
+            ->exists()
+            ? Phone::where('user_id', $this->id)->where('mobile',1)->first()->phone
+            : '';
     }
 
     public function getPhoneWorkAttribute() : string
     {
         return Phone::where('user_id', $this->id)
             ->where('mobile',0)
-            ->first()->phone;
+            ->exists()
+            ? Phone::where('user_id', $this->id)->where('mobile',0)->first()->phone
+            : '';
     }
 
     public function getWithdrawStatusAttribute(): string
