@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class LoginasComponent extends Component
 {
+    public $found = 0;
     public $notfound = 0;
     public $userid = 0;
 
