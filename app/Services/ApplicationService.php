@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-
-
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
 use App\Models\EventEnsemble;
@@ -55,6 +53,7 @@ class ApplicationService
     private function makeNewEnsemble(): void
     {
         if(array_key_exists('newensemblename', $this->inputs) &&
+            (!is_null($this->inputs['newensemblename'])) &&
             strlen($this->inputs['newensemblename']) &&
             is_numeric($this->inputs['newensemblecategoryid'])){
 

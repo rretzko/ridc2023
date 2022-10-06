@@ -26,7 +26,7 @@ class ApplicationRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if (((strlen($this->newensemblename) && $this->newensemblecategoryid)) ||
+        if (((! is_null($this->newensemblename)) && (strlen($this->newensemblename) && $this->newensemblecategoryid)) ||
             $this->primary) {
 
             $this->merge([
