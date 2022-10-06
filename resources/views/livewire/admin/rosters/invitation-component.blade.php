@@ -32,7 +32,7 @@
             <tr>
                 <td style="text-align: left;" title="Sys.Id. {{ $invitation['user']->id }}">
                     <div>{{ $invitation['user']->last.', '.$invitation['user']->first.' '.$invitation['user']->middle }}</div>
-                    <div class="text-xs ml-4">{!! ($invitation['user']->schools->first()) ? $invitation['user']->schools->first()->shortname : '<span style="color:red">No school found</span>' !!}</div>
+                    <div class="text-xs ml-4">{!! ($invitation['user']['person']['school']) ? $invitation['user']['person']['school']->shortname : '<span style="color:red">No school found</span>' !!}</div>
                 </td>
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="invite({{ $invitation['user'] }})"
