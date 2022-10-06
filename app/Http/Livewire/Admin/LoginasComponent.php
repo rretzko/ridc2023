@@ -41,7 +41,7 @@ class LoginasComponent extends Component
 
             Auth::loginUsingId($this->userid);
 
-            return redirect()->to('dashboard', ['application' => $this->application]);
+            return redirect()->to('user/application');
         }
     }
 

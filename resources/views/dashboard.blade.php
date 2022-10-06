@@ -17,7 +17,7 @@
     <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
         <h1 class="mb-2 text-lg font-bold">Festival Application Form</h1>
 
-        <x-forms.application />
+        <x-forms.application :application="$application"/>
 
     </section>
 
