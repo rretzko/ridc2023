@@ -145,7 +145,7 @@ class User extends Authenticatable
             ->where('mobile',1)
             ->exists()
             ? Phone::where('user_id', $this->id)->where('mobile',1)->first()->phone
-            : '';
+            : 'none';
     }
 
     public function getPhoneWorkAttribute() : string
@@ -154,7 +154,7 @@ class User extends Authenticatable
             ->where('mobile',0)
             ->exists()
             ? Phone::where('user_id', $this->id)->where('mobile',0)->first()->phone
-            : '';
+            : 'none';
     }
 
     public function getWithdrawStatusAttribute(): string
