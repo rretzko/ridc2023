@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class School extends Model
 {
@@ -17,6 +18,45 @@ class School extends Model
     public function ensembles()
     {
         return $this->belongsToMany(Ensemble::class);
+    }
+
+    public function eventEnsemblesPrimary(): Ensemble
+    {
+        return Ensemble::find(EventEnsemble::where('school_id', $this->id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('primary',1)
+            ->value('ensemble_id'));
+    }
+
+    public function eventEnsemblesSecondary(): Collection
+    {
+        $ensemble_ids = EventEnsemble::where('school_id', $this->id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('primary',0)
+            ->pluck('ensemble_id');
+
+        $ensembles = collect();
+
+        foreach($ensemble_ids AS $ensemble_id){
+
+            $ensembles->push(Ensemble::find($ensemble_id));
+        }
+
+        return $ensembles;
+    }
+
+    public function getEventAttendingAdultsAttribute(): int
+    {
+        return EventSchool::where('school_id', $this->id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->value('attending_adults') ?? 0;
+    }
+
+    public function getEventAttendingStudentsAttribute(): int
+    {
+        return EventSchool::where('school_id', $this->id)
+                ->where('event_id', CurrentEvent::currentEvent()->id)
+                ->value('attending_students') ?? 0;
     }
 
     public function getGeostateAbbrAttribute(): string

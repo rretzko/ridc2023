@@ -87,6 +87,10 @@ Route::middleware(['auth'])->group( function(){
     Route::get('admin/pendingemails/send/{pendingemail?}', [App\Http\Controllers\Admin\PendingemailController::class, 'update'])
         ->name('admin.pendingemails.update');
 
+    //admin: rosters: applicants
+    Route::get('rosters/applicants', [App\Http\Controllers\Admin\Rosters\ApplicantController::class, 'index'])
+        ->name('admin.rosters.applicants');
+
     //admin: rosters: accepted
     Route::get('rosters/accepteds', [App\Http\Controllers\Admin\Rosters\AcceptedController::class, 'index'])
         ->name('admin.rosters.accepteds');
