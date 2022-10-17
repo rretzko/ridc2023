@@ -33,14 +33,22 @@
                 <div class="school">
                     <div class="flex flex-col">
                         <div class="font-bold text-2xl">
+<<<<<<< HEAD
                             {{ $user->person->school->shortName }}
                         </div>
                         <div class="">
                             {{ $user->person->school->city.', '.$user->person->school->geostateAbbr }}
+=======
+                            School Name
+                        </div>
+                        <div class="">
+                            School city/state
+>>>>>>> main/master
                         </div>
                         <div class="">
                             <div class="flex flex-row">
                                 <div class="w-32 font-bold">Primary:</div>
+<<<<<<< HEAD
                                 <div class="font-bold">{{ $user->person->school->eventEnsemblesPrimary()->ensemble_name }} ({{ $user->person->school->eventEnsemblesPrimary()->category->descr }})</div>
                             </div>
                             @forelse($user->person->school->eventEnsemblesSecondary() AS $eventensemble)
@@ -51,6 +59,14 @@
                             @empty
                                 <div>No secondary ensembles</div>
                             @endforelse
+=======
+                                <div class="font-bold">Ensemble 1 (style)</div>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="w-32">Secondary:</div>
+                                <div>Ensemble n (style)</div>
+                            </div>
+>>>>>>> main/master
                         </div>
                     </div>
                 </div>
@@ -60,10 +76,17 @@
                             Counts
                         </div>
                         <div class="">
+<<<<<<< HEAD
                             Students: {{ $user->person->school->eventAttendingStudents }}
                         </div>
                         <div class="">
                             Adults: {{ $user->person->school->eventAttendingAdults }}
+=======
+                            Students
+                        </div>
+                        <div class="">
+                            Adults
+>>>>>>> main/master
                         </div>
                     </div>
                 </div>
@@ -73,7 +96,11 @@
         @endforelse
     </div>
 
+<<<<<<< HEAD
     {{-- TABLE
+=======
+    {{-- TABLE --}}
+>>>>>>> main/master
     <style>
         table{border-collapse: collapse; margin: auto;  margin-top: 1rem;}
         td,th{border: 1px solid black; padding: 0 0.25rem; text-align: center;}
@@ -104,7 +131,11 @@
         <tbody>
         @forelse($users AS $user)
             <tr>
+<<<<<<< HEAD
                 {{-- NAME
+=======
+                {{-- NAME --}}
+>>>>>>> main/master
                 <td style="text-align: left;" title="Sys.Id. {{ $user->id }}">
                     <div>
                         <a href="{{ route('admin.rosters.membership.edit', ['user' => $user]) }}" class="text-blue-600">
@@ -114,7 +145,11 @@
                     <div class="text-xs ml-4">{!!  $user->person && $user->person->school ? $user->person->school->shortname : '<span style="color:red">No school found</span>' !!}</div>
                 </td>
 
+<<<<<<< HEAD
                 {{-- INVITE
+=======
+                {{-- INVITE --}}
+>>>>>>> main/master
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="invite({{ $user }})"
                             class="{{ $user->invitationStatus }}"
@@ -125,7 +160,11 @@
                     </button>
                 </td>
 
+<<<<<<< HEAD
                 {{-- APPLIED
+=======
+                {{-- APPLIED --}}
+>>>>>>> main/master
                 <td style="padding: 0.25rem; font-size: small;">
                     @if($user->applicationStatus)
                         <button wire:click="applied({{ $user }})"
@@ -138,7 +177,11 @@
                     @endif
                 </td>
 
+<<<<<<< HEAD
                 {{-- ACCEPT
+=======
+                {{-- ACCEPT --}}
+>>>>>>> main/master
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="accept({{ $user }})"
                             class="{{ $user->acceptedStatus }}"
@@ -148,7 +191,11 @@
                     </button>
                 </td>
 
+<<<<<<< HEAD
                 {{-- REMOVE
+=======
+                {{-- REMOVE --}}
+>>>>>>> main/master
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="remove({{ $user }})"
                             style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
@@ -162,10 +209,17 @@
         </tbody>
     </table>
 
+<<<<<<< HEAD
     {{-- Pagination links
     <div class="mt-4">
         {{ $users->links() }}
     </div>
 --}}
+=======
+    {{-- Pagination links --}}
+    <div class="mt-4">
+        {{ $users->links() }}
+    </div>
+>>>>>>> main/master
 </div>
 
