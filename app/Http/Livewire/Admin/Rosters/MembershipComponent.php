@@ -34,6 +34,11 @@ class MembershipComponent extends Component
         );
     }
 
+    public function applied(User $user)
+    {
+        //do nothing
+    }
+
     public function invite(User $user)
     {
         Pendingemail::updateOrCreate(

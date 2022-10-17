@@ -6,6 +6,69 @@
         </div>
     @endif
 
+    {{-- APPLICATIONS --}}
+    <div id="applications-table">
+        @forelse($users AS $user)
+            <div class="applicant-card mb-2 border border-gray-600 p-2 flex flex-row flex-wrap justify-around">
+                <div class="bio">
+                    <div class="flex flex-col">
+                        <div class="font-bold text-2xl">
+                            {{ $user->nameAlpha }}
+                        </div>
+                        <div class="">
+                            {{ $user->email }}
+                        </div>
+                        <div class="">
+                            <div class="flex flex-row">
+                                <div class="w-16">Cell:</div>
+                                <div>{{ $user->phoneMobile }}</div>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="w-16">Work:</div>
+                                <div>{{ $user->phoneWork }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="school">
+                    <div class="flex flex-col">
+                        <div class="font-bold text-2xl">
+                            School Name
+                        </div>
+                        <div class="">
+                            School city/state
+                        </div>
+                        <div class="">
+                            <div class="flex flex-row">
+                                <div class="w-32 font-bold">Primary:</div>
+                                <div class="font-bold">Ensemble 1 (style)</div>
+                            </div>
+                            <div class="flex flex-row">
+                                <div class="w-32">Secondary:</div>
+                                <div>Ensemble n (style)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="counts">
+                    <div class="flex flex-col">
+                        <div class="font-bold text-2xl">
+                            Counts
+                        </div>
+                        <div class="">
+                            Students
+                        </div>
+                        <div class="">
+                            Adults
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div>No Applicants Found</div>
+        @endforelse
+    </div>
+
     {{-- TABLE --}}
     <style>
         table{border-collapse: collapse; margin: auto;  margin-top: 1rem;}
@@ -50,7 +113,7 @@
                 {{-- INVITE --}}
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="invite({{ $user }})"
-                        class="{{ $user->invitationStatus }}"
+                            class="{{ $user->invitationStatus }}"
                             style="border-radius: 0.25rem; padding: 0 0.25rem;"
                             title = "{{ $user->eventInvitationsButtonTitle }}"
                     >
@@ -74,8 +137,8 @@
                 {{-- ACCEPT --}}
                 <td style="padding: 0.25rem; font-size: small;">
                     <button wire:click="accept({{ $user }})"
-                        class="{{ $user->acceptedStatus }}"
-                        style="border-radius: 0.25rem; padding: 0 0.25rem;"
+                            class="{{ $user->acceptedStatus }}"
+                            style="border-radius: 0.25rem; padding: 0 0.25rem;"
                     >
                         {{ ucfirst($user->acceptedStatus) }}
                     </button>
@@ -83,10 +146,10 @@
 
                 {{-- REMOVE --}}
                 <td style="padding: 0.25rem; font-size: small;">
-                        <button wire:click="remove({{ $user }})"
+                    <button wire:click="remove({{ $user }})"
                             style="background-color: rgba(255,0,0,0.1); color: darkred; border: 1px solid darkred; border-radius: 0.25rem; padding: 0 0.25rem;">
-                            Remove
-                        </button>
+                        Remove
+                    </button>
                 </td>
             </tr>
         @empty
@@ -100,3 +163,4 @@
         {{ $users->links() }}
     </div>
 </div>
+

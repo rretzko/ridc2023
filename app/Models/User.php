@@ -67,6 +67,15 @@ class User extends Authenticatable
             : 'accept';
     }
 
+    public function getApplicationStatusAttribute(): bool
+    {
+        $eventid = CurrentEvent::currentEvent()->id;
+
+        return EventSchool::where('school_id',$this->person->school_id)
+            ->where('event_id', $eventid)
+            ->exists();
+    }
+
     public function getEventInvitationsAttribute(): Collection
     {
         return Invitation::where('user_id', $this->id)

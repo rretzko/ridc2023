@@ -17,7 +17,7 @@ class Person extends Model
 
     public function user()
     {
-        return $this->belongsTo(Person::class);
+        return User::find($this->user_id);
     }
 
     public function school()
