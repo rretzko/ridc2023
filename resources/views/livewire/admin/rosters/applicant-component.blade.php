@@ -27,7 +27,9 @@
                             {{ $user->nameAlpha }}
                         </div>
                         <div class="">
-                            {{ $user->email }}
+                            <a href="mailto:{{ $user->email }}" class="text-blue-600">
+                                {{ $user->email }}
+                            </a>
                         </div>
                         <div class="">
                             <div class="flex flex-row">
