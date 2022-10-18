@@ -18,8 +18,10 @@
     {{-- APPLICATION CARDS --}}
     <div id="applications-table">
         @forelse($users AS $user)
-            <div class="applicant-card mb-2 border border-gray-600 p-2 flex flex-row flex-wrap justify-around">
-                <div class="bio">
+            <div id="applicant card" class="mb-2 border border-gray-600 p-2 flex flex-row mx-2">
+
+                {{-- BIO --}}
+                <div id="bio" class="w-1/3 border border-white border-r-gray-200 mr-4">
                     <div class="flex flex-col">
                         <div class="font-bold text-2xl">
                             {{ $user->nameAlpha }}
@@ -39,7 +41,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="school">
+
+                {{-- SCHOOL --}}
+                <div id="school" class="w-1/3 border border-white border-r-gray-200 mr-4">
                     <div class="flex flex-col">
                         <div class="font-bold text-2xl">
 
@@ -49,32 +53,22 @@
                             {{ $user->person->school->city.', '.$user->person->school->geostateAbbr }}
                         </div>
                         <div class="">
-                            <div class="flex flex-row">
-                                <div class="w-32 font-bold">Primary:</div>
+                            <div class="">
                                 <div class="font-bold">{{ $user->person->school->eventEnsemblesPrimary()->ensemble_name }} ({{ $user->person->school->eventEnsemblesPrimary()->category->descr }})</div>
                             </div>
-                            @forelse($user->person->school->eventEnsemblesSecondary() AS $eventensemble)
-                                <div class="flex flex-row">
-                                    <div class="w-32">Secondary:</div>
+
+                            <div class="text-sm">
+                                @forelse($user->person->school->eventEnsemblesSecondary() AS $eventensemble)
                                     <div>{{ $eventensemble->ensemble_name }} ({{$eventensemble->category->descr}})</div>
-                                </div>
-                            @empty
-                                <div>No secondary ensembles</div>
-                            @endforelse
-
-                                <div class="font-bold">Ensemble 1 (style)</div>
+                                @empty
+                                    <div>No secondary ensembles</div>
+                                @endforelse
                             </div>
-                            <div class="flex flex-row">
-                                <div class="w-32">Secondary:</div>
-                                <div>Ensemble n (style)</div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
-                {{-- COUNTS --}}
-                <div class="counts">
+                <div id="counts" class="w-1/3">
                     <div class="flex flex-col">
                         <div class="font-bold text-2xl">
                             Counts
