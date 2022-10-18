@@ -7,6 +7,13 @@
     @endif
 
     {{-- APPLICATIONS --}}
+    <div class="flex flex-row justify-end mr-2">
+        <a href="">
+            <button class="bg-green-200 text-green-800 border border-green-800 px-2">
+                Download
+            </button>
+        </a>
+    </div>
     <div id="applications-table">
         @forelse($users AS $user)
             <div class="applicant-card mb-2 border border-gray-600 p-2 flex flex-row flex-wrap justify-around">
@@ -38,17 +45,10 @@
                         </div>
                         <div class="">
                             {{ $user->person->school->city.', '.$user->person->school->geostateAbbr }}
-
-                            School Name
-                        </div>
-                        <div class="">
-                            School city/state
->>>>>>> main/master
                         </div>
                         <div class="">
                             <div class="flex flex-row">
                                 <div class="w-32 font-bold">Primary:</div>
-<<<<<<< HEAD
                                 <div class="font-bold">{{ $user->person->school->eventEnsemblesPrimary()->ensemble_name }} ({{ $user->person->school->eventEnsemblesPrimary()->category->descr }})</div>
                             </div>
                             @forelse($user->person->school->eventEnsemblesSecondary() AS $eventensemble)
@@ -59,7 +59,7 @@
                             @empty
                                 <div>No secondary ensembles</div>
                             @endforelse
-=======
+
                                 <div class="font-bold">Ensemble 1 (style)</div>
                             </div>
                             <div class="flex flex-row">
