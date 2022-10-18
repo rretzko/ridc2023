@@ -29,7 +29,6 @@ class ApplicantComponent extends Component
             $person = Person::where('school_id', $event_school->school_id)->first();
             $users[] = $person->user_id;
         }
-        //dd(User::whereIn('id',$users)->orderBy('last')->orderBy('first')->select('id', 'last','first','middle')->paginate(15));
         return User::whereIn('id',$users)->orderBy('last')->orderBy('first')->select('id', 'last','first','middle','email')->paginate(15);
     }
 }

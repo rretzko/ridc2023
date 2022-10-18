@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Rosters;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ApplicantController extends Controller
 {
@@ -24,7 +26,7 @@ class ApplicantController extends Controller
 
     public function export()
     {
-        return $this->index();
+        return Excel::download(new \App\Exports\ApplicantsExport, 'applicants_'.date('Ymd_Gis').'.csv');
     }
 
     /**
