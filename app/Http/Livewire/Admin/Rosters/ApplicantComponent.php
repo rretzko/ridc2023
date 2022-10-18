@@ -27,7 +27,10 @@ class ApplicantComponent extends Component
         foreach($event_schools AS $event_school){
 
             $person = Person::where('school_id', $event_school->school_id)->first();
-            $users[] = $person->user_id;
+
+            if($person->user_id !== 1){//exclude developer
+              $users[] = $person->user_id;
+            }
         }
         return User::whereIn('id',$users)->orderBy('last')->orderBy('first')->select('id', 'last','first','middle','email')->paginate(15);
     }
