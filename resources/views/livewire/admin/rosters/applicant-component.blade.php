@@ -34,6 +34,7 @@
                     <div class="flex flex-col">
                         <div class="font-bold text-2xl">
 <<<<<<< HEAD
+                            {{-- This is a new function --}}
                             {{ $user->person->school->shortName }}
                         </div>
                         <div class="">
