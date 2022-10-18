@@ -22,6 +22,11 @@ class ApplicantController extends Controller
         );
     }
 
+    public function export()
+    {
+        return $this->index();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

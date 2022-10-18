@@ -90,7 +90,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: rosters: applicants
     Route::get('rosters/applicants', [App\Http\Controllers\Admin\Rosters\ApplicantController::class, 'index'])
         ->name('admin.rosters.applicants');
-
+    Route::get('rosters/applicants/downloads', [App\Http\Controllers\Admin\Rosters\ApplicantController::class, 'export'])
+        ->name('admin.rosters.applicants.download');
     //admin: rosters: accepted
     Route::get('rosters/accepteds', [App\Http\Controllers\Admin\Rosters\AcceptedController::class, 'index'])
         ->name('admin.rosters.accepteds');
