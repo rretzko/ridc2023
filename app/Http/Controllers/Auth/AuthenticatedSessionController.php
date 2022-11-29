@@ -32,7 +32,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return auth()->user()->accepted()
+             ? redirect()->route('users.accepteds.profiles.show', ['user' => auth()->user()]) //display participant menu starting with profile
+             : redirect()->intended(RouteServiceProvider::HOME); //display application
     }
 
     /**

@@ -126,6 +126,10 @@ Route::middleware(['auth'])->group( function(){
     Route::get('user/application/pdf', [App\Http\Controllers\User\ApplicationController::class, 'pdf'])
         ->name('user.application.pdf');
 
+    //user: accepted
+    Route::get('user/profile', [App\Http\Controllers\User\Accepteds\ProfileController::class, 'show'])
+        ->name('users.accepteds.profiles.show');
+
     //user: about
     Route::get('user/about', function(){
         return view('users.about.show');

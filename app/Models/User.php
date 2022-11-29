@@ -54,10 +54,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function accepted()
+    public function accepted(): bool
     {
-        return $this->hasOne(Accepted::class)
-            ->where('event_id', CurrentEvent::currentEvent()->id);
+        return (bool)$this->hasMany(Accepted::class)
+            ->where('event_id', CurrentEvent::currentEvent()->id)->first();
     }
 
     public function getAcceptedStatusAttribute(): string
