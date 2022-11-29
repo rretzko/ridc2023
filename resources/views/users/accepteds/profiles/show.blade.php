@@ -13,7 +13,7 @@
     </div>
 
     {{-- NAVIGATION --}}
-    <x-navs.application />
+    <x-navs.accepteds active="profile" :user="$user" />
 
     {{-- PAGE CONTENT --}}
     <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
