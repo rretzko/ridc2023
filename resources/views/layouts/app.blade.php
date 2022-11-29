@@ -13,6 +13,7 @@
         <!-- Styles -->
         <style>
             body {
+                background-color: rgba(0,0,0,0.05);
                 font-family: 'Nunito', sans-serif;
             }
 
@@ -41,7 +42,7 @@
         <div id="main">
             <x-headers.guest_header />
 
-            <div class="min-h-screen bg-gray-100">
+            <div class="min-h-screen">
                 <!-- {{--
                 @include('layouts.navigation')
                 --}} -->

@@ -19,7 +19,7 @@
     <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
         <h1 class="mb-2 text-lg font-bold">Profile</h1>
 
-        form content goes here
+        <x-forms.accepteds.profile :user="$user" />
 
     </section>
 

@@ -2,40 +2,51 @@
 'active' => 'profile',
 'user' => auth()->user(),
 ])
-<nav class="m-6 flex flex-row justify-around text-md border border-blue-800 rounded">
-    <a href="{{ route('users.accepteds.profiles.show', ['user' => $user]) }}"
-       class="@if($active === 'profile') text-red-600 @else text-gray-400 @endif"
-    >
-        Profile
-    </a>
+<style>
+    .nav-item{padding:0 0.25rem; }
+    .nav-item:hover{color: blue;}
+    .nav-item-first{ }
+</style>
+<nav class="m-6 text-md border border-blue-800 rounded">
 
-    <a href="{{ route('user.about') }}"
-       class="@if($active === 'school') text-red-600 @else text-gray-400 @endif"
-    >
-        School
-    </a>
+    <div class="flex flex-wrap justify-around text-center">
 
-    <a href=""
-       class="@if($active === 'students') text-red-600 @else text-gray-400 @endif"
-    >
-        Students
-    </a>
+        <a href="{{ route('users.accepteds.profiles.show', ['user' => $user]) }}"
+           class="nav-item nav-item-first @if($active === 'profile') text-red-600 @else text-gray-400 @endif hover:text-gray-700"
+        >
+            Profile
+        </a>
 
-    <a href="{{ route('user.contact') }}"
-       class="@if($active === 'ensembles') text-red-600 @else text-gray-400 @endif"
-    >
-        Ensembles
-    </a>
+        <a href="{{ route('user.about') }}"
+           class="nav-item @if($active === 'school') text-red-600 @else text-gray-400 @endif"
+        >
+            School
+        </a>
 
-    <a href=""
-       class="@if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
-    >
-        Soloists
-    </a>
+        <a href=""
+           class="nav-item @if($active === 'students') text-red-600 @else text-gray-400 @endif"
+        >
+            Students
+        </a>
 
-    <a href=""
-       class="@if($active === 'application') text-red-600 @else text-gray-400 @endif"
-    >
-        Application
-    </a>
+        <a href="{{ route('user.contact') }}"
+           class="nav-item @if($active === 'ensembles') text-red-600 @else text-gray-400 @endif"
+        >
+            Ensembles
+        </a>
+
+        <a href=""
+           class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
+        >
+            Soloists
+        </a>
+
+        <a href=""
+           class="nav-item @if($active === 'application') text-red-600 @else text-gray-400 @endif"
+        >
+            Application
+        </a>
+
+    </div>
+
 </nav>

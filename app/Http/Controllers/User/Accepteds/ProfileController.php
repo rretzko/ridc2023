@@ -48,6 +48,9 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+        //failsafe
+        if(! $user->id){ $user = auth()->user();}
+
         $event = CurrentEvent::currentEvent();
 
         return view('users.accepteds.profiles.show', compact('event','user'));
