@@ -22,10 +22,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'first',
+        'honorific_id',
         'last',
         'middle',
         'email',
         'password',
+        'suffix',
     ];
 
     /**
@@ -136,7 +138,20 @@ class User extends Authenticatable
 
     public function getNameAlphaAttribute() : string
     {
-        return $this->last.', '.$this->first.' '.$this->middle;
+        return $this->last
+            . (strlen($this->suffix) ? ' '.$this->suffix : '')
+            . ', '.$this->first
+            . (strlen($this->middle) ? ' '.$this->middle : '')
+            . ' ('.$this->honorific->descr.')';
+    }
+
+    public function getNameFullAttribute() : string
+    {
+        return $this->honorific->descr.' '
+            . $this->first.' '
+            . (strlen($this->middle) ? $this->middle.' ' : '')
+            . $this->last
+            . (strlen($this->suffix) ? ' '.$this->suffix : '');
     }
 
     public function getIsAdminAttribute() : bool
@@ -171,6 +186,11 @@ class User extends Authenticatable
         return (Withdraw::where('user_id', $this->id)->where('event_id', CurrentEvent::currentEvent()->id)->exists())
             ? 'withdrew'
             : 'withdraw';
+    }
+
+    public function honorific()
+    {
+        return $this->belongsTo(Honorific::class);
     }
 
     public function invitations()

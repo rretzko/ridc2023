@@ -17,9 +17,9 @@
 
     {{-- PAGE CONTENT --}}
     <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
-        <h1 class="mb-2 text-lg font-bold">Profile</h1>
+        <h1 class="mb-2 text-lg font-bold">Profile: {{ $user->nameFull }}</h1>
 
-        <x-forms.accepteds.profile :user="$user" />
+        <x-forms.accepteds.profile :honorifics="$honorifics" :user="$user" />
 
     </section>
 

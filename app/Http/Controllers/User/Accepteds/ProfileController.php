@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\User\Accepteds;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Accepteds\ProfileRequest;
 use App\Models\CurrentEvent;
+use App\Models\Honorific;
+use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -53,7 +56,9 @@ class ProfileController extends Controller
 
         $event = CurrentEvent::currentEvent();
 
-        return view('users.accepteds.profiles.show', compact('event','user'));
+        $honorifics = Honorific::all();
+
+        return view('users.accepteds.profiles.show', compact('event','honorifics', 'user'));
     }
 
     /**
@@ -71,12 +76,63 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfileRequest $request)
     {
-        //
+        auth()->user()->update(
+            [
+                'first' => $request['first'],
+                'middle' => $request['middle'],
+                'last' => $request['last'],
+                'honorific_id' => $request['honorific_id'],
+                'email' => $request['email'],
+                'suffix' => $request['suffix'],
+            ]
+        );
+
+        /* PHONE MOBILE */
+        Phone::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'mobile' => 1,
+            ],
+            [
+                'phone' => Phone::formatPhone($request['phone_mobile']),
+            ]
+        );
+
+        /* PHONE WORK */
+        //null values are not allowed in table
+        //if user removes their work phone, delete the current record
+        if(is_null($request['phone_work'])){
+            $phone = Phone::where('user_id', auth()->id())
+                ->where('mobile', 0)
+                ->first();
+
+            if($phone){ $phone->delete();}
+
+        }else {
+
+            Phone::updateOrCreate(
+                [
+                    'user_id' => auth()->id(),
+                    'mobile' => 0,
+                ],
+                [
+                    'phone' => Phone::formatPhone($request['phone_work']),
+                ]
+            );
+        }
+
+        /* JOB TITLE */
+        auth()->user()->person->update(
+            [
+                'job_title' => $request['job_title'],
+            ]
+        );
+
+        return redirect()->route('users.accepteds.profiles.show');
     }
 
     /**

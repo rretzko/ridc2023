@@ -8,9 +8,10 @@
     input[type=text]{max-width: 10rem;}
     input[type=email]{max-width: 20rem;}
 
-    @media only screen and (min-width: 667px)
+    @media only screen and (min-width: 800px)
     {
         .col2row{margin-bottom: 0; margin-right: 2px; flex-direction: row;}
         .hint{margin-left: 0.1rem; margin-right: 0.5rem;}
+        .error-mssg{font-size:small; color:red;}
     }
 </style>
