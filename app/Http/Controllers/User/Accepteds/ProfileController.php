@@ -132,7 +132,7 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('users.accepteds.profiles.show');
+        return redirect()->route('users.accepteds.profiles.show')->with('success', 'Your profile has been updated!');
     }
 
     /**

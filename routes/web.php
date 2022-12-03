@@ -132,6 +132,12 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/profile/update', [App\Http\Controllers\User\Accepteds\ProfileController::class, 'update'])
         ->name('users.accepteds.profiles.update');
 
+    //user: accepted: SCHOOL
+    Route::get('user/school', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'show'])
+        ->name('users.accepteds.schools.show');
+    Route::post('user/school/update/{school}', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'update'])
+        ->name('users.accepteds.schools.update');
+
     //user: about
     Route::get('user/about', function(){
         return view('users.about.show');

@@ -17,7 +17,7 @@
             Profile
         </a>
 
-        <a href="{{ route('user.about') }}"
+        <a href="{{ route('users.accepteds.schools.show') }}"
            class="nav-item @if($active === 'school') text-red-600 @else text-gray-400 @endif"
         >
             School

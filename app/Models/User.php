@@ -214,9 +214,9 @@ class User extends Authenticatable
             ->withPivot('event_id');
     }
 
-    //public function school()
-    //{
-    //    return $this->hasOne(school::class);
-    //}
+    public function school()
+    {
+        return School::find($this->person->school_id);
+    }
 
 }
