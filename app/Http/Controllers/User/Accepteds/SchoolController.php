@@ -95,7 +95,7 @@ class SchoolController extends Controller
                 'city' => $request['city'],
                 'geostate_id' => $request['geostate_id'],
                 'postal_code' => $request['postal_code'],
-                'colors' => implode(',',$colors),
+                'colors' => strtolower(implode(',',$colors)),
                 'student_body' => $request['student_body'],
             ]
         );
