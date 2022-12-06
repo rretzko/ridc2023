@@ -138,11 +138,15 @@ class User extends Authenticatable
 
     public function getNameAlphaAttribute() : string
     {
-        return $this->last
+        $honorific = ($this->honorific && $this->honorific->descr)
+            ? $this->honorific->descr
+            : '';
+
+        return  $this->last
             . (strlen($this->suffix) ? ' '.$this->suffix : '')
             . ', '.$this->first
             . (strlen($this->middle) ? ' '.$this->middle : '')
-            . ' ('.$this->honorific->descr.')';
+            . ($honorific ? ' ('.$honorific.')' : '');
     }
 
     public function getNameFullAttribute() : string
