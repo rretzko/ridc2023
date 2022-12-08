@@ -3,7 +3,7 @@
 ])
 <x-tables.tables-style />
 
-<div class="table-container">
+<div class="table-container hide-small">
     <table>
         <thead>
         <tr>

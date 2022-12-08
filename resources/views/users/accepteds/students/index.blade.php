@@ -40,8 +40,13 @@
             </div>
         @endif
 
+        {{-- STUDENT TABLES FOR NARROW AND WIDE VIEWPORTS --}}
         <div>
-            <x-tables.students :students="$students" />
+            <x-tables.students_narrow :students="$students" />
+        </div>
+
+        <div>
+            <x-tables.students_wide :students="$students" />
         </div>
 
     </section>

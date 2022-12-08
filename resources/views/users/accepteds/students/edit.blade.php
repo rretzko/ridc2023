@@ -29,10 +29,16 @@
             <x-messages.error message="Errors found; see below." />
         @endif
 
+        {{-- STUDENT TABLES FOR NARROW AND WIDE VIEWPORTS --}}
         <div>
-            <x-tables.students :students="$students" />
+            <x-tables.students_narrow :students="$students" />
         </div>
 
+        <div>
+            <x-tables.students_wide :students="$students" />
+        </div>
+
+        {{-- EDIT FORM --}}
         <div>
             <x-forms.accepteds.edit_student :class_ofs="$class_ofs" :student="$student"/>
         </div>
