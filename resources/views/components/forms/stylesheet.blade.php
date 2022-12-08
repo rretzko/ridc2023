@@ -7,10 +7,8 @@
     .col2row{display: flex; flex-direction: column; margin-bottom: 1px;}
     .col2row select{margin-bottom: 2px;}
     input[type=text]{max-width: 10rem;}
-    input[type=text].long-text{width: 20rem; max-width: 18rem;}
-    input[type=text].short-text{width: 8rem; max-width: 8rem;}
-    input[type=number].short-text{width: 8rem; max-width: 8rem;}
-    input[type=email]{width: 20rem; max-width: 18rem;}
+    input[type=text].long-text,input[type=email]{width: 20rem; max-width: 18rem;}
+    input[type=text].short-text,input[type=number].short-text,select.short-text{width: 8rem; max-width: 8rem;}
 
     @media only screen and (min-width: 800px)
     {

@@ -23,7 +23,7 @@
             School
         </a>
 
-        <a href=""
+        <a href="{{ route('users.accepteds.students.index') }}"
            class="nav-item @if($active === 'students') text-red-600 @else text-gray-400 @endif"
         >
             Students

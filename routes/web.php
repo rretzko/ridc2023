@@ -138,6 +138,20 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/school/update/{school}', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'update'])
         ->name('users.accepteds.schools.update');
 
+    //user: accepted: STUDENTS
+    Route::get('user/students', [App\Http\Controllers\User\Accepteds\StudentController::class, 'index'])
+        ->name('users.accepteds.students.index');
+    Route::get('user/students/add', [App\Http\Controllers\User\Accepteds\StudentController::class, 'create'])
+        ->name('users.accepteds.students.create');
+    Route::post('user/students/save', [App\Http\Controllers\User\Accepteds\StudentController::class, 'store'])
+        ->name('users.accepteds.students.store');
+    Route::get('user/students/remove/{student}', [App\Http\Controllers\User\Accepteds\StudentController::class, 'destroy'])
+        ->name('users.accepteds.students.remove');
+    Route::get('user/students/edit/{student}', [App\Http\Controllers\User\Accepteds\StudentController::class, 'edit'])
+        ->name('users.accepteds.students.edit');
+    Route::post('user/students/update/{student}', [App\Http\Controllers\User\Accepteds\StudentController::class, 'update'])
+        ->name('users.accepteds.students.update');
+
     //user: about
     Route::get('user/about', function(){
         return view('users.about.show');
