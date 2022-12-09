@@ -26,6 +26,7 @@
 
                 @if(auth()->user()->isAdmin)
                     <x-dropdown-link :href="route('admin.index')" :black="true">{{ __('Admin') }}</x-dropdown-link>
+                    <x-dropdown-link :href="route('users.accepteds.profiles.show')" :black="true">{{ __('Profile') }}</x-dropdown-link>
                 @endif
 
                 <x-dropdown-link :href="route('logout')"

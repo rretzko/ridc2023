@@ -38,6 +38,7 @@
             <x-tables.students_wide :students="$students" />
         </div>
 
+
         {{-- CREATE FORM --}}
         <div>
             <x-forms.accepteds.add_student :class_ofs="$class_ofs"/>
