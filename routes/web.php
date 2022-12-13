@@ -152,6 +152,12 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/students/update/{student}', [App\Http\Controllers\User\Accepteds\StudentController::class, 'update'])
         ->name('users.accepteds.students.update');
 
+    //user: accepted: UPLOAD STUDENTS
+    Route::get('user/students/upload', [App\Http\Controllers\User\Accepteds\StudentController::class, 'createUpload'])
+        ->name('users.accepteds.students.upload');
+    Route::post('user/students/store_upload', [App\Http\Controllers\User\Accepteds\StudentController::class, 'storeUpload'])
+        ->name('users.accepteds.students.store_upload');
+
     //user: about
     Route::get('user/about', function(){
         return view('users.about.show');

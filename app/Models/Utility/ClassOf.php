@@ -10,6 +10,20 @@ class ClassOf extends Model
     use HasFactory;
 
     /**
+     * Return class_of integer value corresponding to student's senior year
+     * @param int $value
+     * @return int
+     */
+    static public function classOf(int $value): int
+    {
+        $sr_year = self::calcSeniorYear();
+
+        return ($value >= $sr_year) //user has returned a valid 'class of' value, ex. 2022, 2023, 2024, etc.
+            ? (int)$value //ex. 2022, 2023, 2024, etc.
+            : (int)((12 - $value) + $sr_year); //ex ((12 - 9) + 2022) = 2025
+    }
+
+    /**
      * Return array of [year => descr] where descr= grade/year
      * @return array
      */

@@ -7,15 +7,13 @@ use App\Http\Requests\StudentRequest;
 use App\Models\CurrentEvent;
 use App\Models\Student;
 use App\Models\Utility\ClassOf;
+use App\Imports\StudentsImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
+
 
 class StudentController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +50,22 @@ class StudentController extends Controller
     }
 
     /**
+     * Display form to upload students
+     */
+    public function createUpload()
+    {
+        $class_ofs = ClassOf::classOfs();
+        $event = CurrentEvent::currentEvent();
+        $user = auth()->user();
+        $school = $user->school();
+        $students = $school->students;
+
+        return view('users.accepteds.students.create_upload',
+            compact('class_ofs', 'event', 'school', 'students', 'user')
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -78,6 +92,38 @@ class StudentController extends Controller
 
         return redirect()->route('users.accepteds.students.index');
     }
+
+    /**
+     * Store a newly created resources from file upload.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUpload(Request $request)
+    {
+        \Maatwebsite\Excel\Facades\Excel::import(new StudentsImport, request()->file('students'));
+
+        //$school_id = auth()->user()->school()->id;
+
+        //$student = ($this->isUniqueStudent($school_id, $request->all()))
+        //    ? Student::create(
+        //        [
+         //           'school_id' => $school_id,
+         //           'first' => $request['first'],
+        //            'middle' => $request['middle'],
+        //            'last' => $request['last'],
+        //            'class_of' => $request['class_of'],
+        //        ])
+        //    : new Student;
+
+        //($student->id)
+            session()->flash('success', 'Imported students have been added to your roster.');
+
+//            : session()->flash('failure', $request['first'].' '.$request['middle'].' '.$request['last'].' ('.$request['class_of'].') is a duplicate and not added to your roster.');
+
+        return redirect()->route('users.accepteds.students.index');
+    }
+
 
     /**
      * Display the specified resource.

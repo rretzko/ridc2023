@@ -7,14 +7,11 @@
     <table>
         <thead>
         <tr>
-            <td colspan="5" style="text-align: right;border: 0; border-bottom: 1px solid black;">
-                <a href="{{ route('users.accepteds.students.create') }}" colspan="5"
-                   class="text-blue-600 text-sm"
-                >
-                    <button class="bg-green-200 text-black px-4 rounded-full">
-                        Add
-                    </button>
-                </a>
+            <td colspan="4" style="text-align: right;border: 0; border-bottom: 1px solid black;">
+                <x-buttons.add href="/user/students/add" />
+            </td>
+            <td style="text-align: right;border: 0; border-bottom: 1px solid black;">
+                <x-buttons.upload href="/user/students/upload" />
             </td>
         </tr>
         <tr>
