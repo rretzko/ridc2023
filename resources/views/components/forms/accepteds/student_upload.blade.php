@@ -15,6 +15,7 @@
     <div class="advisory bg-gray-300 px-4 rounded" class="text-sm" style="margin-bottom: 0.5rem;">
         <p>Use this form to upload student records.</p>
         <p>New student records will be added to your current roster.</p>
+        <p><a href="{{ asset('assets\csvs\student_upload_template.csv') }}" class="text-blue-600">Click here to download the student_upload_template.csv!</a></p>
     </div>
 
     <div class="input-group mt-4">
