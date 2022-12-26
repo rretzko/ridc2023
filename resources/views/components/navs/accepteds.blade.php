@@ -29,7 +29,7 @@
             Students
         </a>
 
-        <a href="{{ route('user.contact') }}"
+        <a href="{{ route('users.accepteds.ensembles.index') }}"
            class="nav-item @if($active === 'ensembles') text-red-600 @else text-gray-400 @endif"
         >
             Ensembles

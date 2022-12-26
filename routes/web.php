@@ -126,6 +126,14 @@ Route::middleware(['auth'])->group( function(){
     Route::get('user/application/pdf', [App\Http\Controllers\User\ApplicationController::class, 'pdf'])
         ->name('user.application.pdf');
 
+    //user: accepteds: ENSEMBLES
+    Route::get('user/ensembles', [App\Http\Controllers\User\Accepteds\EnsembleController::class, 'index'])
+        ->name('users.accepteds.ensembles.index');
+    Route::get('user/ensembles/edit/{ensemble}/{action}', [App\Http\Controllers\User\Accepteds\EnsembleController::class, 'edit'])
+        ->name('users.ensembles.edit');
+    Route::post('user/ensembles/description/{ensemble}', [App\Http\Controllers\User\Accepteds\Ensembles\DescriptionController::class, 'update'])
+        ->name('users.ensembles.description');
+
     //user: accepted: PROFILE
     Route::get('user/profile', [App\Http\Controllers\User\Accepteds\ProfileController::class, 'show'])
         ->name('users.accepteds.profiles.show');

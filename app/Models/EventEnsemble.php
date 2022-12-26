@@ -11,6 +11,8 @@ class EventEnsemble extends Model
 
     protected $fillable = ['accepted','ensemble_id','event_id','primary','school_id'];
 
+
+
     static public function destroySchoolEnsembles(int $school_id): void
     {
         $currenteventid = CurrentEvent::currentEvent()->id;
@@ -23,8 +25,13 @@ class EventEnsemble extends Model
         EventEnsemble::destroy($current);
     }
 
-    public function ensemble(): Ensemble
+    public function getEnsembleAttribute(): Ensemble
     {
-        return $this->belongsTo(Ensemble::class);
+        return Ensemble::find($this->ensemble_id);
+    }
+
+    public function getEnsembleNameAttribute(): string
+    {
+        return Ensemble::find($this->ensemble_id)->ensemble_name;
     }
 }
