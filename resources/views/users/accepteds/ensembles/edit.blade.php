@@ -38,8 +38,11 @@
         <div>
             @if($action === 'descr')
                 <x-forms.accepteds.ensembles.description :ensemble="$ensemble"/>
-            @elseif($action === 'intro')
-                <x-forms.accepteds.ensembles.introduction />
+                {{-- INTRO REMOVED PER HACHEY 28-DEC-2022 EMAIL --}}
+                {{--
+                    @elseif($action === 'intro')
+                        <x-forms.accepteds.ensembles.introduction />
+                --}}
             @elseif($action === 'rep')
                 <x-forms.accepteds.ensembles.repertoire />
             @else

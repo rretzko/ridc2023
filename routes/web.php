@@ -140,6 +140,18 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/profile/update', [App\Http\Controllers\User\Accepteds\ProfileController::class, 'update'])
         ->name('users.accepteds.profiles.update');
 
+    //user: accepteds: REPERTOIRE
+    /*
+    Route::get('user/repertoire', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'index'])
+        ->name('users.accepteds.repertoire.index');
+    */
+    Route::get('user/repertoire/index/{ensemble}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'index'])
+        ->name('users.repertoire.index');
+    /*
+    Route::post('user/ensembles/description/{repertoire}', [App\Http\Controllers\User\Accepteds\Repertoire\DescriptionController::class, 'update'])
+        ->name('users.repertoire.description');
+    */
+
     //user: accepted: SCHOOL
     Route::get('user/school', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'show'])
         ->name('users.accepteds.schools.show');
