@@ -15,13 +15,24 @@
 </style>
 <div id="tabs" style="border-bottom: 1px solid lightgrey; margin-bottom: 0.5rem; ">
     <div class="tab @if($action == 'descr') text-blue-600 @endif" style="margin-left: 1rem;">
-        <span class="descr-short">Desc</span>
-        <span class="descr-wide">Description</span>
+        <span class="descr-short">
+             <a href="{{ route('users.ensembles.edit', ['ensemble' => $ensemble, 'action' => 'descr']) }}">
+                Descr
+            </a>
+        </span>
+        <span class="descr-wide">
+            <a href="{{ route('users.ensembles.edit', ['ensemble' => $ensemble, 'action' => 'descr']) }}">
+                Description
+            </a>
+        </span>
     </div>
 
+    {{-- REMOVED INTRO TAB PER HACHEY 28-DEC-2022 EMAIL --}}
+    {{--
     <div class="tab @if($action == 'intro') text-blue-600 @endif ">
         Intro
     </div>
+    --}}
 
     <div class="tab @if($action == 'rep') text-blue-600 @endif ">
         <span class="descr-short">Rep</span>

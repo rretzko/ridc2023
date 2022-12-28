@@ -18,11 +18,20 @@ class DescriptionController extends Controller
         $request->validate(
             [
                 'descr' => ['required','string', 'max:255'],
+                'ensemble_name' => ['required','string','max:60'],
             ]
         );
 
-        $ensemble->update(['descr' => $request['descr']]);
+        $ensemble->update(
+            [
+                'descr' => $request['descr'],
+                'ensemble_name' => $request['ensemble_name'],
+            ]
+        );
 
-        return redirect(route('users.accepteds.ensembles.index', ['ensemble' => $ensemble]));
+        $success = $ensemble->ensemble_name.' has been updated.';
+
+        return redirect(route('users.ensembles.edit', ['ensemble' => $ensemble, 'action' => 'descr']))
+            ->with('success', $success);
     }
 }
