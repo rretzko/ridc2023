@@ -49,6 +49,10 @@
             <x-tables.repertoire.repertoire_wide :ensembles="$ensembles" :ensemble="$ensemble"/>
         </div>
 
+        <div>
+            <x-forms.accepteds.ensembles.repertoire.add_repertoire :ensemble="$ensemble"/>
+        </div>
+
     </section>
 
 </x-app-layout>

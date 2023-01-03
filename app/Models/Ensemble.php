@@ -12,6 +12,8 @@ class Ensemble extends Model
 
     protected $fillable = ['abbr','category_id','descr','directed_by','ensemble_name','logo_file'];
 
+    protected $with = ['repertoire'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -35,6 +37,13 @@ class Ensemble extends Model
         }
 
         return (strlen($abbr));
+    }
+
+    public function repertoire()
+    {
+        return $this->hasMany(Repertoire::class,'ensemble_id','id')
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->orderBy('order_by');
     }
 
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User\Accepteds;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Accepteds\RepertoireRequest;
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
 use App\Models\EventEnsemble;
+use App\Models\Repertoire;
 use Illuminate\Http\Request;
 
 class RepertoireController extends Controller
@@ -34,9 +36,18 @@ class RepertoireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Ensemble $ensemble)
     {
-        //
+        $event = CurrentEvent::currentEvent();
+        $user = auth()->user();
+        $school = $user->school();
+        $ensembles = EventEnsemble::where('event_id', $event->id)
+            ->where('school_id', $school->id)
+            ->get();
+
+        return view('users.accepteds.repertoire.create',
+            compact('ensemble', 'ensembles', 'event', 'school', 'user')
+        );
     }
 
     /**
@@ -45,9 +56,27 @@ class RepertoireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RepertoireRequest $request)
     {
-        //
+        Repertoire::create(
+            [
+                'event_id' => CurrentEvent::currentEvent()->id,
+                'ensemble_id' => $request['ensemble_id'],
+                'title' => $request['title'],
+                'subtitle' => $request['subtitle'],
+                'composer' => $request['composer'],
+                'arranger' => $request['arranger'],
+                'lyricist' => $request['lyricist'],
+                'choreographer' => $request['choreographer'],
+                'notes' => $request['notes'],
+                'duration' => $this->calcDuration($request),
+                'order_by' => $request['order_by'],
+            ]
+        );
+
+        session()->flash('success', $request['title'].' has been added.');
+
+        return back();
     }
 
     /**
@@ -93,5 +122,10 @@ class RepertoireController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function calcDuration($request): int
+    {
+        return (($request['minutes'] * 60) + $request['seconds']);
     }
 }
