@@ -154,7 +154,6 @@
             name="notes"
             value="{{ old('notes') }}"
             placeholder=""
-            required
         />
 
         {{-- ERRORS: Notes --}}
