@@ -45,7 +45,7 @@
                     Intro
                 </td>
             --}}
-<td class="@if($eventensemble->ensemble->rep) bg-green-100 @else bg-red-100 @endif" >
+<td class="@if($eventensemble->ensemble->repertoire->count()) bg-green-100 @else bg-red-100 @endif" >
     Rep
 </td>
 <td class="@if($eventensemble->ensemble->setup) bg-green-100 @else bg-red-100 @endif" >
