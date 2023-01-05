@@ -141,16 +141,16 @@ Route::middleware(['auth'])->group( function(){
         ->name('users.accepteds.profiles.update');
 
     //user: accepteds: REPERTOIRE
-    /*
-    Route::get('user/repertoire', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'index'])
-        ->name('users.accepteds.repertoire.index');
-    */
     Route::get('user/repertoire/index/{ensemble}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'index'])
         ->name('users.repertoire.index');
     Route::get('user/repertoire/create/{ensemble}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'create'])
         ->name('users.repertoire.create');
+    Route::get('user/repertoire/edit/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'edit'])
+        ->name('users.repertoire.edit');
     Route::post('user/repertoire/store', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'store'])
         ->name('users.repertoire.store');
+    Route::post('user/repertoire/update/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'update'])
+        ->name('users.repertoire.update');
     /*
     Route::post('user/ensembles/description/{repertoire}', [App\Http\Controllers\User\Accepteds\Repertoire\DescriptionController::class, 'update'])
         ->name('users.repertoire.description');

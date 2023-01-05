@@ -14,7 +14,7 @@
             </td>
         </tr>
         <tr>
-            <th>###</th>
+            <th>Order</th>
             <th>Title</th>
             <th>Artists</th>
             <th>Time</th>
@@ -26,11 +26,15 @@
 
         @forelse($ensemble['repertoire'] AS $repertoire)
             <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td class="text-center">
+                    {{ $repertoire->order_by }}
+                </td>
                 <td>{{ $repertoire->title }}</td>
                 <td>{{ $repertoire->artistsCsv() }}</td>
                 <td>{{ $repertoire->durationInMinutesSeconds() }}</td>
-                <td>Edit</td>
+                <td>
+                    <x-buttons.edit href="{{ '/user/repertoire/edit/'.$repertoire->id }}" />
+                </td>
                 <td>Remove</td>
             </tr>
         @empty

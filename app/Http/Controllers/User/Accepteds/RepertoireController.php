@@ -93,24 +93,41 @@ class RepertoireController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Repertoire $repertoire
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Repertoire $repertoire)
     {
-        //
+        $event = CurrentEvent::currentEvent();
+        $user = auth()->user();
+        $school = $user->school();
+        $ensemble = Ensemble::find($repertoire->ensemble_id);
+        $ensembles = EventEnsemble::where('event_id', $event->id)
+            ->where('school_id', $school->id)
+            ->get();
+
+        return view('users.accepteds.repertoire.edit',
+            compact('ensemble', 'ensembles', 'event', 'repertoire','school', 'user')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Repertoire $repertoire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RepertoireRequest $request, Repertoire $repertoire)
     {
-        //
+        $input = $request->all();
+        $input['duration'] = $this->calcDuration($request);
+
+        $repertoire->update($input);
+
+        session()->flash('success', 'Successful update for: '.$repertoire->title);
+
+        return $this->index(Ensemble::find($repertoire->ensemble_id));
     }
 
     /**

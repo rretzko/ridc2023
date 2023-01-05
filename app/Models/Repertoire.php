@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use phpDocumentor\Reflection\Types\Integer;
 
 class Repertoire extends Model
 {
@@ -27,10 +28,25 @@ class Repertoire extends Model
 
     public function durationInMinutesSeconds(): string
     {
-        $minutes = floor(($this->duration / 60));
-        $modulo = ($this->duration % 60);
-        $seconds = ($modulo > 9) ? $modulo : '0'.$modulo;
+        return $this->performanceMinutes().':'.$this->performanceSeconds();
+    }
 
-        return $minutes.':'.$seconds;
+    /**
+     * Return the calculated seconds portion of $this->duration
+     * @return int
+     */
+    public function performanceMinutes(): string
+    {
+        return floor(($this->duration / 60));
+    }
+
+    /**
+     * Return the calculated seconds portion of $this->duration
+     * @return int
+     */
+    public function performanceSeconds(): string
+    {
+        $modulo = ($this->duration % 60);
+        return ($modulo > 9) ? $modulo : '0'.$modulo;
     }
 }

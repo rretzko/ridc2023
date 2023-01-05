@@ -27,7 +27,10 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $repertoire->title.' ('.$repertoire->durationInMinutesSeconds().')' }}</td>
                 <td>{{ $repertoire->artistsCsv() }}</td>
-                <td>Edit Remove</td>
+                <td>
+                    <x-buttons.edit href="{{ '/user/repertoire/edit/'.$repertoire->id }}" />
+                    Remove
+                </td>
             </tr>
         @empty
             <tr>
