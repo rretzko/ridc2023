@@ -35,7 +35,9 @@
                 <td>
                     <x-buttons.edit href="{{ '/user/repertoire/edit/'.$repertoire->id }}" />
                 </td>
-                <td>Remove</td>
+                <td>
+                    <x-buttons.remove href="{{ '/user/repertoire/remove/'.$repertoire->id }}" />
+                </td>
             </tr>
         @empty
             <tr>

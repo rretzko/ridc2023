@@ -147,6 +147,8 @@ Route::middleware(['auth'])->group( function(){
         ->name('users.repertoire.create');
     Route::get('user/repertoire/edit/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'edit'])
         ->name('users.repertoire.edit');
+    Route::get('user/repertoire/remove/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'destroy'])
+        ->name('users.repertoire.remove');
     Route::post('user/repertoire/store', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'store'])
         ->name('users.repertoire.store');
     Route::post('user/repertoire/update/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'update'])

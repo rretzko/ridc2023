@@ -133,12 +133,22 @@ class RepertoireController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Repertoire $repertoire
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Repertoire $repertoire)
     {
-        //
+        $ensemble_id = $repertoire->ensemble_id;
+        $title = $repertoire->title;
+
+        $repertoire->delete();
+
+        //create $ensemble AFTER repertoire deletion to properly hydrate $ensemble['repertoire']
+        $ensemble = Ensemble::find($ensemble_id);
+
+        session()->flash('success', $title.' successfully removed.');
+
+        return $this->index($ensemble);
     }
 
     private function calcDuration($request): int
