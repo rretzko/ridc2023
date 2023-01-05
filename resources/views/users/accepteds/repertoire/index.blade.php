@@ -42,7 +42,7 @@
 
         {{-- REPERTOIRETABLES FOR NARROW AND WIDE VIEWPORTS --}}
         <div>
-            <x-tables.ensembles_narrow :ensembles="$ensembles" />
+            <x-tables.repertoire.repertoire_narrow :ensembles="$ensembles" :ensemble="$ensemble" />
         </div>
 
         <div>
