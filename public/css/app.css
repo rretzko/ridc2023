@@ -1951,10 +1951,6 @@ select {
     display: table-cell;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:flex-row {
     flex-direction: row;
   }

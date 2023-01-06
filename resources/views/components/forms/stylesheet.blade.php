@@ -9,6 +9,7 @@
     input[type=text]{max-width: 10rem; padding:0 0.25rem;}
     input[type=text].long-text,input[type=email]{width: 20rem; max-width: 18rem;}
     input[type=text].short-text,input[type=number].short-text,select.short-text{width: 8rem; max-width: 8rem;}
+    textarea.long-text{width: 20rem; max-width: 20rem;}
 
     @media only screen and (min-width: 800px)
     {

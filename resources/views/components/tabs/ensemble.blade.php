@@ -52,7 +52,9 @@
     </div>
 
     <div class="@if($action == 'setup') tab_active @else tab @endif ">
-        Set-Up
+        <a href="{{ route('users.setup.edit', ['ensemble' => $ensemble]) }}">
+            Set-Up
+        </a>
     </div>
 
 </div>

@@ -153,10 +153,12 @@ Route::middleware(['auth'])->group( function(){
         ->name('users.repertoire.store');
     Route::post('user/repertoire/update/{repertoire}', [App\Http\Controllers\User\Accepteds\RepertoireController::class, 'update'])
         ->name('users.repertoire.update');
-    /*
-    Route::post('user/ensembles/description/{repertoire}', [App\Http\Controllers\User\Accepteds\Repertoire\DescriptionController::class, 'update'])
-        ->name('users.repertoire.description');
-    */
+
+    //user: accepteds: SET-UP
+    Route::get('user/setup/edit/{ensemble}', [App\Http\Controllers\User\Accepteds\Ensembles\SetupController::class, 'edit'])
+        ->name('users.setup.edit');
+    Route::post('user/setup/update/{setup}', [App\Http\Controllers\User\Accepteds\Ensembles\SetupController::class, 'update'])
+        ->name('users.setup.update');
 
     //user: accepted: SCHOOL
     Route::get('user/school', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'show'])
