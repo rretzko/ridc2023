@@ -91,7 +91,7 @@ class SetupController extends Controller
      */
     public function update(Request $request, Setup $setup)
     {
-        $inputs = ($setup->category_id == 12)
+        $inputs = ($setup->category_id == 10) //concert
             ? $this->updateConcert($request, $setup)
             : $this->updateShowpopjazz($request, $setup);
 
