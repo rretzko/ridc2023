@@ -166,6 +166,12 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/school/update/{school}', [App\Http\Controllers\User\Accepteds\SchoolController::class, 'update'])
         ->name('users.accepteds.schools.update');
 
+    //user: accepteds: SOLOISTS
+    Route::get('user/soloists/edit', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'edit'])
+        ->name('users.accepteds.soloists.edit');
+    Route::post('user/soloists/update', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'update'])
+        ->name('users.accepteds.soloists.update');
+
     //user: accepted: STUDENTS
     Route::get('user/students', [App\Http\Controllers\User\Accepteds\StudentController::class, 'index'])
         ->name('users.accepteds.students.index');

@@ -91,7 +91,7 @@ class SetupController extends Controller
      */
     public function update(Request $request, Setup $setup)
     {
-        $inputs = ($setup->category_id == 10) //concert
+        $inputs = ($setup->category_id == Category::where('descr', 'concert')->first()->id)
             ? $this->updateConcert($request, $setup)
             : $this->updateShowpopjazz($request, $setup);
 
