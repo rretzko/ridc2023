@@ -151,7 +151,7 @@ class User extends Authenticatable
 
     public function getNameFullAttribute() : string
     {
-        return $this->honorific->descr.' '
+        return ($this->honorific && $this->honorific->descr) ? $this->honorific->descr.' ' : ''
             . $this->first.' '
             . (strlen($this->middle) ? $this->middle.' ' : '')
             . $this->last
