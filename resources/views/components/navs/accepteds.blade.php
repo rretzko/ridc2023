@@ -35,22 +35,20 @@
             Ensembles
         </a>
 
-        <a href=""
+
+        <a href="{{ route('users.accepteds.soloists.edit') }}"
            class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
         >
-            <a href="{{ route('users.accepteds.soloists.edit') }}"
-               class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
-            >
-                Soloists
-            </a>
+            Soloists
         </a>
 
+{{--  Pending development of this page
         <a href=""
            class="nav-item @if($active === 'application') text-red-600 @else text-gray-400 @endif"
         >
             Application
         </a>
-
+--}}
     </div>
 
 </nav>
