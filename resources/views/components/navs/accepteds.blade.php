@@ -11,44 +11,46 @@
 
     <div class="flex flex-wrap justify-around text-center">
 
-        <a href="{{ route('users.accepteds.profiles.show', ['user' => $user]) }}"
-           class="nav-item nav-item-first @if($active === 'profile') text-red-600 @else text-gray-400 @endif hover:text-gray-700"
-        >
-            Profile
-        </a>
+        @if( auth()->user()->accepted())
 
-        <a href="{{ route('users.accepteds.schools.show') }}"
-           class="nav-item @if($active === 'school') text-red-600 @else text-gray-400 @endif"
-        >
-            School
-        </a>
+            <a href="{{ route('users.accepteds.profiles.show', ['user' => $user]) }}"
+               class="nav-item nav-item-first @if($active === 'profile') text-red-600 @else text-gray-400 @endif hover:text-gray-700"
+            >
+                Profile
+            </a>
 
-        <a href="{{ route('users.accepteds.students.index') }}"
-           class="nav-item @if($active === 'students') text-red-600 @else text-gray-400 @endif"
-        >
-            Students
-        </a>
+            <a href="{{ route('users.accepteds.schools.show') }}"
+               class="nav-item @if($active === 'school') text-red-600 @else text-gray-400 @endif"
+            >
+                School
+            </a>
 
-        <a href="{{ route('users.accepteds.ensembles.index') }}"
-           class="nav-item @if($active === 'ensembles') text-red-600 @else text-gray-400 @endif"
-        >
-            Ensembles
-        </a>
+            <a href="{{ route('users.accepteds.students.index') }}"
+               class="nav-item @if($active === 'students') text-red-600 @else text-gray-400 @endif"
+            >
+                Students
+            </a>
+
+            <a href="{{ route('users.accepteds.ensembles.index') }}"
+               class="nav-item @if($active === 'ensembles') text-red-600 @else text-gray-400 @endif"
+            >
+                Ensembles
+            </a>
 
 
-        <a href="{{ route('users.accepteds.soloists.edit') }}"
-           class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
-        >
-            Soloists
-        </a>
+            <a href="{{ route('users.accepteds.soloists.edit') }}"
+               class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
+            >
+                Soloists
+            </a>
+        @endif
 
-{{--  Pending development of this page
-        <a href=""
+        <a href="{{ route('users.accepteds.application.show') }}"
            class="nav-item @if($active === 'application') text-red-600 @else text-gray-400 @endif"
         >
             Application
         </a>
---}}
+
     </div>
 
 </nav>

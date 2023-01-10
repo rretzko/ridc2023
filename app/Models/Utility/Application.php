@@ -93,19 +93,25 @@ class Application extends Model
     {
         $primary = Ensemble::find($this->primaryensembleid);
 
-        $str = '<ol>';
+        if(! is_null($primary)) {
+            $str = '<ol>';
 
-        $str .= '<li>'.$primary->ensemble_name.' <span class="hint">('.$primary->category->descr.'</span>)</li>';
+            $str .= '<li>' . $primary->ensemble_name . ' <span class="hint">(' . $primary->category->descr . '</span>)</li>';
 
-        foreach($this->secondaryensembleids AS $ensembleid){
+            foreach ($this->secondaryensembleids as $ensembleid) {
 
-            $ensemble = Ensemble::find($ensembleid);
+                $ensemble = Ensemble::find($ensembleid);
 
-            //reduce font-weight to hint as secondary ensembles
-            $str .= '<li style="font-weight: normal;">'.$ensemble->ensemble_name.' <span class="hint">('.$ensemble->category->descr.')</span></li>';
+                //reduce font-weight to hint as secondary ensembles
+                $str .= '<li style="font-weight: normal;">' . $ensemble->ensemble_name . ' <span class="hint">(' . $ensemble->category->descr . ')</span></li>';
+            }
+
+            $str .= '</ol>';
+
+        }else{
+
+            $str = '<ol><li>None Found</li></ol>';
         }
-
-        $str .= '</ol>';
 
         return $str;
     }
