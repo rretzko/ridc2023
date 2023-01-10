@@ -17,7 +17,7 @@
 
     {{-- PAGE CONTENT --}}
     <section class="border border-blue-800 rounded p-4 mx-6 mb-6">
-        <h1 class="mb-2 text-lg font-bold">Ensembles from: {{ $school->school_name }}</h1>
+        <h1 class="mb-2 text-lg font-bold">Application submitted by: {{ $application->user_name }}</h1>
 
         {{-- SUCCESS MESSAGE --}}
         @if($message = Session::get('success'))
