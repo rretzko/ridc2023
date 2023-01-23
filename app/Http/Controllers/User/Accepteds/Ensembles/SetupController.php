@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Accepteds\Ensembles;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
 use App\Models\Setup;
