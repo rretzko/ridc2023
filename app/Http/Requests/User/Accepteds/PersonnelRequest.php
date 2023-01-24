@@ -29,6 +29,7 @@ class PersonnelRequest extends FormRequest
             'accommodation' => ['nullable','string'],
             'chaperones' => ['array','min:0','max:3'],
             'chaperone.*' => ['nullable','string'],
+            'tickets' =>['required','integer', 'min:0','max:50'],
         ];
     }
 }

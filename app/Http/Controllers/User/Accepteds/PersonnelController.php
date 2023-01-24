@@ -30,6 +30,7 @@ class PersonnelController extends Controller
                     'chaperone_1' => (count($chaperones)) ? $chaperones[0] : '',
                     'chaperone_2' => (count($chaperones) > 1) ? $chaperones[1] : '',
                     'chaperone_3' => (count($chaperones) > 2) ? $chaperones[2] : '',
+                    'tickets' => $request['tickets'],
                 ]
             );
 

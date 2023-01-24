@@ -94,6 +94,27 @@
         </div>
     </div>
 
+    {{-- TICKETS --}}
+    <div class="input-group">
+
+        <label for="tickets">Pre-Event Tickets @ $10/each</label>
+        <select name="tickets" class="short-text">
+            <option value="0">0</option>
+            @for($i=1; $i<51; $i++)
+                <option value="{{ $i }}"
+                    @if($personnel->tickets == $i) selected @endif
+                >
+                    {{ $i }}
+                </option>
+            @endfor
+        </select>
+
+        {{-- ERRORS: Accommodation --}}
+        @error('tickets')
+        <x-messages.error message="{{ $message }}" />
+        @enderror
+    </div>
+
     <div class="input-group mt-4">
         <label></label>
         <x-buttons.submit />

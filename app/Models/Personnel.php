@@ -10,5 +10,6 @@ class Personnel extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['accommodation','arrival_time','chaperone_1','chaperone_2','chaperone_3','event_id','school_id'];
+    protected $fillable = ['accommodation','arrival_time','chaperone_1','chaperone_2','chaperone_3','event_id',
+        'school_id','tickets'];
 }
