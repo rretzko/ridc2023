@@ -12,7 +12,7 @@ class Ensemble extends Model
 
     protected $fillable = ['abbr','category_id','descr','directed_by','ensemble_name','logo_file'];
 
-    protected $with = ['repertoire'];
+    protected $with = ['repertoire','setup'];
 
     public function category()
     {
@@ -44,6 +44,14 @@ class Ensemble extends Model
         return $this->hasMany(Repertoire::class,'ensemble_id','id')
             ->where('event_id', CurrentEvent::currentEvent()->id)
             ->orderBy('order_by');
+    }
+
+    public function setup()
+    {
+        return $this->hasOne(Setup::class, 'ensemble_id','id')
+            ->where('event_id', CurrentEvent::currentEvent()->id);
+
+
     }
 
 }

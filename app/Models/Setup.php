@@ -12,4 +12,9 @@ class Setup extends Model
 
     protected $fillable = ['accompaniment', 'amp', 'band_award', 'category_id', 'drumset', 'ensemble_id', 'event_id',
         'instructions', 'instrumentation', 'microphone', 'piano', 'platform', 'props'];
+
+    public function getIsUpdatedAttribute(): bool
+    {
+        return (! ($this->created_at === $this->updated_at));
+    }
 }

@@ -45,13 +45,13 @@
                         Intro
                     </td>
                 --}}
-                <td class="@if($eventensemble->ensemble->repertoire->count()) bg-green-100 @else bg-red-100 @endif" >
+                <td class="@if($eventensemble->ensemble['repertoire']->count()) bg-green-100 @else bg-red-100 @endif" >
                     Rep
                 </td>
-                <td class="@if($eventensemble->ensemble->setup) bg-green-100 @else bg-red-100 @endif" >
+                <td class="@if($eventensemble->ensemble['setup']) bg-green-100 @else bg-red-100 @endif " >
                     Set-Up
                 </td>
-                <td class="bg-green-100">
+                <td class="">
                     <x-buttons.edit href='/user/ensembles/edit/{{ $eventensemble->ensemble_id }}/descr'/>
                 </td>
                 <td>
