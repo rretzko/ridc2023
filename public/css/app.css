@@ -1947,12 +1947,36 @@ select {
 }
 @media (min-width: 768px) {
 
+  .md\:mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .md\:table-cell {
     display: table-cell;
   }
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:border-transparent {
+    border-color: transparent;
+  }
+
+  .md\:border-l-black {
+    --tw-border-opacity: 1;
+    border-left-color: rgb(0 0 0 / var(--tw-border-opacity));
+  }
+
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 @media (min-width: 1024px) {

@@ -27,13 +27,21 @@
         {{-- ERROR ALERT --}}
         @if($errors->any())
             <x-messages.error message="Errors found; see below." />
+            @foreach($errors->all() as $error)<div>{{$error}}</div> @endforeach
         @endif
 
-        <x-forms.accepteds.school
-            :colors="$colors"
-            :geostates="$geostates"
-            :school="$school"
-        />
+        <div class="flex flex-col md:flex-row">
+            <x-forms.accepteds.school
+                :colors="$colors"
+                :geostates="$geostates"
+                :school="$school"
+            />
+
+            <x-forms.accepteds.personnel
+                :school="$school"
+                :personnel="$personnel"
+            />
+        </div>
 
     </section>
 

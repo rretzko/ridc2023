@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Accepteds\SchoolRequest;
 use App\Models\CurrentEvent;
 use App\Models\Geostate;
+use App\Models\Personnel;
 use App\Models\School;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
@@ -13,50 +14,30 @@ use Illuminate\Http\Request;
 class SchoolController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
+
         $school = auth()->user()->school();
+        $personnel = Personnel::firstOrCreate(
+            [
+                'school_id' => $school->id,
+                'event_id' => CurrentEvent::currentEvent()->id,
+            ],
+            [
+                'arrival_time' => '8:00 AM',
+            ]
+        );
 
         return view('users.accepteds.schools.show',
             [
                 'colors' => explode(',', $school->colors),
                 'event' => CurrentEvent::currentEvent(),
                 'geostates' => Geostate::orderBy('abbr')->get(),
+                'personnel' => $personnel,
                 'school' => $school,
                 'user' => auth()->user(),
             ]

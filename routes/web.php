@@ -138,6 +138,10 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/ensembles/description/{ensemble}', [App\Http\Controllers\User\Accepteds\Ensembles\DescriptionController::class, 'update'])
         ->name('users.ensembles.description');
 
+    //user: accepted: PERSONNEL
+    Route::post('user/personnel/update/{school}', [App\Http\Controllers\User\Accepteds\PersonnelController::class, 'update'])
+        ->name('users.accepteds.personnel.update');
+
     //user: accepted: PROFILE
     Route::get('user/profile', [App\Http\Controllers\User\Accepteds\ProfileController::class, 'show'])
         ->name('users.accepteds.profiles.show');
