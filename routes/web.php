@@ -116,6 +116,18 @@ Route::middleware(['auth'])->group( function(){
     Route::post('rosters/membership/update/{user}', [App\Http\Controllers\Admin\Rosters\MembershipController::class, 'update'])
         ->name('admin.rosters.membership.update');
 
+    //admin: schedules
+    Route::get('admin/schedules', [App\Http\Controllers\Admin\Schedules\ScheduleController::class, 'index'])
+        ->name('admin.schedules');
+
+    //admin: schedules: ensembles
+    Route::get('admin/schedules/ensembles', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'index'])
+        ->name('admin.schedules.ensembles');
+
+    //admin: schedules: soloists
+    Route::get('admin/schedules/soloists', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'index'])
+        ->name('admin.schedules.soloists');
+
     //user: application
     Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])
         ->name('user.application.edit');

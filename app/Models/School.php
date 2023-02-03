@@ -67,6 +67,7 @@ class School extends Model
     public function getShortnameAttribute()
     {
         $name = $this->school_name;
+        $name = str_replace('Central High School', 'CHS', $name);
         $name = str_replace('Central School District', 'CSD', $name);
         $name = str_replace('Regional High School', 'RHS', $name);
         $name = str_replace('Senior High School', 'SHS', $name);

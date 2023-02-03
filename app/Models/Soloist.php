@@ -52,6 +52,26 @@ class Soloist extends Model
         return $cohort;
     }
 
+    public function getCategoryAttribute(): string
+    {
+        return ($this->concert) ? 'concert' : 'jazz/pop/show';
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return Student::find($this->student_id)->fullName;
+    }
+
+    public function getFullNameAlphaAttribute(): string
+    {
+        return Student::find($this->student_id)->fullNameAlpha;
+    }
+
+    public function getSchoolNameAttribute(): string
+    {
+        return School::find($this->school_id)->shortName;
+    }
+
     /**
      * Soft Delete all current soloists
      * @param int $school_id

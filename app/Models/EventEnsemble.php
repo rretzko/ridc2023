@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class EventEnsemble extends Model
 {
@@ -23,6 +24,17 @@ class EventEnsemble extends Model
         EventEnsemble::destroy($current);
     }
 
+   static  public function ensembles(): Collection
+    {
+        $event_id = CurrentEvent::currentEvent()->id;
+        return EventEnsemble::where('event_id', $event_id)->get()->sortBy(['schoolName', 'ensembleName']);
+    }
+
+    public function getCategoryDescrAttribute(): string
+    {
+        return Ensemble::find($this->event_id)->category->descr;
+    }
+
     public function getEnsembleAttribute(): Ensemble
     {
         return Ensemble::find($this->ensemble_id);
@@ -32,6 +44,12 @@ class EventEnsemble extends Model
     {
         return Ensemble::find($this->ensemble_id)->ensemble_name;
     }
+
+    public function getSchoolNameAttribute(): string
+    {
+        return School::find($this->school_id)->shortName;
+    }
+
 
 
 }

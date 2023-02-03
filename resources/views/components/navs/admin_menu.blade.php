@@ -29,7 +29,7 @@
         </a>
     </div>
 
-    {{-- EMAILS --}}
+    {{-- EMAILS
     <div class="">
         <a href="{{ route('admin.pendingemails') }}"
            class="{{ ($admin_active && ($admin_active === 'emails')) ? 'admin_active' : 'text-white' }}"
@@ -39,7 +39,7 @@
         </a>
     </div>
 
-    {{-- DOWNLOADS --}}
+    {{-- DOWNLOADS
     <div class="">
         <a href=""
 
@@ -48,10 +48,10 @@
             Downloads
         </a>
     </div>
-
+--}}
     {{-- SCHEDULES --}}
     <div class="">
-        <a href=""
+        <a href="{{ route('admin.schedules') }}"
 
             class="{{ ($admin_active && ($admin_active === 'schedules')) ? 'admin_active' : 'text-white' }}"
         >
