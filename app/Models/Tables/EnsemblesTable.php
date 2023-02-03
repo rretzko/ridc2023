@@ -71,7 +71,7 @@ class EnsemblesTable
             }
         }else{
 
-            $str .= '<tr><td colspan="5">No ensembles found...</td></tr>';
+            $str .= '<tr><td colspan="5" style="text-align: center;">No ensembles found...</td></tr>';
         }
 
         return $str;

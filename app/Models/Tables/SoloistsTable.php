@@ -73,7 +73,7 @@ class SoloistsTable
             }
         }else{
 
-            $str .= '<tr><td colspan="5">No soloists found...</td>';
+            $str .= '<tr><td colspan="5" style="text-align: center;" >No soloists found...</td>';
         }
 
         return $str;
