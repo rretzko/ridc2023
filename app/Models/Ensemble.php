@@ -46,12 +46,15 @@ class Ensemble extends Model
             ->orderBy('order_by');
     }
 
+    public function schools()
+    {
+        return $this->belongsToMany(School::class);
+    }
+
     public function setup()
     {
         return $this->hasOne(Setup::class, 'ensemble_id','id')
             ->where('event_id', CurrentEvent::currentEvent()->id);
-
-
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -30,6 +31,15 @@ class EventEnsemble extends Model
         return EventEnsemble::where('event_id', $event_id)->get()->sortBy(['schoolName', 'ensembleName']);
     }
 
+    static  public function ensemblesByTimeslots(): Collection
+    {
+        $event_id = CurrentEvent::currentEvent()->id;
+
+        return EventEnsemble::where('event_id', $event_id)
+            ->get()
+            ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
+    }
+
     public function getCategoryDescrAttribute(): string
     {
         return Ensemble::find($this->event_id)->category->descr;
@@ -45,9 +55,34 @@ class EventEnsemble extends Model
         return Ensemble::find($this->ensemble_id)->ensemble_name;
     }
 
+    /**
+     * Return timeslot in 'hh:mm a' format or 'tbd' if not found
+     * @return string
+     */
+    public function getFormattedTimeslotAttribute(): string
+    {
+        $ensembleTimeslot = EnsembleTimeslot::where('ensemble_id', $this->ensemble_id)
+            ->where('event_id', $this->event_id)
+            ->first();
+
+        return ($this->timeslot)
+            ? Carbon::parse($this->timeslot)->format('g:i a')
+            : 'tbd';
+    }
+
     public function getSchoolNameAttribute(): string
     {
         return School::find($this->school_id)->shortName;
+    }
+
+    public function getEnsembleTimeslotAttribute(): Carbon
+    {
+        $timeslot = EnsembleTimeslot::where('ensemble_id', $this->ensemble_id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->first()
+            ->timeslot ?? Carbon::now();
+
+        return Carbon::parse($timeslot);
     }
 
 

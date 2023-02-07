@@ -56,14 +56,13 @@ class EnsembleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing ensemble timeslots.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('admin.schedules.ensembles.edit', ['admin_active' => 'schedules']);
     }
 
     /**

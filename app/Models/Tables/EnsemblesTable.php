@@ -28,7 +28,7 @@ class EnsemblesTable
 
     private function init(): void
     {
-        $eventEnsembles = EventEnsemble::ensembles();
+        $eventEnsembles = EventEnsemble::ensemblesByTimeslots();
 
         $this->table = $this->tableStyle();
         $this->table .= $this->tableStart();
@@ -59,14 +59,14 @@ class EnsemblesTable
 
         if($eventEnsembles->count()) {
 
-            foreach ($eventEnsembles as $key => $ensemble) {
+            foreach ($eventEnsembles as $key => $eventEnsemble) {
 
                 $str .= '<tr>';
                 $str .= '<td>' . ($key + 1) . '</td>';
-                $str .= '<td>' . $ensemble->schoolName . '</td>';
-                $str .= '<td>' . $ensemble->ensembleName . '</td>';
-                $str .= '<td style="text-align: center;" >' . $ensemble->ensemble->category->descr .' </td>';
-                $str .= '<td style="text-align: center;" >tbd</td>';
+                $str .= '<td>' . $eventEnsemble->schoolName . '</td>';
+                $str .= '<td>' . $eventEnsemble->ensembleName . '</td>';
+                $str .= '<td style="text-align: center;" >' . $eventEnsemble->ensemble->category->descr .' </td>';
+                $str .= '<td style="text-align: center;" >' . $eventEnsemble->formattedTimeslot. '</td>';
                 $str .= '</tr>';
             }
         }else{
