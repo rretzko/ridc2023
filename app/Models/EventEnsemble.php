@@ -47,13 +47,6 @@ class EventEnsemble extends Model
             ->orderBy('ensembles.ensemble_name')
             ->select('event_ensembles.id','schools.school_name','ensembles.ensemble_name','categories.descr','event_ensembles.timeslot')
             ->get();
-
-        //return EventEnsemble::find($ids)
-        //    ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
-        //return EventEnsemble::where('event_id', $eventId)
-        //    ->where('accepted',1)
-        //    ->get()
-        //    ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
     }
 
     public function getCategoryDescrAttribute(): string
