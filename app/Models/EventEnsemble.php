@@ -86,17 +86,4 @@ class EventEnsemble extends Model
     {
         return School::find($this->school_id)->shortName;
     }
-
-    public function getEnsembleTimeslotAttribute(): Carbon
-    {
-        $timeslot = EnsembleTimeslot::where('ensemble_id', $this->ensemble_id)
-            ->where('event_id', CurrentEvent::currentEvent()->id)
-            ->first()
-            ->timeslot ?? Carbon::now();
-
-        return Carbon::parse($timeslot);
-    }
-
-
-
 }

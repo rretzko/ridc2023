@@ -2,21 +2,16 @@
 
 namespace App\Models\Tables;
 
-use App\Models\CurrentEvent;
 use App\Models\EventEnsemble;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
 class EnsemblesTable
 {
-    private $event, $eventId, $table;
+    private string $table='';
 
     public function __construct()
     {
-        $this->event = CurrentEvent::currentEvent();
-        $this->eventId = $this->event->id;
-        $this->table = '';
-
         $this->init();
     }
 

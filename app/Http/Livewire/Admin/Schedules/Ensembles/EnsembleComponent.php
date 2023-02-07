@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin\Schedules\Ensembles;
 
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
-use App\Models\EnsembleTimeslot;
 use App\Models\EventEnsemble;
 use App\Models\Tables\EnsemblesTable;
 use Carbon\Carbon;
