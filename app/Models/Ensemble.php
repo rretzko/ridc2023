@@ -12,7 +12,7 @@ class Ensemble extends Model
 
     protected $fillable = ['abbr','category_id','descr','directed_by','ensemble_name','logo_file'];
 
-    protected $with = ['repertoire','setup'];
+    //protected $with = ['repertoire','setup'];
 
     public function category()
     {

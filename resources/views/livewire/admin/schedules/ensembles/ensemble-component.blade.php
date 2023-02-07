@@ -6,8 +6,8 @@
                 <select wire:model="eventEnsembleId">
                     <option value="0">Select</option>
                     @foreach($eventEnsembles AS $eventEnsemble)
-                        <option value="{{ $eventEnsemble->id }}">
-                            {{ $eventEnsemble->ensemble_name.' ('.$eventEnsemble->schoolName.')' }}
+                        <option value="{{ is_array($eventEnsemble) ? $eventEnsemble['id'] : $eventEnsemble->id }}">
+                            {{ is_array($eventEnsemble) ? $eventEnsemble['ensemble_name'].' ('.$eventEnsemble['school_name'].')' : $eventEnsemble->ensemble_name.' ('.$eventEnsemble->school_name.')' }}
                         </option>
                     @endforeach
                 </select>

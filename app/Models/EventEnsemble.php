@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class EventEnsemble extends Model
 {
@@ -33,12 +34,26 @@ class EventEnsemble extends Model
 
     static  public function ensemblesByTimeslots(): Collection
     {
-        $event_id = CurrentEvent::currentEvent()->id;
+        $eventId = CurrentEvent::currentEvent()->id;
 
-        return EventEnsemble::where('event_id', $event_id)
-            ->where('accepted',1)
-            ->get()
-            ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
+        return DB::table('event_ensembles')
+            ->join('schools', 'event_ensembles.school_id','=','schools.id')
+            ->join('ensembles','event_ensembles.ensemble_id','=','ensembles.id')
+            ->join('categories', 'ensembles.category_id','=','categories.id')
+            ->where('event_ensembles.event_id','=', $eventId)
+            ->where('event_ensembles.accepted','=',1)
+            ->orderBy('event_ensembles.timeslot')
+            ->orderBy('schools.school_name')
+            ->orderBy('ensembles.ensemble_name')
+            ->select('event_ensembles.id','schools.school_name','ensembles.ensemble_name','categories.descr','event_ensembles.timeslot')
+            ->get();
+
+        //return EventEnsemble::find($ids)
+        //    ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
+        //return EventEnsemble::where('event_id', $eventId)
+        //    ->where('accepted',1)
+        //    ->get()
+        //    ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
     }
 
     public function getCategoryDescrAttribute(): string

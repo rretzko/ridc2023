@@ -4,6 +4,7 @@ namespace App\Models\Tables;
 
 use App\Models\CurrentEvent;
 use App\Models\EventEnsemble;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
 class EnsemblesTable
@@ -61,14 +62,17 @@ class EnsemblesTable
 
             foreach ($eventEnsembles as $key => $eventEnsemble) {
 
-                $concert = $eventEnsemble->ensemble->category->descr;
+                $concert = $eventEnsemble->descr;
+                $timeslot = ($eventEnsemble->timeslot)
+                    ? Carbon::parse($eventEnsemble->timeslot)->format('g:i a')
+                    : 'tbd';
 
                 $str .= '<tr class="' . $concert . '">';
                 $str .= '<td>' . ($key + 1) . '</td>';
-                $str .= '<td>' . $eventEnsemble->schoolName . '</td>';
-                $str .= '<td>' . $eventEnsemble->ensembleName . ' (' . $eventEnsemble->ensemble_id. ')</td>';
-                $str .= '<td style="text-align: center;" >' . $eventEnsemble->ensemble->category->descr .' </td>';
-                $str .= '<td style="text-align: center;" >' . $eventEnsemble->formattedTimeslot. '</td>';
+                $str .= '<td>' . $eventEnsemble->school_name . '</td>';
+                $str .= '<td>' . $eventEnsemble->ensemble_name . '</td>';
+                $str .= '<td style="text-align: center;" >' . $concert .' </td>';
+                $str .= '<td style="text-align: center;" >' . $timeslot . '</td>';
                 $str .= '</tr>';
             }
         }else{
