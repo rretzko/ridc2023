@@ -61,7 +61,9 @@ class EnsemblesTable
 
             foreach ($eventEnsembles as $key => $eventEnsemble) {
 
-                $str .= '<tr>';
+                $concert = $eventEnsemble->ensemble->category->descr;
+
+                $str .= '<tr class="' . $concert . '">';
                 $str .= '<td>' . ($key + 1) . '</td>';
                 $str .= '<td>' . $eventEnsemble->schoolName . '</td>';
                 $str .= '<td>' . $eventEnsemble->ensembleName . ' (' . $eventEnsemble->ensemble_id. ')</td>';
@@ -87,6 +89,7 @@ class EnsemblesTable
         $str = '<style>';
         $str .= 'table{margin: 1rem auto;}';
         $str .= 'td,th{border: 1px solid black; padding: 0 .25rem;}';
+        $str .= '.concert{background-color: rgba(0,255,0,.1)}';
         $str .= '</style>';
 
         return $str;
