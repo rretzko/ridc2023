@@ -64,7 +64,7 @@ class EnsemblesTable
                 $str .= '<tr>';
                 $str .= '<td>' . ($key + 1) . '</td>';
                 $str .= '<td>' . $eventEnsemble->schoolName . '</td>';
-                $str .= '<td>' . $eventEnsemble->ensembleName . '</td>';
+                $str .= '<td>' . $eventEnsemble->ensembleName . ' (' . $eventEnsemble->ensemble_id. ')</td>';
                 $str .= '<td style="text-align: center;" >' . $eventEnsemble->ensemble->category->descr .' </td>';
                 $str .= '<td style="text-align: center;" >' . $eventEnsemble->formattedTimeslot. '</td>';
                 $str .= '</tr>';

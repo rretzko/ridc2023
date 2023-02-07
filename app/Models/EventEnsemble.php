@@ -36,6 +36,7 @@ class EventEnsemble extends Model
         $event_id = CurrentEvent::currentEvent()->id;
 
         return EventEnsemble::where('event_id', $event_id)
+            ->where('accepted',1)
             ->get()
             ->sortBy(['timeslot', 'schoolName', 'ensembleName']);
     }
