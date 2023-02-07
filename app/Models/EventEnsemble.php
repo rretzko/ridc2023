@@ -61,10 +61,6 @@ class EventEnsemble extends Model
      */
     public function getFormattedTimeslotAttribute(): string
     {
-        $ensembleTimeslot = EnsembleTimeslot::where('ensemble_id', $this->ensemble_id)
-            ->where('event_id', $this->event_id)
-            ->first();
-
         return ($this->timeslot)
             ? Carbon::parse($this->timeslot)->format('g:i a')
             : 'tbd';
