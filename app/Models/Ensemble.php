@@ -19,6 +19,11 @@ class Ensemble extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getCountRepertoireAttribute(): int
+    {
+        return $this->repertoire->count();
+    }
+
     static public function makeAbbreviation($ensemblename): string
     {
         //early exit

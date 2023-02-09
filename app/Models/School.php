@@ -15,6 +15,19 @@ class School extends Model
 
     protected $with = ['ensembles'];
 
+    public function getAcceptedEnsemblesAttribute(): Collection
+    {
+        if(! is_null($this->id)) {
+
+            $ids = EventEnsemble::where('school_id', $this->id)
+                ->where('event_id', CurrentEvent::currentEvent()->id)
+                ->where('accepted', 1)
+                ->pluck('ensemble_id');
+
+            return Ensemble::find($ids);
+        }
+    }
+
     public function ensembles()
     {
         return $this->belongsToMany(Ensemble::class);
@@ -43,6 +56,18 @@ class School extends Model
         }
 
         return $ensembles;
+    }
+
+    public function getCountSoloistsAttribute(): int
+    {
+        return Soloist::where('school_id', $this->id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->count('id');
+    }
+
+    public function getCountStudentsAttribute(): int
+    {
+        return Student::where('school_id', $this->id)->count('id');
     }
 
     public function getEventAttendingAdultsAttribute(): int

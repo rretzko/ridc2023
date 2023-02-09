@@ -140,6 +140,10 @@ Route::middleware(['auth'])->group( function(){
     Route::get('user/application/pdf', [App\Http\Controllers\User\ApplicationController::class, 'pdf'])
         ->name('user.application.pdf');
 
+    //admin: status
+    Route::get('admin/status', [App\Http\Controllers\Admin\Status\StatusController::class, 'index'])
+        ->name('admin.status');
+
     //user: accepteds: APPLICATION
     Route::get('user/application', [App\Http\Controllers\User\Accepteds\Applications\ApplicationController::class, 'show'])
         ->name('users.accepteds.application.show');

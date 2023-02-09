@@ -24,6 +24,11 @@
                 <div id="utility_actions" class="flex items-start justify-center h-screen p-2">
                     <ol class="ml-4 list-decimal">
                         <li>
+                            <a href="{{ route('admin.status') }}" class="text-anchor-blue">
+                                Status
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('admin.loginAs') }}" class="text-anchor-blue">
                                 Log In As...
                             </a>

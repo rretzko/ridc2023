@@ -75,6 +75,15 @@ class EventEnsemble extends Model
             : 'tbd';
     }
 
+    public function getHasSetupAttribute(): bool
+    {
+        return Setup::where('ensemble_id', $this->ensemble_id)
+            ->where('event_id', CurrentEvent::currentEvent()->id)
+            ->exists();
+    }
+
+
+
     public function getSchoolNameAttribute(): string
     {
         return School::find($this->school_id)->shortName;
