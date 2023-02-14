@@ -21,17 +21,9 @@
 
                 </div>
 
-                {{-- SOLOISTS TABLE --}}
-                <div class="my-2 flex justify-end mr-24">
-                    <a href="{{ route('admin.schedules.soloists.edit') }}">
-                        <button class="bg-indigo-200 rounded-full px-2 text-sm">
-                            Update Schedule
-                        </button>
-                    </a>
-                </div>
-                <div class="">
-                    {!! $table !!}
-                </div>
+
+                {{-- ENSEMBLES FORM AND TABLE --}}
+                @livewire('admin.schedules.soloists.soloist-component')
 
             </div>
         </div>

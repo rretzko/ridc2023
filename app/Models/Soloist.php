@@ -84,4 +84,33 @@ class Soloist extends Model
             ->where('school_id', '=', $school_id)
             ->delete();
     }
+
+    static  public function soloistsBySchoolAlphaName(): Collection
+    {
+        $eventId = CurrentEvent::currentEvent()->id;
+
+        return DB::table('soloists')
+            ->join('schools', 'soloists.school_id','=','schools.id')
+            ->join('students','soloists.student_id','=','students.id')
+            ->where('soloists.event_id','=', $eventId)
+            ->orderBy('schools.school_name')
+            ->orderBy('students.last')
+            ->orderBy('students.first')
+            ->select('soloists.id','schools.school_name','soloists.concert','soloists.timeslot','students.first','students.last','students.middle')
+            ->get();
+    }
+
+    static  public function soloistsByTimeslots(): Collection
+    {
+        $eventId = CurrentEvent::currentEvent()->id;
+
+        return DB::table('soloists')
+            ->join('schools', 'soloists.school_id','=','schools.id')
+            ->join('students','soloists.student_id','=','students.id')
+            ->where('soloists.event_id','=', $eventId)
+            ->orderBy('soloists.timeslot')
+            ->orderBy('schools.school_name')
+            ->select('soloists.id','schools.school_name','soloists.concert','soloists.timeslot','students.first','students.last','students.middle')
+            ->get();
+    }
 }

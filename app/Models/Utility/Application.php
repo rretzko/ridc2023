@@ -56,7 +56,7 @@ class Application extends Model
     public function getAddressBlockAttribute(): string
     {
         $str = $this->school->address_1;
-        $str .= (strlen($this->school->address_2))
+        $str .= ((! is_null($this->school->address_2)) && (strlen($this->school->address_2)))
             ? '<br />'.$this->school->address_2
             : '';
         $str .= '<br />'.$this->cityStateZipBlock();

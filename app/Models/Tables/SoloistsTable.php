@@ -6,6 +6,7 @@ namespace App\Models\Tables;
 use App\Models\CurrentEvent;
 use App\Models\EventEnsemble;
 use App\Models\Soloist;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 
 class SoloistsTable
@@ -27,6 +28,23 @@ class SoloistsTable
     }
 
     /** END OF PUBLIC FUNCTION  =================================================*/
+
+    /**
+     * Return the first EVENTENSEMBLE timeslot found for the current event with $school_id
+     * @param int $school_id
+     * @return string
+     */
+    private function firstTimeSlot(int $school_id): string
+    {
+        $eventEnsembles = EventEnsemble::where('school_id', $school_id)
+            ->whereNotNull('timeslot')
+            ->orderBy('timeslot')
+            ->get();
+
+        return ($eventEnsembles->count())
+            ? Carbon::parse($eventEnsembles->first()->timeslot)->format('g:i a')
+            : 'none';
+    }
 
     private function init(): void
     {
@@ -63,12 +81,14 @@ class SoloistsTable
 
             foreach ($soloists as $key => $soloist) {
 
+                $timeslot = $soloist->timeslot ? Carbon::parse($soloist->timeslot)->format('g:i a') : 'tbd';
+
                 $str .= '<tr>';
                 $str .= '<td>' . ($key + 1) . '</td>';
-                $str .= '<td>' . $soloist->schoolName . '</td>';
+                $str .= '<td>' . $soloist->schoolName . ' (' . $this->firstTimeSlot($soloist->school_id). ')</td>';
                 $str .= '<td>' . $soloist->fullName . '</td>';
                 $str .= '<td style="text-align: center;">' . $soloist->category . '</td>';
-                $str .= '<td style="text-align: center;">tbd</td>';
+                $str .= '<td style="text-align: center;">' . $timeslot . '</td>';
                 $str .= '</tr>';
             }
         }else{

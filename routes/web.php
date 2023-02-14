@@ -129,6 +129,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: schedules: soloists
     Route::get('admin/schedules/soloists', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'index'])
         ->name('admin.schedules.soloists');
+    Route::get('admin/schedules/soloists/edit', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'edit'])
+        ->name('admin.schedules.soloists.edit');
 
     //user: application
     Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])

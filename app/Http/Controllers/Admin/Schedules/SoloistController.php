@@ -53,14 +53,13 @@ class SoloistController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing soloist timeslots.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('admin.schedules.soloists.edit', ['admin_active' => 'schedules']);
     }
 
     /**
