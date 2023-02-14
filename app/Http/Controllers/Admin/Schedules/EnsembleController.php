@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
 use App\Models\EventEnsemble;
+use App\Models\Tables\DaytimeEnsemblesTable;
 use App\Models\Tables\EnsemblesTable;
+use App\Models\Utility\Timeslot;
 use Illuminate\Http\Request;
 
 class EnsembleController extends Controller
@@ -45,14 +47,18 @@ class EnsembleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a read-only view of ensemble schedule including 'breaks' where no ensemble is scheduled
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $daytimeTable = new DaytimeEnsemblesTable('2023-03-25 09:00:00','2023-03-25 17:00:00',20);
+        $table = $daytimeTable->table();
+
+        $admin_active = 'schedules';
+
+        return view('admin.schedules.ensembles.show', compact('admin_active','table'));
     }
 
     /**
