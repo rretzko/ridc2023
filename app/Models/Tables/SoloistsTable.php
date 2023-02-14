@@ -48,7 +48,10 @@ class SoloistsTable
 
     private function init(): void
     {
-        $soloists = Soloist::where('event_id', $this->eventId)->get();
+        $soloists = Soloist::with(['school','student'])
+            ->where('event_id', $this->eventId)
+            ->get()
+            ->sortBy(['schools.schoolName','student.fullNameAlpha']);
 
         $this->table = $this->tableStyle();
         $this->table .= $this->tableStart();
@@ -86,7 +89,7 @@ class SoloistsTable
                 $str .= '<tr>';
                 $str .= '<td>' . ($key + 1) . '</td>';
                 $str .= '<td>' . $soloist->schoolName . ' (' . $this->firstTimeSlot($soloist->school_id). ')</td>';
-                $str .= '<td>' . $soloist->fullName . '</td>';
+                $str .= '<td>' . $soloist->fullNameAlpha . '</td>';
                 $str .= '<td style="text-align: center;">' . $soloist->category . '</td>';
                 $str .= '<td style="text-align: center;">' . $timeslot . '</td>';
                 $str .= '</tr>';

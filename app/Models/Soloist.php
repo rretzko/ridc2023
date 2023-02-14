@@ -85,6 +85,16 @@ class Soloist extends Model
             ->delete();
     }
 
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_id','id');
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id','id');
+    }
+
     static  public function soloistsBySchoolAlphaName(): Collection
     {
         $eventId = CurrentEvent::currentEvent()->id;
