@@ -48,10 +48,14 @@ class SoloistsTable
 
     private function init(): void
     {
-        $soloists = Soloist::with(['school','student'])
+        $soloists = Soloist::join('schools','soloists.school_id','=','schools.id')
+            ->join('students','soloists.student_id','=','students.id')
             ->where('event_id', $this->eventId)
-            ->get()
-            ->sortBy(['schools.schoolName','student.fullNameAlpha']);
+            ->orderBy('soloists.timeslot')
+            ->orderBy('schools.school_name')
+            ->orderBy('students.last')
+            ->orderBy('students.first')
+            ->get();
 
         $this->table = $this->tableStyle();
         $this->table .= $this->tableStart();
