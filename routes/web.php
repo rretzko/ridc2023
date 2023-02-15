@@ -127,6 +127,8 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.schedules.ensembles.edit');
     Route::get('admin/schedules/ensembles/show', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'show'])
         ->name('admin.schedules.ensembles.show');
+    Route::get('admin/schedules/ensembles/csv', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'csv'])
+        ->name('admin.schedules.ensembles.csv');
 
     //admin: schedules: soloists
     Route::get('admin/schedules/soloists', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'index'])

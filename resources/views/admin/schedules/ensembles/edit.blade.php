@@ -21,6 +21,36 @@
 
                 </div>
 
+                {{-- ENSEMBLES TABLE BUTTONS --}}
+                <div class="flex flex-row justify-end space-x-2 mr-12">
+
+                    {{-- the current view
+                    <div class="">
+                        <a href="{{ route('admin.schedules.ensembles.edit') }}">
+                            <button class="bg-indigo-200 rounded-full px-2 text-sm">
+                                Update Schedule
+                            </button>
+                        </a>
+                    </div>
+                    --}}
+
+                    <div class="">
+                        <a href="{{ route('admin.schedules.ensembles.show') }}">
+                            <button class="bg-yellow-300 rounded-full px-2 text-sm">
+                                Daytime Schedule
+                            </button>
+                        </a>
+                    </div>
+
+                    <div class="">
+                        <a href="{{ route('admin.schedules.ensembles.csv') }}">
+                            <button class="bg-fuchsia-300 rounded-full px-2 text-sm">
+                                Download Csv
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
 
                 {{-- ENSEMBLES FORM AND TABLE --}}
                 @livewire('admin.schedules.ensembles.ensemble-component')

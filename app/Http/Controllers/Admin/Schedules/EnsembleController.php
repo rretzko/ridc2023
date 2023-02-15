@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Schedules;
 
+use App\Exports\EnsembleScheduleExport;
 use App\Http\Controllers\Controller;
 use App\Models\CurrentEvent;
 use App\Models\Ensemble;
@@ -10,6 +11,7 @@ use App\Models\Tables\DaytimeEnsemblesTable;
 use App\Models\Tables\EnsemblesTable;
 use App\Models\Utility\Timeslot;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EnsembleController extends Controller
 {
@@ -23,27 +25,6 @@ class EnsembleController extends Controller
         $table = new EnsemblesTable;
 
         return view('admin.schedules.ensembles.index', ['admin_active' => 'schedules', 'table' => $table->table()]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -72,25 +53,11 @@ class EnsembleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Download csv following $this->show() with blanks
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function csv()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return Excel::download(new EnsembleScheduleExport('2023-03-25 09:00:00', '2023-03-25 17:00:00'), 'ensembleSchedule_'.date('Ymd_Gis').'.csv');
     }
 }

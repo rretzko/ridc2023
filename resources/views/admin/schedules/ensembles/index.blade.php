@@ -38,6 +38,15 @@
                             </button>
                         </a>
                     </div>
+
+                    <div class="">
+                        <a href="{{ route('admin.schedules.ensembles.csv') }}">
+                            <button class="bg-fuchsia-300 rounded-full px-2 text-sm">
+                                Download Csv
+                            </button>
+                        </a>
+                    </div>
+
                 </div>
 
                 {{-- ENSEMBLES TABLE --}}
