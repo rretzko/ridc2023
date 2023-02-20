@@ -135,6 +135,10 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.schedules.soloists');
     Route::get('admin/schedules/soloists/edit', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'edit'])
         ->name('admin.schedules.soloists.edit');
+    Route::get('admin/schedules/soloists/show', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'show'])
+        ->name('admin.schedules.soloists.show');
+    Route::get('admin/schedules/soloists/csv', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'csv'])
+        ->name('admin.schedules.soloists.csv');
 
     //user: application
     Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])

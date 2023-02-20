@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Schedules;
 
+use App\Exports\EnsembleScheduleExport;
+use App\Exports\SoloistScheduleExport;
 use App\Http\Controllers\Controller;
+use App\Models\Tables\DaytimeSoloistsTable;
 use App\Models\Tables\SoloistsTable;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SoloistController extends Controller
 {
@@ -44,12 +48,17 @@ class SoloistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $daytimeTable = new DaytimeSoloistsTable('2023-03-25 09:00:00','2023-03-25 17:00:00',8);
+        $table = $daytimeTable->table();
+
+        $admin_active = 'schedules';
+
+        return view('admin.schedules.soloists.show', compact('admin_active','table'));
+
     }
 
     /**
@@ -63,25 +72,11 @@ class SoloistController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Download csv following $this->show() with blanks
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function csv()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return Excel::download(new SoloistScheduleExport('2023-03-25 09:00:00', '2023-03-25 17:00:00'), 'soloistSchedule_'.date('Ymd_Gis').'.csv');
     }
 }

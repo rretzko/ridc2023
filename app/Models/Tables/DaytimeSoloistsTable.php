@@ -4,36 +4,35 @@ namespace App\Models\Tables;
 
 
 use App\Models\CurrentEvent;
-use App\Models\EventEnsemble;
+use App\Models\Soloist;
 use App\Models\Utility\Timeslot;
 use Carbon\Carbon;
 
-class DaytimeEnsemblesTable
+class DaytimeSoloistsTable
 {
     private $category='Break';
-    private $ensembleCenter = '';
-    private $ensembleName='Break';
-    private $eventEnsembles;
-    private $minuteInterval=20;
+    private $minuteInterval=8;
     private $schoolCenter = '';
     private $schoolName='Break';
     private $shaded = '';
+    private $soloistCenter = '';
+    private $soloistName='Break';
+    private $soloists;
     private $table='';
     private $timslots=[];
 
     /**
      * @param string $start //ex. '2023-03-25 09:00:00'
      * @param string $finish //ex. '2023-03-25 17:00:00'
-     * @param integer $duration //ex. 20 (minutes)
+     * @param integer $duration //ex. 8 (minutes)
      */
     public function __construct(string $start, string $finish, int $duration)
     {
-        //collection eventEnsembles with assigned timeslots
-        $this->eventEnsembles = EventEnsemble::where('event_id', CurrentEvent::currentEvent()->id)
+        //collection soloists with assigned timeslots
+        $this->soloists = Soloist::where('event_id', CurrentEvent::currentEvent()->id)
             ->whereNotNull('timeslot')
-            ->join('ensembles','event_ensembles.ensemble_id','=','ensembles.id')
-            ->join('schools','event_ensembles.school_id','=','schools.id')
-            ->join('categories', 'ensembles.category_id', '=', 'categories.id')
+            ->join('students','soloists.student_id','=','students.id')
+            ->join('schools','soloists.school_id','=','schools.id')
             ->orderBy('timeslot')
             ->get();
 
@@ -59,17 +58,17 @@ class DaytimeEnsemblesTable
      *     "time" => "9:00 am"
      *   ]
      */
-    private function ensembleDetails(array $timeslot): void
+    private function soloistDetails(array $timeslot): void
     {
-        $ensemble = $this->eventEnsembles->where('timeslot', Carbon::parse($timeslot['dateTime']))->first();
+        $soloist = $this->soloists->where('timeslot', Carbon::parse($timeslot['dateTime']))->first();
 
-        if($ensemble){
-            $this->ensembleName = $ensemble->ensemble_name;
-            $this->schoolName = $ensemble->school_name;
-            $this->category = $ensemble->descr;
+        if($soloist){
+            $this->soloistName = $soloist->fullNameAlpha;
+            $this->schoolName = $soloist->schoolName;
+            $this->category = $soloist->concert ? 'concert' : 'jazz/pop/show';
 
             $this->categoryCenter = '';
-            $this->ensembleCenter = '';
+            $this->soloistCenter = '';
             $this->schoolCenter = '';
 
             $this->shaded = '';
@@ -85,7 +84,7 @@ class DaytimeEnsemblesTable
         $str .= '<th>###</th>';
         $str .= '<th>Timeslot</th>';
         $str .= '<th>School</th>';
-        $str .= '<th>Ensemble</th>';
+        $str .= '<th>Soloist</th>';
         $str .= '<th>Category</th>';
         $str .= '</tr>';
 
@@ -103,11 +102,11 @@ class DaytimeEnsemblesTable
 
     private function resetDefaults(): void
     {
-        $this->ensembleName = 'Break';
+        $this->soloistName = 'Break';
         $this->schoolName = 'Break';
         $this->category = 'Break';
 
-        $this->ensembleCenter = 'center';
+        $this->soloistCenter = 'center';
         $this->schoolCenter = 'center';
 
         $this->shaded = 'shaded';
@@ -119,14 +118,14 @@ class DaytimeEnsemblesTable
 
         foreach($this->timeslots AS $key => $timeslot){
 
-            $this->ensembleDetails($timeslot);
+            $this->soloistDetails($timeslot);
 
             $str .= '<tr class="' . $this->shaded . '">';
 
             $str .= '<td class="center">' . $key . '</td>';
             $str .= '<td>' . $timeslot['time'] . '</td>';
             $str .= '<td class="' . $this->schoolCenter . '">' . $this->schoolName . '</td>';
-            $str .= '<td class="' . $this->ensembleCenter . '">' . $this->ensembleName . '</td>';
+            $str .= '<td class="' . $this->soloistCenter . '">' . $this->soloistName . '</td>';
             $str .= '<td class="center">'. $this->category .'</td>';
 
             $str .= '</tr>';

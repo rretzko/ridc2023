@@ -21,6 +21,8 @@
 
                 </div>
 
+                {{-- SOLOISTS BUTTONS --}}
+                <x-buttons.soloist-buttons current='edit'/>
 
                 {{-- ENSEMBLES FORM AND TABLE --}}
                 @livewire('admin.schedules.soloists.soloist-component')
