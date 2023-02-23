@@ -109,10 +109,7 @@ class StatusTable
                     $str .= '<td>' . $school->school_name
                         . '<br />'
                         . 'Arrival ETA: ' . $school->eta
-                        . '<br />'
-                        . '<span style="font-size: 0.8rem">( as of: '
-                            . $school->etaUpdatedDateFormatted
-                        . ')</span>'
+                        . '<span style="font-size: 0.8rem">( as of: ' . $school->etaUpdatedDate . ')</span>'
                         . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';
                     $str .= '<td>' . $this->buildEnsembles($school->acceptedEnsembles) . '</td>';
