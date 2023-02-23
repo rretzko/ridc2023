@@ -111,7 +111,7 @@ class StatusTable
                         . 'Arrival ETA: ' . $school->eta
                         . '<br />'
                         . '<span style="font-size: 0.8rem">( as of: '
-                            . $school->etaUpdatedDate
+                            . $school->etaUpdatedDateFormatted
                         . ')</span>'
                         . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';

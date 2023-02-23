@@ -76,7 +76,7 @@ class School extends Model
         return EventSchool::where('school_id', $this->id)->first()->eta;
     }
 
-    public function getEtaUpdatedDateAttribute(): string
+    public function getEtaUpdatedDateFormattedAttribute(): string
     {
         $date = Carbon::parse(EventSchool::where('school_id', $this->id)->first()->updated_at);
 
