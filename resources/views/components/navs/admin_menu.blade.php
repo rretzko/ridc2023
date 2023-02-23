@@ -59,11 +59,21 @@
         </a>
     </div>
 
+    {{-- DOWNLOADS --}}
+    <div class="">
+        <a href="{{ route('admin.downloads') }}"
+
+            class="{{ ($admin_active && ($admin_active === 'downloads')) ? 'admin_active' : 'text-white' }}"
+        >
+            Downloads
+        </a>
+    </div>
+
     {{-- UPLOADS --}}
     <div class="">
         <a href=""
 
-            class="{{ ($admin_active && ($admin_active === 'uploads')) ? 'admin_active' : 'text-white' }}"
+           class="{{ ($admin_active && ($admin_active === 'uploads')) ? 'admin_active' : 'text-gray-400' }}"
         >
             Uploads
         </a>

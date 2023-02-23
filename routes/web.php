@@ -55,6 +55,12 @@ Route::middleware(['auth'])->group( function(){
     Route::get('admin/changepw', [App\Http\Controllers\Admin\ChangePasswordController::class, 'index'])
         ->name('admin.changePassword');
 
+    //admin: downloads
+    Route::get('admin/downloads', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'index'])
+        ->name('admin.downloads');
+    Route::get('admin/downloads/students', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'students'])
+        ->name('admin.downloads.students');
+
     //admin: event management
     Route::get('admin/events', [App\Http\Controllers\Admin\EventsController::class, 'index'])
         ->name('admin.events');

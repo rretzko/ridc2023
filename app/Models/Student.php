@@ -40,4 +40,9 @@ class Student extends Model
     {
         return $this->belongsTo(School::class);
     }
+
+    public function getSchoolNameAttribute(): string
+    {
+        return $this->school->school_name;
+    }
 }
