@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -75,9 +76,11 @@ class School extends Model
         return EventSchool::where('school_id', $this->id)->first()->eta;
     }
 
-    public function getEtaUpdatedDateAttribute(): string
+    public function getEtaUpdatedDateFormattedAttribute(): string
     {
-        return EventSchool::where('school_id', $this->id)->first()->updated_at;
+        $dt = Carbon::parse(EventSchool::where('school_id', $this->id)->first()->updated_at);
+
+        return $dt->format('M j, y g:i a');
     }
 
     public function getEventAttendingAdultsAttribute(): int
