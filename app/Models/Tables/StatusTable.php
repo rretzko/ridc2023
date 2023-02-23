@@ -108,10 +108,11 @@ class StatusTable
                     $str .= '<td>' . $accepted->user->last . '</td>';
                     $str .= '<td>' . $school->school_name
                         . '<br />'
-                        . 'Arrival ETA: ' . $school->eta
+                        . 'Arrival ETA: '
+                            . $school->eta
                         . '<br />'
                         . '<span style="font-size: 0.8rem">( as of: '
-                            . $school->etaUpdatedDateFormatted
+                            . $school->personnelUpdatedDateFormatted
                         . ')</span>'
                         . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';

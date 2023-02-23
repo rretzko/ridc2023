@@ -73,14 +73,21 @@ class School extends Model
 
     public function getEtaAttribute(): string
     {
-        return EventSchool::where('school_id', $this->id)->first()->eta;
+        return Personnel::where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('school_id', $this->id)
+            ->first()
+            ->arrival_time ?? 'none found';
     }
 
-    public function getEtaUpdatedDateFormattedAttribute(): string
+    public function getPersonnelUpdatedDateFormattedAttribute(): string
     {
-        $dt = Carbon::parse(EventSchool::where('school_id', $this->id)->first()->updated_at);
+        //$dt = Carbon::parse(EventSchool::where('school_id', $this->id)->first()->updated_at);
+        $dt = Personnel::where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('school_id', $this->id)
+            ->first()
+            ->updated_at ?? 'none found';
 
-        return $dt->format('M j, y g:i a');
+        return $dt === 'none found' ? $dt : $dt->format('M j, y g:i a');
     }
 
     public function getEventAttendingAdultsAttribute(): int
