@@ -75,6 +75,11 @@ class School extends Model
         return EventSchool::where('school_id', $this->id)->first()->eta;
     }
 
+    public function getEtaUpdatedDateAttribute(): string
+    {
+        return EventSchool::where('school_id', $this->id)->first()->updated_at;
+    }
+
     public function getEventAttendingAdultsAttribute(): int
     {
         return EventSchool::where('school_id', $this->id)
