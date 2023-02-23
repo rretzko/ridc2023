@@ -70,6 +70,11 @@ class School extends Model
         return Student::where('school_id', $this->id)->count('id');
     }
 
+    public function getEtaAttribute(): string
+    {
+        return EventSchool::where('school_id', $this->id)->first()->eta;
+    }
+
     public function getEventAttendingAdultsAttribute(): int
     {
         return EventSchool::where('school_id', $this->id)

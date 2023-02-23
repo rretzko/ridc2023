@@ -106,7 +106,7 @@ class StatusTable
                 $str .= '<tr class="' . $shaded . '">';
                     $str .= '<td>' . ($key + 1) . '</td>';
                     $str .= '<td>' . $accepted->user->last . '</td>';
-                    $str .= '<td>' . $school->school_name . '</td>';
+                    $str .= '<td>' . $school->school_name . '<br />' . 'Arrival ETA: ' . $school->eta . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';
                     $str .= '<td>' . $this->buildEnsembles($school->acceptedEnsembles) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countSoloists . '</td>';
