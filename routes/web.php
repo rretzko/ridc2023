@@ -58,6 +58,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: downloads
     Route::get('admin/downloads', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'index'])
         ->name('admin.downloads');
+    Route::get('admin/downloads/equipment', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'equipment'])
+        ->name('admin.downloads.equipment');
     Route::get('admin/downloads/students', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'students'])
         ->name('admin.downloads.students');
 

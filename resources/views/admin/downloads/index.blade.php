@@ -29,6 +29,11 @@
                                 Students
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.downloads.equipment') }}" class="text-anchor-blue">
+                                Equipment
+                            </a>
+                        </li>
                     </ol>
 
                 </div>
