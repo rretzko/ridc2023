@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.downloads.equipment');
     Route::get('admin/downloads/students', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'students'])
         ->name('admin.downloads.students');
+    Route::get('admin/downloads/programFile', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'programFile'])
+        ->name('admin.downloads.programFile');
 
     //admin: event management
     Route::get('admin/events', [App\Http\Controllers\Admin\EventsController::class, 'index'])

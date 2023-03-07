@@ -40,12 +40,16 @@ class EventEnsemble extends Model
             ->join('schools', 'event_ensembles.school_id','=','schools.id')
             ->join('ensembles','event_ensembles.ensemble_id','=','ensembles.id')
             ->join('categories', 'ensembles.category_id','=','categories.id')
+            ->join('geostates', 'schools.geostate_id', '=', 'geostates.id')
             ->where('event_ensembles.event_id','=', $eventId)
             ->where('event_ensembles.accepted','=',1)
             ->orderBy('event_ensembles.timeslot')
             ->orderBy('schools.school_name')
             ->orderBy('ensembles.ensemble_name')
-            ->select('event_ensembles.id','schools.school_name','ensembles.ensemble_name','categories.descr','event_ensembles.timeslot')
+            ->select('event_ensembles.id',
+                'schools.school_name', 'schools.city', 'schools.student_body', 'geostates.abbr',
+                'ensembles.ensemble_name','ensembles.directed_by', 'ensembles.descr AS ensembleDescr',
+                'categories.descr','event_ensembles.timeslot')
             ->get();
     }
 
@@ -82,7 +86,13 @@ class EventEnsemble extends Model
             ->exists();
     }
 
-
+    public function getRepertoireAttribute(): Collection
+    {
+        return DB::table('repertoires')
+            ->where('ensemble_id', '=', $this->ensemble_id)
+            ->where('event_id', '=', $this->event_id)
+            ->get();
+    }
 
     public function getSchoolNameAttribute(): string
     {

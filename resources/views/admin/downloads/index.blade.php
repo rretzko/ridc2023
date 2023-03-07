@@ -34,6 +34,11 @@
                                 Equipment
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.downloads.programFile') }}" class="text-anchor-blue">
+                                Program File
+                            </a>
+                        </li>
                     </ol>
 
                 </div>
