@@ -38,7 +38,7 @@ class Event extends Model
             ->where('event_id', $this->id)
             ->pluck('ensemble_id');
 
-        return Ensemble::whereIn('id', $ids)->get();
+        return Ensemble::whereIn('id', $ids)->get()->sortBy('ensemble_name');
     }
 
     public function getSchoolsAttribute()
