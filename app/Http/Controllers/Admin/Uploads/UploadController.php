@@ -59,29 +59,45 @@ class UploadController extends Controller
     {
         $inputs = $request->validate(
             [
-                'daytime' => ['required','min:0','max:1'],
-                'event_id' => ['required','exists:events,id'],
-                'school_id' => ['required','exists:schools,id'],
-                'ensemble_id' => ['required','exists:ensembles,id'],
-                'adjudicator_id' => ['required','exists:adjudicators,id'],
-                'partial' => ['required','min:1','max:4'],
+                'daytime' => ['required', 'min:0', 'max:1'],
+                'event_id' => ['required', 'exists:events,id'],
+                'school_id' => ['required', 'exists:schools,id'],
+                'ensemble_id' => ['required', 'exists:ensembles,id'],
+                'adjudicator_id' => ['required', 'exists:adjudicators,id'],
+                'partial' => ['required', 'min:1', 'max:4'],
             ]
         );
 
-        if($request->hasFile('recording')){
+        if ($request->hasFile('recording')) {
 
             $file = $request->file('recording');
             $hashname = $file->hashName();
 
             //ex. "ridc/38/1/40/6/1/"
-            $directory = 'ridc/' . $inputs['event_id'] .'/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
+            $directory = 'ridc/' . $inputs['event_id'] . '/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
 
+            //store recording in DigitalOcean Spaces
             $file->storePublicly($directory, 'spaces');
 
-            dd($directory);
+            //reference the storage in the database
+            \App\Models\Fileupload::updateOrCreate(
+                [
+                    'event_id' => $inputs['event_id'],
+                    'school_id' => $inputs['school_id'],
+                    'ensemble_id' => $inputs['ensemble_id'],
+                    'adjudicator_id' => $inputs['adjudicator_id'],
+                    'partial' => $inputs['partial'],
+                    'url' => $directory . $hashname,
+                ],
+                [
+                    'uploaded_by' => auth()->id(),
+                ]
+            );
+        } else {
+            session()->flash('fileError', 'no file found');
         }
-echo $request->hasFile('recording');
-        dd($inputs);
+
+        return $this->index();
     }
 
     /**
