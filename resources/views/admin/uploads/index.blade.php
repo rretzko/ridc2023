@@ -40,8 +40,8 @@
                     <h2 class="font-bold">Upload an mp3</h2>
 
                     @if($errors->any())
-                        <div>
-                            {{ implode('',$errors->all('<div class="bg-red-100 text-red-800">:message</div>')) }}
+                        <div class="bg-red-100 text-red-800">
+                            {{ implode('',$errors->all(':message')) }}
                         </div>
                     @endif
 
@@ -88,7 +88,8 @@
                         <label for="ensemble_id">Ensemble ({{ $ensembles->count() }})</label>
                         <select name="ensemble_id">
                             @foreach($ensembles AS $ensemble)
-                                <option value="{{ $ensemble->ensemble_id }}">{{ $ensemble->ensemble_name }}
+
+                                <option value="{{ $ensemble->id }}">{{ $ensemble->ensemble_name }}
                                     ({{ $ensemble->schoolName }})
                                 </option>
                             @endforeach

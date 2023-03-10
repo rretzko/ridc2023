@@ -12,6 +12,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "league/flysystem-aws-s3-v3": "3.0",
         "livewire/livewire": "^2.10",
         "maatwebsite/excel": "^3.1",
         "orangehill/iseed": "^3.0",

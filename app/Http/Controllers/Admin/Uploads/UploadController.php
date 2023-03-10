@@ -76,6 +76,8 @@ class UploadController extends Controller
             //ex. "ridc/38/1/40/6/1/"
             $directory = 'ridc/' . $inputs['event_id'] .'/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
 
+            $file->storePublicly($directory, 'spaces');
+
             dd($directory);
         }
 echo $request->hasFile('recording');
