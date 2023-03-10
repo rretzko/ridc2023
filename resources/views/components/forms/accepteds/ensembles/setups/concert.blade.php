@@ -4,11 +4,11 @@
 ])
 <x-forms.stylesheet />
 
-<form method="post" action="{{ route('users.repertoire.update', ['setup' => $setup]) }}" >
+<form method="post" action="{{ route('users.setup.update', ['setup' => $setup]) }}" >
 
     @csrf
 
-    <input type="hidden" name="ensemble_id" value="{{ $repertoire->ensemble_id }}" />
+    <input type="hidden" name="ensemble_id" value="{{ $ensemble->id }}" />
 
     {{-- TITLE --}}
     <div class="input-group">
@@ -22,7 +22,7 @@
                     type="radio"
                     name="piano"
                     value="1"
-                    {{-- @if($setup->piano) checked @endif --}}
+                    @if($setup->piano) checked @endif
                 />
                 <label for="piano">Yes</label>
             </div>
@@ -32,7 +32,7 @@
                     type="radio"
                     name="piano"
                     value="0"
-                    {{-- @if(! $setup->piano) checked @endif --}}
+                    @if(! $setup->piano) checked @endif
                 />
                 <label for="piano">No</label>
             </div>

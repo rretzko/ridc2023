@@ -77,7 +77,8 @@ class SetupController extends Controller
         $school = $user->school();
 
         return ($ensemble->category->descr === 'concert')
-            ? view('users.accepteds.ensembles.setups.concert',
+            ? //view('users.accepteds.ensembles.setups.concert',
+                view('users.accepteds.setups.concert',
                 compact('ensemble','event', 'school', 'setup', 'user'))
             : view('users.accepteds.setups.showpopjazz',
                 compact('ensemble','event', 'school', 'setup', 'user'));
