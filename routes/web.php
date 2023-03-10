@@ -150,6 +150,12 @@ Route::middleware(['auth'])->group( function(){
     Route::get('admin/schedules/soloists/csv', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'csv'])
         ->name('admin.schedules.soloists.csv');
 
+    //admin: uploads
+    Route::get('admin/uploads', [App\Http\Controllers\Admin\Uploads\UploadController::class, 'index'])
+        ->name('admin.uploads');
+    Route::post('admin/uploads/store', [App\Http\Controllers\Admin\Uploads\UploadController::class, 'store'])
+        ->name('admin.uploads.store');
+
     //user: application
     Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])
         ->name('user.application.edit');

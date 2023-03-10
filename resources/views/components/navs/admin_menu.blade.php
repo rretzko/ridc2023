@@ -71,9 +71,9 @@
 
     {{-- UPLOADS --}}
     <div class="">
-        <a href=""
+        <a href="{{ route('admin.uploads') }}"
 
-           class="{{ ($admin_active && ($admin_active === 'uploads')) ? 'admin_active' : 'text-gray-400' }}"
+           class="{{ ($admin_active && ($admin_active === 'uploads')) ? 'admin_active' : 'text-white' }}"
         >
             Uploads
         </a>
