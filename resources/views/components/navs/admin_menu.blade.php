@@ -38,17 +38,8 @@
             Emails
         </a>
     </div>
-
-    {{-- DOWNLOADS
-    <div class="">
-        <a href=""
-
-           class="{{ ($admin_active && ($admin_active === 'downloads')) ? 'admin_active' : 'text-white' }}"
-        >
-            Downloads
-        </a>
-    </div>
 --}}
+
     {{-- SCHEDULES --}}
     <div class="">
         <a href="{{ route('admin.schedules') }}"
@@ -56,6 +47,16 @@
             class="{{ ($admin_active && ($admin_active === 'schedules')) ? 'admin_active' : 'text-white' }}"
         >
             Schedules
+        </a>
+    </div>
+
+    {{-- RECORDINGS --}}
+    <div class="">
+        <a href="{{ route('admin.recordings') }}"
+
+           class="{{ ($admin_active && ($admin_active === 'recordings')) ? 'admin_active' : 'text-white' }}"
+        >
+            Recordings
         </a>
     </div>
 
