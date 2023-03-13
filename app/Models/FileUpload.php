@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 class FileUpload extends Model
@@ -24,6 +25,11 @@ class FileUpload extends Model
         return Ensemble::find($this->ensemble_id)->ensemble_name;
     }
 
+    public function getEventNameAttribute(): string
+    {
+        return Event::find($this->event_id)->subtitle;
+    }
+
     public function getSchoolNameAttribute(): string
     {
         return School::find($this->school_id)->shortName;
@@ -33,7 +39,6 @@ class FileUpload extends Model
     {
         $path = $this->url;
 
-//        return  '';
         $src = Storage::disk('spaces')->url($path);
 
         $str = '<audio controls>';
@@ -42,5 +47,10 @@ class FileUpload extends Model
         $str .= '</audio>';
 
         return $str;
+    }
+
+    public function getMyFilesAttribute(): Collection
+    {
+        return FileUpload::where('school_id', auth()->user()->school()->id)->get();
     }
 }

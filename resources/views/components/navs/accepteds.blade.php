@@ -43,6 +43,12 @@
             >
                 Soloists
             </a>
+
+            <a href="{{ route('users.accepteds.judging.show') }}"
+               class="nav-item @if($active === 'judging') text-red-600 @else text-gray-400 @endif"
+            >
+                Judging
+            </a>
         @endif
 
         <a href="{{ route('users.accepteds.application.show') }}"

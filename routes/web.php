@@ -186,6 +186,10 @@ Route::middleware(['auth'])->group( function(){
     Route::post('user/ensembles/description/{ensemble}', [App\Http\Controllers\User\Accepteds\Ensembles\DescriptionController::class, 'update'])
         ->name('users.ensembles.description');
 
+    //user: accepted: JUDGING
+    Route::get('user/judging', [App\Http\Controllers\User\Accepteds\Judging\JudgingController::class, 'show'])
+        ->name('users.accepteds.judging.show');
+
     //user: accepted: PERSONNEL
     Route::post('user/personnel/update/{school}', [App\Http\Controllers\User\Accepteds\PersonnelController::class, 'update'])
         ->name('users.accepteds.personnel.update');

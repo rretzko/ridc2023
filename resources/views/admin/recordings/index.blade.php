@@ -48,7 +48,7 @@
                             <td>{!! $recording->mp3Player !!}</td>
                         </tr>
                     @empty
-                        <tr><td colspan="5" class="text-center">No Recordings Found</td></tr>
+                        <tr><td colspan="6" class="text-center">No Recordings Found</td></tr>
                     @endforelse
                     </tbody>
                 </table>
