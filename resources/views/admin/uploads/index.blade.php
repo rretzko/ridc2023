@@ -123,7 +123,7 @@
 
                         <label for="recording">mp3 Recording</label>
                         <input name="recording" type="file" accept="audio/mp3,audio/*"/>
-                        <span>Max File Size: </span>
+                        <span class="text-sm">Max File Size: 40MB</span>
 
                     </div>
 
