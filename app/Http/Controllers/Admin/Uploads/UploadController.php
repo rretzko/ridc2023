@@ -20,7 +20,7 @@ class UploadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {phpinfo();
+    {
         $events = Event::all()->sortByDesc('id');
 
         $target = $events->first();
