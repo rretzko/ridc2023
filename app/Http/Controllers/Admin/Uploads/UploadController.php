@@ -9,6 +9,8 @@ use App\Models\EventEnsemble;
 use App\Models\School;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class UploadController extends Controller
 {
@@ -18,7 +20,7 @@ class UploadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {phpinfo();
         $events = Event::all()->sortByDesc('id');
 
         $target = $events->first();
@@ -74,7 +76,7 @@ class UploadController extends Controller
             $hashname = $file->hashName();
 
             //ex. "ridc/38/1/40/6/1/"
-            $directory = 'ridc/' . $inputs['event_id'] . '/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
+            $directory = 'ridc/' . $inputs['event_id'] . '/' . $inputs['school_id'] . '/' . $inputs['daytime'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
 
             //store recording in DigitalOcean Spaces
             $file->storePublicly($directory, 'spaces');
@@ -84,6 +86,7 @@ class UploadController extends Controller
                 [
                     'event_id' => $inputs['event_id'],
                     'school_id' => $inputs['school_id'],
+                    'portion' => $inputs['daytime'],
                     'ensemble_id' => $inputs['ensemble_id'],
                     'adjudicator_id' => $inputs['adjudicator_id'],
                     'partial' => $inputs['partial'],
@@ -98,6 +101,18 @@ class UploadController extends Controller
         }
 
         return $this->index();
+    }
+
+    /**
+     * Seed Spaces with previous event recordings
+     */
+    public function seed()
+    {
+        foreach($this->makeSeeds() AS $seed){
+
+        }
+
+        return back();
     }
 
     /**
@@ -143,5 +158,21 @@ class UploadController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function makeSeeds(): array
+    {
+        $seeds = [
+            [
+                'filename' => 'https://rickretzko.com/roxburyinvitational.com/public_html/recordings/day_1553517792.mp3',
+                'hashname' => 'day_1553517792.mp3',
+                'directory' => 'ridc/29/16/32/17/1/',
+            ]
+        ];
+
+        //$directory = 'ridc/' . $inputs['event_id'] . '/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
+
+
+        return $seeds;
     }
 }

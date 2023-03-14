@@ -134,6 +134,12 @@
 
                     </div>
 
+                    <div>
+                        <a href="{{ route('admin.uploads.seed') }}" class="text-sm text-red-600">
+                            One-time Mass Upload
+                        </a>
+                    </div>
+
                 </form>
 
             </div>

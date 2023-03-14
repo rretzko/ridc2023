@@ -157,6 +157,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: uploads
     Route::get('admin/uploads', [App\Http\Controllers\Admin\Uploads\UploadController::class, 'index'])
         ->name('admin.uploads');
+    Route::get('admin/uploads/seed', [App\Http\Controllers\Admin\Uploads\UploadController::class, 'seed'])
+        ->name('admin.uploads.seed');
     Route::post('admin/uploads/store', [App\Http\Controllers\Admin\Uploads\UploadController::class, 'store'])
         ->name('admin.uploads.store');
 

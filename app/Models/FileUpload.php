@@ -13,7 +13,7 @@ class FileUpload extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = ['adjudicator_id', 'ensemble_id', 'event_id',
-        'partial', 'school_id', 'uploaded_by', 'url'];
+        'partial', 'portion', 'school_id', 'uploaded_by', 'url'];
 
     public function getAdjudicatorNameAttribute(): string
     {
