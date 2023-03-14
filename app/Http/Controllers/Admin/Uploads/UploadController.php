@@ -82,7 +82,7 @@ class UploadController extends Controller
             $file->storePublicly($directory, 'spaces');
 
             //reference the storage in the database
-            \App\Models\Fileupload::updateOrCreate(
+            \App\Models\FileUpload::updateOrCreate(
                 [
                     'event_id' => $inputs['event_id'],
                     'school_id' => $inputs['school_id'],
