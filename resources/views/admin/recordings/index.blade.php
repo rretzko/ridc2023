@@ -21,6 +21,30 @@
 
                 </div>
 
+                {{-- EVENT SELECTION --}}
+                <div class="flex flex-col ml-20 mt-4">
+                    <form method="post" action="{{ route('admin.recordings.show') }}" >
+
+                        @csrf
+
+                        <div class="flex flex-row space-x-4">
+                            <label>Select Event</label>
+                            <select name="event_id">
+                                @foreach($events AS $event)
+                                    <option value="{{ $event->id }}"
+
+                                        @selected($eventId == $event->id)
+                                    >
+                                        {{ $event->subtitle }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <input class="bg-gray-300 border border-black px-2 rounded" type="submit" name="submit" value="Submit" />
+                        </div>
+
+                    </form>
+                </div>
+
                 {{-- RECORDINGS TABLE --}}
                 <style>
                     table{border-collapse: collapse; width: 90%; margin:1rem auto;}

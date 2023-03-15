@@ -100,6 +100,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: recordings
     Route::get('admin/recordings', [App\Http\Controllers\Admin\Recordings\RecordingController::class, 'index'])
         ->name('admin.recordings');
+    Route::post('admin/recordings/select', [App\Http\Controllers\Admin\Recordings\RecordingController::class, 'show'])
+        ->name('admin.recordings.show');
 
     //admin: rosters: applicants
     Route::get('rosters/applicants', [App\Http\Controllers\Admin\Rosters\ApplicantController::class, 'index'])

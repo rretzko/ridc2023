@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('ensemble_id')->constrained();
             $table->foreignId('adjudicator_id')->constrained();
             $table->tinyInteger('partial')->default(1);
-            $table->boolean('portion')->after('partial')->default(1);
+            $table->boolean('portion')->default(1);
             $table->string('url');
             $table->foreignId('uploaded_by')->comment('user_id')->constrained('users');
             $table->timestamps();
