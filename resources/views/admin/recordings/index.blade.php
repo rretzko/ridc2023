@@ -48,7 +48,7 @@
                 {{-- RECORDINGS TABLE --}}
                 <style>
                     table{border-collapse: collapse; width: 90%; margin:1rem auto;}
-                    td,th{border: 1px solid black;}
+                    td,th{border: 1px solid black; padding: 0 0.25rem;}
                 </style>
                 <table>
                     <thead>
