@@ -47,7 +47,7 @@
 
                 {{-- RECORDINGS TABLE --}}
                 <style>
-                    table{border-collapse: collapse; width: 90%; margin:1rem auto;}
+                    table{border-collapse: collapse; width: 90%; margin:1rem auto; font-size: 1rem;}
                     td,th{border: 1px solid black; padding: 0 0.25rem;}
                 </style>
                 <table>
@@ -55,10 +55,12 @@
                     <tr>
                         <th>###</th>
                         <th>School</th>
+                        <th>Portion</th>
                         <th>Ensemble</th>
                         <th>Adjudicator</th>
                         <th>Part</th>
                         <th>Recording</th>
+                        <th class="sr-only">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,10 +68,12 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $recording->schoolName }}</td>
+                            <td>{{ $recording->portion ? 'Daytime' : 'Showcase' }}</td>
                             <td>{{ $recording->ensembleName }}</td>
                             <td>{{ $recording->adjudicatorName }}</td>
                             <td class="text-center">{{ $recording->partial }}</td>
-                            <td>{!! $recording->mp3Player !!}</td>
+                            <td class="py-2">{!! $recording->mp3Player !!}</td>
+                            <td>Delete</td>
                         </tr>
                     @empty
                         <tr><td colspan="6" class="text-center">No Recordings Found</td></tr>

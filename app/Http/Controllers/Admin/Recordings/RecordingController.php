@@ -17,7 +17,13 @@ class RecordingController extends Controller
         $eventId = ($event) ? $event->id : CurrentEvent::currentEvent()->id;
 
         $recordings = FileUpload::where('event_id', $eventId)->get() //CurrentEvent::currentEvent()->id
-            ->sortBy(['school_id','ensemble_id','adjudicator_id','partial']);
+            ->sortBy([
+                ['schoolName', 'asc'],
+                ['portion', 'desc'],
+                ['ensembleName', 'asc'],
+                ['adjudicatorLastName', 'asc'],
+                ['partial', 'asc'],
+            ]);
 
         return view('admin.recordings.index', compact('admin_active', 'eventId', 'events', 'recordings'));
     }
