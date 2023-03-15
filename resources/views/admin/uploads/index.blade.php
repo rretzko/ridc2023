@@ -102,7 +102,7 @@
                         <label for="adjudicator_id">Adjudicator ({{ $adjudicators->count() }})</label>
                         <select name="adjudicator_id">
                             @foreach($adjudicators AS $adjudicator)
-                                <option value="{{ $adjudicator->adjudicator_id }}">{{ $adjudicator->full_name }} ({{ $adjudicator->concert ? 'Concert' : 'Jazz/Pop/Show' }})</option>
+                                <option value="{{ $adjudicator->id }}">{{ $adjudicator->full_name }} ({{ $adjudicator->concert ? 'Concert' : 'Jazz/Pop/Show' }})</option>
                             @endforeach
                         </select>
 
@@ -133,12 +133,6 @@
                         <input type="submit" value="Submit"
                                class="bg-gray-100 border border-black w-1/12 cursor-pointer">
 
-                    </div>
-
-                    <div>
-                        <a href="{{ route('admin.uploads.seed') }}" class="text-sm text-red-600">
-                            One-time Mass Upload
-                        </a>
                     </div>
 
                 </form>

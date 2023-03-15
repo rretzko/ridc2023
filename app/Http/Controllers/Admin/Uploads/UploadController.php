@@ -25,7 +25,7 @@ class UploadController extends Controller
 
         $target = $events->first();
 
-        $adjudicators = $target->adjudicators;
+        $adjudicators = Adjudicator::all(); //$target->adjudicators;
         $ensembles = $target->ensembles;
         $schools = $target->schools;
 

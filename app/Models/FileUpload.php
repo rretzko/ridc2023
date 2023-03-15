@@ -15,6 +15,11 @@ class FileUpload extends Model
     protected $fillable = ['adjudicator_id', 'ensemble_id', 'event_id',
         'partial', 'portion', 'school_id', 'uploaded_by', 'url'];
 
+    public function getAdjudicatorLastNameAttribute(): string
+    {
+        return Adjudicator::find($this->adjudicator_id)->last_name;
+    }
+
     public function getAdjudicatorNameAttribute(): string
     {
         return Adjudicator::find($this->adjudicator_id)->full_name;
@@ -51,6 +56,13 @@ class FileUpload extends Model
 
     public function getMyFilesAttribute(): Collection
     {
-        return FileUpload::where('school_id', auth()->user()->school()->id)->get();
+        return FileUpload::where('school_id', auth()->user()->school()->id)->get()
+            ->sortBy([
+                ['event_id', 'desc'],
+                ['portion', 'desc'],
+                ['ensembleName', 'asc'],
+                ['adjudicatorLastName', 'asc'],
+                ['partial','asc'],
+            ]);
     }
 }

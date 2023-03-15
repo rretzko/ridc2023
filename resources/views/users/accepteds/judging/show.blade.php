@@ -51,6 +51,7 @@
                 <tr>
                     <th>###</th>
                     <th>Event</th>
+                    <th>Portion</th>
                     <th>Ensemble</th>
                     <th>Adjudicator</th>
                     <th>Part</th>
@@ -62,9 +63,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $file->eventName }}</td>
+                        <td>{{ $file->portion ? 'Daytime' : 'Showcase' }}</td>
                         <td>{{ $file->ensembleName }}</td>
                         <td>{{ $file->adjudicatorName }}</td>
-                        <td>{{ $file->partial }}</td>
+                        <td class="text-center">{{ $file->partial }}</td>
                         <td>{!! $file->mp3Player !!}</td>
                     </tr>
                 @empty
