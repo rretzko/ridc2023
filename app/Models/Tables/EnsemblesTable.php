@@ -46,6 +46,7 @@ class EnsemblesTable
             <th>Name</th>
             <th>Category</th>
             <th>PerfTime</th>
+            <td class="sr-only">Edit</td>
             </tr>';
     }
 
@@ -68,6 +69,11 @@ class EnsemblesTable
                 $str .= '<td>' . $eventEnsemble->ensemble_name . '</td>';
                 $str .= '<td style="text-align: center;" >' . $concert .' </td>';
                 $str .= '<td style="text-align: center;" >' . $timeslot . '</td>';
+                $str .= '<td style="text-align: center;">
+                            <a href="/admin/schedules/ensembles/editEnsemble/' . $eventEnsemble->ensemble_id . '"
+                                <button class="bg-indigo-400 text-white text-sm m-1 px-1 rounded">Edit</button>
+                            </a>
+                        </td>';
                 $str .= '</tr>';
             }
         }else{

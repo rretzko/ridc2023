@@ -139,10 +139,14 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.schedules.ensembles');
     Route::get('admin/schedules/ensembles/edit', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'edit'])
         ->name('admin.schedules.ensembles.edit');
+    Route::get('admin/schedules/ensembles/editEnsemble/{ensemble}', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'showEnsemble'])
+        ->name('admin.schedules.ensembles.showEnsemble');
     Route::get('admin/schedules/ensembles/show', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'show'])
         ->name('admin.schedules.ensembles.show');
     Route::get('admin/schedules/ensembles/csv', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'csv'])
         ->name('admin.schedules.ensembles.csv');
+    Route::post('admin/schedules/ensembles/updateEnsemble/{ensemble}', [App\Http\Controllers\Admin\Schedules\EnsembleController::class, 'updateEnsemble'])
+        ->name('admin.schedules.ensembles.updateEnsemble');
 
     //admin: schedules: soloists
     Route::get('admin/schedules/soloists', [App\Http\Controllers\Admin\Schedules\SoloistController::class, 'index'])

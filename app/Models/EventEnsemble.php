@@ -48,7 +48,7 @@ class EventEnsemble extends Model
             ->orderBy('ensembles.ensemble_name')
             ->select('event_ensembles.id',
                 'schools.school_name', 'schools.city', 'schools.student_body', 'geostates.abbr',
-                'ensembles.ensemble_name','ensembles.directed_by', 'ensembles.descr AS ensembleDescr',
+                'ensembles.id AS ensemble_id', 'ensembles.ensemble_name','ensembles.directed_by', 'ensembles.descr AS ensembleDescr',
                 'categories.descr','event_ensembles.timeslot')
             ->get();
     }
