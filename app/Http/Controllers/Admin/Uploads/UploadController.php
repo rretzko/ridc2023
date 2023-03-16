@@ -42,16 +42,6 @@ class UploadController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -81,6 +71,9 @@ class UploadController extends Controller
             //store recording in DigitalOcean Spaces
             $file->storePublicly($directory, 'spaces');
 
+            //restore if trashed
+            $this->restoreIfTrashed($inputs, $directory, $hashname);
+
             //reference the storage in the database
             \App\Models\FileUpload::updateOrCreate(
                 [
@@ -90,9 +83,9 @@ class UploadController extends Controller
                     'ensemble_id' => $inputs['ensemble_id'],
                     'adjudicator_id' => $inputs['adjudicator_id'],
                     'partial' => $inputs['partial'],
-                    'url' => $directory . $hashname,
                 ],
                 [
+                    'url' => $directory . $hashname,
                     'uploaded_by' => auth()->id(),
                 ]
             );
@@ -103,76 +96,21 @@ class UploadController extends Controller
         return $this->index();
     }
 
-    /**
-     * Seed Spaces with previous event recordings
-     */
-    public function seed()
+    private function restoreIfTrashed(array $inputs, string $directory, string $hashname): void
     {
-        foreach($this->makeSeeds() AS $seed){
+        $trashed = \App\Models\FileUpload::withTrashed()
+            ->where('event_id', $inputs['event_id'])
+            ->where('school_id', $inputs['school_id'])
+            ->where('portion', $inputs['daytime'])
+            ->where('ensemble_id', $inputs['ensemble_id'])
+            ->where('adjudicator_id', $inputs['adjudicator_id'])
+            ->where('partial', $inputs['partial'])
+            ->whereNotNull('deleted_at')
+            ->first();
 
+        if($trashed){
+            $trashed->restore();
         }
 
-        return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    private function makeSeeds(): array
-    {
-        $seeds = [
-            [
-                'filename' => 'https://rickretzko.com/roxburyinvitational.com/public_html/recordings/day_1553517792.mp3',
-                'hashname' => 'day_1553517792.mp3',
-                'directory' => 'ridc/29/16/32/17/1/',
-            ]
-        ];
-
-        //$directory = 'ridc/' . $inputs['event_id'] . '/' . $inputs['school_id'] . '/' . $inputs['ensemble_id'] . '/' . $inputs['adjudicator_id'] . '/' . $inputs['partial'] . '/';
-
-
-        return $seeds;
     }
 }
