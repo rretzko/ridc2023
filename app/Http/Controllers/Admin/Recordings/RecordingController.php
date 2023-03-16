@@ -38,4 +38,15 @@ class RecordingController extends Controller
 
         return $this->index(Event::find($inputs['event_id']));
     }
+
+    public function destroy(FileUpload $fileUpload)
+    {
+        $eventId = $fileUpload->event_id;
+
+        $fileUpload->delete();
+
+        session()->flash('success', 'The recording has been deleted');
+
+        return $this->index(Event::find($eventId));
+    }
 }

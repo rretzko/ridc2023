@@ -102,6 +102,8 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.recordings');
     Route::post('admin/recordings/select', [App\Http\Controllers\Admin\Recordings\RecordingController::class, 'show'])
         ->name('admin.recordings.show');
+    Route::get('admin/recordings/delete/{fileUpload}', [App\Http\Controllers\Admin\Recordings\RecordingController::class, 'destroy'])
+        ->name('admin.recordings.delete');
 
     //admin: rosters: applicants
     Route::get('rosters/applicants', [App\Http\Controllers\Admin\Rosters\ApplicantController::class, 'index'])

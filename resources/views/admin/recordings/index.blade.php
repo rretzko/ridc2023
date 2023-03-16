@@ -45,6 +45,13 @@
                     </form>
                 </div>
 
+                {{-- SUCCESS MESSAGE --}}
+                <div class="ml-16 mt-4 bg-green-100 border border-green-800 rounded px-2 max-w-sm text-sm">
+                    @if(session()->has('success'))
+                        {{ session()->get('success') }}
+                    @endif
+                </div>
+
                 {{-- RECORDINGS TABLE --}}
                 <style>
                     table{border-collapse: collapse; width: 90%; margin:1rem auto; font-size: 1rem;}
@@ -73,10 +80,16 @@
                             <td>{{ $recording->adjudicatorName }}</td>
                             <td class="text-center">{{ $recording->partial }}</td>
                             <td class="py-2">{!! $recording->mp3Player !!}</td>
-                            <td>Delete</td>
+                            <td>
+                                <a href="{{ route('admin.recordings.delete', ['fileUpload' => $recording]) }}">
+                                    <button class="bg-red-100 border border-red-800 px-2 rounded-full">
+                                        Delete
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
                     @empty
-                        <tr><td colspan="6" class="text-center">No Recordings Found</td></tr>
+                        <tr><td colspan="7" class="text-center">No Recordings Found</td></tr>
                     @endforelse
                     </tbody>
                 </table>
