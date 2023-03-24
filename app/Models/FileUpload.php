@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -54,9 +55,21 @@ class FileUpload extends Model
         return $str;
     }
 
+    /**
+     * Return all files from previous events and
+     * files from the current event
+     * where the current time is AFTER the current event end_time
+     * @return Collection
+     */
     public function getMyFilesAttribute(): Collection
     {
-        return FileUpload::where('school_id', auth()->user()->school()->id)->get()
+        $event = CurrentEvent::currentEvent();
+        $eventId = $event->id;
+        $endTime = $event->end_time;
+        $currentTime = Carbon::now()->format('G:i:s');
+        $releaseFiles = ($endTime < $currentTime);
+
+        $allFiles = FileUpload::where('school_id', auth()->user()->school()->id)->get()
             ->sortBy([
                 ['event_id', 'desc'],
                 ['portion', 'desc'],
@@ -64,5 +77,17 @@ class FileUpload extends Model
                 ['adjudicatorLastName', 'asc'],
                 ['partial','asc'],
             ]);
+
+        //return all files from previous events and files from the current event
+        //where the current time is AFTER the event end_time
+        return $allFiles->filter(function($file) use($eventId, $releaseFiles){
+           return ($file->event_id != $eventId) ||
+               (
+                ($file->event_id == $eventId) &&
+                $releaseFiles
+               );
+        });
+
+        //return $showFiles;
     }
 }
