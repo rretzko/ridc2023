@@ -67,7 +67,7 @@ class FileUpload extends Model
         $eventId = $event->id;
         $endTime = $event->end_time;
         $currentTime = Carbon::now()->format('G:i:s');
-        $releaseFiles = ($endTime < $currentTime);
+        $releaseFiles = true;//($endTime < $currentTime);
 
         $allFiles = FileUpload::where('school_id', auth()->user()->school()->id)->get()
             ->sortBy([
@@ -77,16 +77,16 @@ class FileUpload extends Model
                 ['adjudicatorLastName', 'asc'],
                 ['partial','asc'],
             ]);
-
+return $allFiles;
         //return all files from previous events and files from the current event
         //where the current time is AFTER the event end_time
-        return $allFiles->filter(function($file) use($eventId, $releaseFiles){
-           return ($file->event_id != $eventId) ||
-               (
-                ($file->event_id == $eventId) &&
-                $releaseFiles
-               );
-        });
+        //return $allFiles->filter(function($file) use($eventId, $releaseFiles){
+        //   return ($file->event_id != $eventId) ||
+        //       (
+        //        ($file->event_id == $eventId) &&
+        //        $releaseFiles
+        //       );
+        //});
 
         //return $showFiles;
     }
