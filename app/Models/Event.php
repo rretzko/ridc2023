@@ -16,7 +16,8 @@ class Event extends Model
         'event_date',
         'max_concert', 'max_show', 'max_soloists',
         'open_date', 'start_time',
-        'subtitle','title'
+        'subtitle','title',
+        'release_files',
     ];
 
     public function getEventDateDMdYAttribute() : string

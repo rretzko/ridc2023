@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -63,13 +64,21 @@ class FileUpload extends Model
      */
     public function getMyFilesAttribute(): Collection
     {
-        $event = CurrentEvent::currentEvent();
-        $eventId = $event->id;
-        $endTime = $event->end_time;
-        $currentTime = Carbon::now()->format('G:i:s');
-        $releaseFiles = true;//($endTime < $currentTime);
+        $currentEvent = CurrentEvent::currentEvent();
+        $currentEventId = $currentEvent->id;
 
-        $allFiles = FileUpload::where('school_id', auth()->user()->school()->id)->get()
+        $schoolId = auth()->user()->school()->id;
+
+        return FileUpload::query()
+            ->join('events','file_uploads.event_id','=', 'events.id')
+            ->where('file_uploads.school_id', $schoolId)
+            ->where('file_uploads.event_id', '<', $currentEventId)
+            ->orWhere(function(Builder $query) use($currentEventId, $schoolId){
+                $query->where('file_uploads.event_id', $currentEventId)
+                ->where('file_uploads.school_id', $schoolId)
+                ->where('events.release_files','<', Carbon::now());
+            })
+            ->get()
             ->sortBy([
                 ['event_id', 'desc'],
                 ['portion', 'desc'],
@@ -77,17 +86,5 @@ class FileUpload extends Model
                 ['adjudicatorLastName', 'asc'],
                 ['partial','asc'],
             ]);
-return $allFiles;
-        //return all files from previous events and files from the current event
-        //where the current time is AFTER the event end_time
-        //return $allFiles->filter(function($file) use($eventId, $releaseFiles){
-        //   return ($file->event_id != $eventId) ||
-        //       (
-        //        ($file->event_id == $eventId) &&
-        //        $releaseFiles
-        //       );
-        //});
-
-        //return $showFiles;
     }
 }
