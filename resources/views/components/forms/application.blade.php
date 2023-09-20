@@ -189,7 +189,7 @@
         {{-- MAILING INSTRUCTIONS --}}
         <div id="mailing_instructions">
             <div class="instructions text-center">
-                Return form with payment by November 11, 2022 to:<br />
+                Return form with payment by Friday, November 10, 2023 to:<br />
                 <div class="font-bold flex flex-col text-center">
                     <div>Patrick Hachey</div>
                     <div>1 Bryant Drive</div>

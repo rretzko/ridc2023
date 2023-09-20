@@ -24,6 +24,7 @@ class ApplicationController extends Controller
 
     public function update(ApplicationRequest $request)
     {
+
         $service = new ApplicationService($request->validated());
 
         return redirect()->route('user.application.edit')->with('success','Application updated!');
@@ -31,6 +32,7 @@ class ApplicationController extends Controller
 
     public function destroy(Ensemble $ensemble)
     {
+
         $success = 'Ensemble: "'.$ensemble->ensemble_name.'" successfully removed.';
 
         $this->destroyEventEnsemble($ensemble);

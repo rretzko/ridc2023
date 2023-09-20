@@ -16,6 +16,8 @@ class ApplicationController extends Controller
         $user = auth()->user();
         $school = $user->school();
 
-        return view('users.accepteds.applications.show', compact('application', 'event', 'school', 'user'));
+        return (auth()->user()->accepted())
+            ? view('users.accepteds.applications.show', compact('application', 'event', 'school', 'user'))
+            : view('users.application.edit', compact('application', 'event'));
     }
 }

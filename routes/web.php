@@ -171,7 +171,7 @@ Route::middleware(['auth'])->group( function(){
         ->name('admin.uploads.store');
 
     //user: application
-    Route::get('user/application', [App\Http\Controllers\User\ApplicationController::class,'edit'])
+    Route::get('user/application/new', [App\Http\Controllers\User\ApplicationController::class,'edit'])
         ->name('user.application.edit');
     Route::post('application/update', [App\Http\Controllers\User\ApplicationController::class, 'update'])
         ->name('user.application.update');
