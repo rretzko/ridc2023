@@ -31,14 +31,14 @@
             </td>
             <td class="">
                 <a href="{{ route('users.accepteds.soloists.edit',['soloist' => $soloist['id']]) }}" >
-                    <button class="text-sm bg-indigo-900 text-white px-2 rounded-full" >
+                    <button style="background-color: darkslateblue; color: white;" class="text-sm px-2 rounded-full" >
                         Edit
                     </button>
                 </a>
             </td>
             <td class="">
                 <a href="{{ route('users.accepteds.soloists.destroy',['soloist' => $soloist['id']]) }}" >
-                    <button class="text-sm bg-red-600 text-white px-2 rounded-full">
+                    <button style="background-color: darkred; color: white;" class="text-sm px-2 rounded-full">
                         Remove
                     </button>
 
