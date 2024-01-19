@@ -51,7 +51,9 @@
                     <select id="studentId" name="studentId" class="w-1/3" autofocus>
                         <option value="0">Select from Student roster</option>
                         @foreach($students AS $student)
-                            <option value="{{ $student->id }}" >
+                            <option value="{{ $student->id }}"
+                                @selected(old('studentId') && (old('studentId') == $student->id))
+                            >
                                 {{ $student->fullNameAlpha }}
                             </option>
                         @endforeach
