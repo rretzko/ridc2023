@@ -38,7 +38,7 @@
             </a>
 
 
-            <a href="{{ route('users.accepteds.soloists.edit') }}"
+            <a href="{{ route('users.accepteds.soloists.index') }}"
                class="nav-item @if($active === 'soloists') text-red-600 @else text-gray-400 @endif"
             >
                 Soloists

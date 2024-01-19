@@ -66,6 +66,22 @@ class School extends Model
             ->count('id');
     }
 
+    public function countSoloistsConcert(Event $event): int
+    {
+        return Soloist::where('event_id', $event->id)
+            ->where('school_id', $this->id)
+            ->where('concert', 1)
+            ->count('id');
+    }
+
+    public function countSoloistsJPS(Event $event): int //JSP = Jazz, Show, Pop
+    {
+        return Soloist::where('event_id', $event->id)
+            ->where('school_id', $this->id)
+            ->where('concert', 0)
+            ->count('id');
+    }
+
     public function getCountStudentsAttribute(): int
     {
         return Student::where('school_id', $this->id)->count('id');
@@ -119,6 +135,35 @@ class School extends Model
         $name = str_replace('High School', 'HS', $name);
 
         return $name;
+    }
+
+    public function getSoloists(Event $event): array
+    {
+        $a = [];
+
+        $soloists = Soloist::where('event_id', $event->id)
+            ->where('school_id', $this->id)
+            ->get();
+
+        foreach($soloists AS $soloist){
+
+            $fullNameAlpha = $soloist->fullNameAlpha;
+            $soloistTypeDescr = $soloist->concert ? 'Concert' : 'Jazz/Pop/Show';
+
+            $a[] = [
+                'sortOrder' => ($soloistTypeDescr . $fullNameAlpha),
+                'fullNameAlpha' => $fullNameAlpha,
+                'id' => $soloist->id,
+                'soloistTypeDescr' => $soloistTypeDescr,
+                'title' => $soloist->title,
+                'composer' => $soloist->composer,
+                ];
+
+        }
+
+        sort($a);
+
+        return $a;
     }
 
     public function students()

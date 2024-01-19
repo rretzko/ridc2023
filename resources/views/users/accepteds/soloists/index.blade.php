@@ -29,9 +29,15 @@
             <x-messages.error message="Errors found; see below." />
         @endif
 
-        {{-- EDIT FORM --}}
+        {{-- ADD NEW SOLOIST FORM --}}
         <div>
-            <x-forms.accepteds.soloists.edit :soloist="$soloist" :students="$students"/>
+            @if($countSoloists < 4)
+                <x-forms.accepteds.soloists.index
+                    :students="$students"
+                    countSoloistsConcert="{{ $countSoloistsConcert }}"
+                    countSoloistsJPS="{{ $countSoloistsJPS }}"
+                />
+            @endif
         </div>
 
         {{-- SOLOISTS TABLE --}}

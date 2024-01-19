@@ -18,25 +18,25 @@ class SoloistRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        if(! $this->concert_1){
-
-            $this->request->remove('concert_1');
-        }
-
-        if(! $this->concert_2){
-
-            $this->request->remove('concert_2');
-        }
-
-        if(! $this->jazzpopshow_1){
-
-            $this->request->remove('jazzpopshow_1');
-        }
-
-        if(! $this->jazzpopshow_2){
-
-            $this->request->remove('jazzpopshow_2');
-        }
+//        if(! $this->concert_1){
+//
+//            $this->request->remove('concert_1');
+//        }
+//
+//        if(! $this->concert_2){
+//
+//            $this->request->remove('concert_2');
+//        }
+//
+//        if(! $this->jazzpopshow_1){
+//
+//            $this->request->remove('jazzpopshow_1');
+//        }
+//
+//        if(! $this->jazzpopshow_2){
+//
+//            $this->request->remove('jazzpopshow_2');
+//        }
     }
 
     /**
@@ -47,12 +47,27 @@ class SoloistRequest extends FormRequest
     public function rules()
     {
         return [
-            [
-                'concert_1' => ['nullable','integer','exists:students,id'],
-                'concert_2' => ['nullable','integer','exists:students,id'],
-                'jazzpopshow_1' => ['nullable','integer','exists:students,id'],
-                'jazzpopshow_2' => ['nullable','integer','exists:students,id'],
-            ]
+            'soloistType' => ['required', 'numeric', 'min:0', 'max:1'],
+            'studentId' => ['required', 'numeric', 'min:1'],
+            'title' => ['required', 'string'],
+            'composer' => ['required', 'string'],
+        ];
+
+//        return [
+//            [
+//                'concert_1' => ['nullable','integer','exists:students,id'],
+//                'concert_2' => ['nullable','integer','exists:students,id'],
+//                'jazzpopshow_1' => ['nullable','integer','exists:students,id'],
+//                'jazzpopshow_2' => ['nullable','integer','exists:students,id'],
+//            ]
+//        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'studentId.required' => 'A student must be selected.',
+            'studentId.min' => 'A student must be selected.',
         ];
     }
 }

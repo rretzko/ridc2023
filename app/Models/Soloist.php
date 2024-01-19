@@ -11,7 +11,7 @@ class Soloist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['concert','event_id','school_id','student_id'];
+    protected $fillable = ['composer', 'concert','event_id','school_id','student_id', 'title'];
 
     /**
      * Soloist cohort consists of two concert and two jazz/pop/show soloists

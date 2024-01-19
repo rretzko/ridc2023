@@ -237,9 +237,15 @@ Route::middleware(['auth'])->group( function(){
         ->name('users.accepteds.schools.update');
 
     //user: accepteds: SOLOISTS
-    Route::get('user/soloists/edit', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'edit'])
+    Route::get('user/soloists/remove/{soloist}', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'destroy'])
+        ->name('users.accepteds.soloists.destroy');
+    Route::get('user/soloists/edit/{soloist}', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'edit'])
         ->name('users.accepteds.soloists.edit');
-    Route::post('user/soloists/update', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'update'])
+    Route::get('user/soloists/index', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'index'])
+        ->name('users.accepteds.soloists.index');
+    Route::post('user/soloists/store', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'store'])
+        ->name('users.accepteds.soloists.store');
+    Route::post('user/soloists/update/{soloist}', [App\Http\Controllers\User\Accepteds\Soloists\SoloistController::class, 'update'])
         ->name('users.accepteds.soloists.update');
 
     //user: accepted: STUDENTS
