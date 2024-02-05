@@ -17,7 +17,7 @@ class DescriptionController extends Controller
     {
         $request->validate(
             [
-                'descr' => ['required','string', 'max:255'],
+                'descr' => ['required','string'],
                 'ensemble_name' => ['required','string','max:60'],
             ]
         );
