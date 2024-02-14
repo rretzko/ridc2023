@@ -61,8 +61,9 @@ class StatusTable
 
     private function columnSchoolTickets(School $school): string
     {
-        return $school->school_name
+        return '<span style="font-weight: bold">' . $school->school_name . '</span>'
         . '<br />'
+        . '<span style="font-size: smaller;">'
         . $school->schoolColorsCsv
         . '<br />'
         . 'Arrival ETA: '
@@ -71,6 +72,7 @@ class StatusTable
         . 'Staying at: ' . $school->accommodation
         . '<br />'
         . 'Attending Adults: ' . $school->attendingAdults
+        . '</span>'
         . '<br />'
         . '<span style="font-size: 0.8rem">( as of: '
         . $school->personnelUpdatedDateFormatted
@@ -117,20 +119,24 @@ class StatusTable
 
         if($rows->count()) {
 
+            $iteration = 1;
+
             foreach ($rows as $key => $accepted) {
 
-                $shaded = (!($key % 2)) ? 'bg-gray-100' : '';
+                $shaded = (!($iteration % 2)) ? 'bg-gray-100' : '';
 
                 $school = $accepted->user->school();
 
                 $str .= '<tr class="' . $shaded . '">';
-                    $str .= '<td>' . ($key + 1) . '</td>';
+                    $str .= '<td>' . $iteration . '</td>';
                     $str .= '<td>' . $accepted->user->last . ', ' . $accepted->user->first . '</td>';
                     $str .= '<td>' . $this->columnSchoolTickets($school) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';
                     $str .= '<td>' . $this->buildEnsembles($school->acceptedEnsembles) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countSoloists . '</td>';
                 $str .= '</tr>';
+
+                $iteration++;
             }
         }else{
 
