@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Downloads;
 
+use App\Exports\AcceptedStatusExport;
 use App\Exports\EquipmentExport;
 use App\Http\Controllers\Controller;
 use App\Exports\StudentRosterExport;
 use App\Services\EnsemblesTxtService;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DownloadController extends Controller
 {
@@ -19,7 +21,7 @@ class DownloadController extends Controller
      * Download csv of current event's students
      * @return void
      */
-    public function equipment()
+    public function equipment(): BinaryFileResponse
     {
         return Excel::download(new EquipmentExport(), 'equipment_'.date('Ymd_Gis').'.csv');
     }
@@ -38,8 +40,15 @@ class DownloadController extends Controller
         $service = new EnsemblesTxtService;
 
         self::export($fileName, $service->txt());
+    }
 
-
+    /**
+     * Download csv of current event's accepted school's status
+     * @return void
+     */
+    public function status(): BinaryFileResponse
+    {
+        return Excel::download(new AcceptedStatusExport(), 'status_'.date('Ymd_Gis').'.csv');
     }
 
     /**

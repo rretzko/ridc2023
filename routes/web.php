@@ -183,6 +183,8 @@ Route::middleware(['auth'])->group( function(){
     //admin: status
     Route::get('admin/status', [App\Http\Controllers\Admin\Status\StatusController::class, 'index'])
         ->name('admin.status');
+    Route::get('admin/status/download', [App\Http\Controllers\Admin\Downloads\DownloadController::class, 'status'])
+        ->name('admin.status.download');
 
     //user: accepteds: APPLICATION
     Route::get('user/application', [App\Http\Controllers\User\Accepteds\Applications\ApplicationController::class, 'show'])

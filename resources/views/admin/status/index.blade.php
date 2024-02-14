@@ -21,6 +21,13 @@
 
                 </div>
 
+                {{-- DOWNLOAD ICON --}}
+                <div style="color: blue; display: flex; justify-content: end; margin-right: 2rem; margin-top: 1rem;">
+                    <a href="{{ route('admin.status.download') }}" title="Download to csv file">
+                        <x-heroicons.table-cells/>
+                    </a>
+                </div>
+
                 {{-- TABLE --}}
                 <div>
                     {!! $table !!}

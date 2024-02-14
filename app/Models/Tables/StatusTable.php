@@ -128,7 +128,7 @@ class StatusTable
                 $school = $accepted->user->school();
 
                 $str .= '<tr class="' . $shaded . '">';
-                    $str .= '<td>' . $iteration . '</td>';
+                    $str .= '<td style="text-align: center;">' . $iteration . '</td>';
                     $str .= '<td>' . $accepted->user->last . ', ' . $accepted->user->first . '</td>';
                     $str .= '<td>' . $this->columnSchoolTickets($school) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';
