@@ -29,6 +29,24 @@ class School extends Model
         }
     }
 
+    public function getAccommodationAttribute(): string
+    {
+        $hotel = EventSchool::where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('school_id', $this->id)
+            ->value('hotel');
+
+        return $hotel;
+    }
+
+    public function getAttendingAdultsAttribute(): string
+    {
+        $hotel = EventSchool::where('event_id', CurrentEvent::currentEvent()->id)
+            ->where('school_id', $this->id)
+            ->value('attending_adults');
+
+        return $hotel;
+    }
+
     public function ensembles()
     {
         return $this->belongsToMany(Ensemble::class);
@@ -123,6 +141,15 @@ class School extends Model
     public function getGeostateAbbrAttribute(): string
     {
         return Geostate::find($this->geostate_id)->abbr;
+    }
+
+    public function getSchoolColorsCsvAttribute()
+    {
+        $colors = explode(',', $this->colors);
+
+        $cleans = array_diff($colors, ['none','']);
+
+        return ucwords(implode(', ', $cleans));
     }
 
     public function getShortnameAttribute()

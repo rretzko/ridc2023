@@ -5,6 +5,7 @@ namespace App\Models\Tables;
 use App\Models\Accepted;
 use App\Models\CurrentEvent;
 use App\Models\EventEnsemble;
+use App\Models\School;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -58,12 +59,31 @@ class StatusTable
         return $str;
     }
 
+    private function columnSchoolTickets(School $school): string
+    {
+        return $school->school_name
+        . '<br />'
+        . $school->schoolColorsCsv
+        . '<br />'
+        . 'Arrival ETA: '
+        . $school->eta
+        . '<br />'
+        . 'Staying at: ' . $school->accommodation
+        . '<br />'
+        . 'Attending Adults: ' . $school->attendingAdults
+        . '<br />'
+        . '<span style="font-size: 0.8rem">( as of: '
+        . $school->personnelUpdatedDateFormatted
+        . ')</span>';
+
+    }
+
     private function init(): void
     {
         $roxbury = [1,91,92,93]; //Retzko, Hachey, Salyerds, Sweer
 
         $rows = Accepted::where('event_id', CurrentEvent::currentEvent()->id)
-            ->whereNotIn('user_id', $roxbury)
+            ->whereNotIn('user_id', $roxbury) //roxbury directors
             ->get()
             ->sortBy('user.last');
 
@@ -105,16 +125,8 @@ class StatusTable
 
                 $str .= '<tr class="' . $shaded . '">';
                     $str .= '<td>' . ($key + 1) . '</td>';
-                    $str .= '<td>' . $accepted->user->last . '</td>';
-                    $str .= '<td>' . $school->school_name
-                        . '<br />'
-                        . 'Arrival ETA: '
-                            . $school->eta
-                        . '<br />'
-                        . '<span style="font-size: 0.8rem">( as of: '
-                            . $school->personnelUpdatedDateFormatted
-                        . ')</span>'
-                        . '</td>';
+                    $str .= '<td>' . $accepted->user->last . ', ' . $accepted->user->first . '</td>';
+                    $str .= '<td>' . $this->columnSchoolTickets($school) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countStudents . '</td>';
                     $str .= '<td>' . $this->buildEnsembles($school->acceptedEnsembles) . '</td>';
                     $str .= '<td style="text-align: center;" >' . $school->countSoloists . '</td>';
