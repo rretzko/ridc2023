@@ -15,8 +15,10 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
 {
     private $category='Break';
+    private $soloistComposer='';
     private $soloistName='Break';
     private $soloists;
+    private $soloistTitle='';
     private $minuteInterval=8;
     private $schoolName='Break';
     private $timeslots;
@@ -29,7 +31,7 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
             ->join('students','soloists.student_id','=','students.id')
             ->join('schools','soloists.school_id','=','schools.id')
             ->orderBy('timeslot')
-            ->get();;
+            ->get();
 
         //array of timeslots from $start to $finish by $this->minuteInterval
         $timeslot = new Timeslot($start, $finish, $this->minuteInterval);
@@ -48,6 +50,8 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
             $a[$key]['timeslot'] = $timeslot['time'];
             $a[$key]['school'] = $this->schoolName;
             $a[$key]['ensemble'] = $this->soloistName;
+            $a[$key]['title'] = $this->soloistTitle;
+            $a[$key]['composer'] = $this->soloistComposer;
             $a[$key]['category'] = $this->category;
         }
 
@@ -61,6 +65,8 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
           'Timeslot',
           'School',
           'Soloist',
+          'Title',
+          'Composer',
           'Category',
         ];
     }
@@ -71,7 +77,9 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
           $row['###'],
           $row['timeslot'],
           $row['school'],
-          $row['ensemble'],
+          $row['ensemble'], //soloist's name
+          $row['title'],
+          $row['composer'],
           $row['category'],
         ];
     }
@@ -90,6 +98,8 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
             $this->soloistName = $soloist->fullNameAlpha;
             $this->schoolName = $soloist->schoolName;
             $this->category = $soloist->concert ? 'concert' : 'jazz/pop/show';
+            $this->soloistTitle = $soloist->title;
+            $this->soloistComposer = $soloist->composer;
 
             $this->categoryCenter = '';
             $this->soloistCenter = '';
@@ -104,7 +114,9 @@ class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
 
     private function resetDefaults(): void
     {
+        $this->soloistComposer = 'Break';
         $this->soloistName = 'Break';
+        $this->soloistTitle = 'Break';
         $this->schoolName = 'Break';
         $this->category = 'Break';
 
