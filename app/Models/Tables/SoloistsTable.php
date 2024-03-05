@@ -46,6 +46,14 @@ class SoloistsTable
             : 'none';
     }
 
+    private function getNameTitleComposer(Soloist $soloist): string
+    {
+        return '<div>' . $soloist->fullNameAlpha . '</div>'
+            . '<div style="margin-left: 0.5rem; font-size: 1rem;">'
+            . $soloist->title . ' (' . $soloist->composer . ')'
+            . '</div>';
+    }
+
     private function init(): void
     {
         $soloists = Soloist::join('schools','soloists.school_id','=','schools.id')
@@ -74,7 +82,7 @@ class SoloistsTable
         return '<tr>
             <th>###</th>
             <th>School</th>
-            <th>Name</th>
+            <th>Name/Rep</th>
             <th>Category</th>
             <th>PerfTime</th>
             </tr>';
@@ -93,7 +101,7 @@ class SoloistsTable
                 $str .= '<tr>';
                 $str .= '<td>' . ($key + 1) . '</td>';
                 $str .= '<td>' . $soloist->schoolName . ' (' . $this->firstTimeSlot($soloist->school_id). ')</td>';
-                $str .= '<td>' . $soloist->fullNameAlpha . '</td>';
+                $str .= '<td>' . $this->getNameTitleComposer($soloist) . '</td>';
                 $str .= '<td style="text-align: center;">' . $soloist->category . '</td>';
                 $str .= '<td style="text-align: center;">' . $timeslot . '</td>';
                 $str .= '</tr>';
