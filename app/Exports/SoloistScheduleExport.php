@@ -15,10 +15,10 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class SoloistScheduleExport implements FromArray, WithHeadings, WithMapping
 {
     private $category='Break';
-    private $soloistComposer='';
+    private $soloistComposer='Break';
     private $soloistName='Break';
     private $soloists;
-    private $soloistTitle='';
+    private $soloistTitle='Break';
     private $minuteInterval=8;
     private $schoolName='Break';
     private $timeslots;
