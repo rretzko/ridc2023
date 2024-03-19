@@ -69,10 +69,18 @@ class FileUpload extends Model
 
         $schoolId = auth()->user()->school()->id;
 
+        $endDateTime = $currentEvent->event_date . ' ' . $currentEvent->end_time;
+
+        $releaseDateTime = new Carbon($endDateTime);
+
+        $operator = (Carbon::now() > $releaseDateTime)
+            ? '<=' //release all recordings including the current event
+            : '<'; //release all recordings prior to current event
+
         return FileUpload::query()
             ->join('events','file_uploads.event_id','=', 'events.id')
             ->where('file_uploads.school_id', $schoolId)
-            ->where('file_uploads.event_id', '<', $currentEventId)
+            ->where('file_uploads.event_id', $operator, $currentEventId)
             ->orWhere(function(Builder $query) use($currentEventId, $schoolId){
                 $query->where('file_uploads.event_id', $currentEventId)
                 ->where('file_uploads.school_id', $schoolId)

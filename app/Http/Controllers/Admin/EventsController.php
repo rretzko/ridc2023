@@ -100,7 +100,7 @@ class EventsController extends Controller
             [
                 'descr' => ['string','required'],
                 'close_date' => ['date','required'],
-                'end_time' => ['date_format:H:i:s','required'],
+                'end_time' => ['date_format:H:i','required'],
                 'ensemble_fee' => ['numeric','required'],
                 'event_date' => ['date','required',Rule::unique('events')->ignore($event)],
                 'max_concert' => ['numeric','required','min:1'],
