@@ -76,6 +76,8 @@ class FileUpload extends Model
         $operator = (Carbon::now() > $releaseDateTime)
             ? '<=' //release all recordings including the current event
             : '<'; //release all recordings prior to current event
+$operator = '=';
+
 
         return FileUpload::query()
             ->join('events','file_uploads.event_id','=', 'events.id')
