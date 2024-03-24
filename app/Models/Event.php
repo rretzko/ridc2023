@@ -48,6 +48,9 @@ class Event extends Model
             ->where('event_id', $this->id)
             ->pluck('school_id');
 
+        /* WORKAROUND */
+        $ids[] = 89;
+
         return School::whereIn('id', $ids)->get();
     }
 }
