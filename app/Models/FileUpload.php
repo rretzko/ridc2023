@@ -29,7 +29,10 @@ class FileUpload extends Model
 
     public function getEnsembleNameAttribute(): string
     {
-        return Ensemble::find($this->ensemble_id)->ensemble_name;
+        $e = Ensemble::find($this->ensemble_id);
+        return ($e)
+            ? $e->ensemble_name
+            : $this->trashedEnsembleName();
     }
 
     public function getEventNameAttribute(): string
@@ -76,11 +79,12 @@ class FileUpload extends Model
         $operator = (Carbon::now() > $releaseDateTime)
             ? '<=' //release all recordings including the current event
             : '<'; //release all recordings prior to current event
-$operator = '=';
+//$operator = '=';
 
 
         return FileUpload::query()
             ->join('events','file_uploads.event_id','=', 'events.id')
+            ->join('ensembles', 'ensembles.id', '=', 'file_uploads.ensemble_id')
             ->where('file_uploads.school_id', $schoolId)
             ->where('file_uploads.event_id', $operator, $currentEventId)
             ->orWhere(function(Builder $query) use($currentEventId, $schoolId){
@@ -92,9 +96,14 @@ $operator = '=';
             ->sortBy([
                 ['event_id', 'desc'],
                 ['portion', 'desc'],
-                ['ensembleName', 'asc'],
+                ['ensembles.ensemble_name', 'asc'],
                 ['adjudicatorLastName', 'asc'],
                 ['partial','asc'],
             ]);
+    }
+
+    private function trashedEnsembleName(): string
+    {
+        return Ensemble::withTrashed()->find($this->ensemble_id)->ensemble_name;
     }
 }
