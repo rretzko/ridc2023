@@ -168,17 +168,17 @@
                     </div>
                 </div>
 
-{{--                <div class="host">--}}
-{{--                    <header>--}}
-{{--                        R. Dan Salyerds--}}
-{{--                    </header>--}}
-{{--                    <div class="title">--}}
-{{--                        Assistant Choir Director--}}
-{{--                    </div>--}}
-{{--                    <div class="school">--}}
-{{--                        Roxbury High School--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                <div class="host">
+                    <header>
+                        Ciera Scire Reingold
+                    </header>
+                    <div class="title">
+                        Assistant Choir Director
+                    </div>
+                    <div class="school">
+                        Roxbury High School
+                    </div>
+                </div>
 
                 <div class="host">
                     <header>
