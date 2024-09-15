@@ -98,7 +98,7 @@
 
     <div style="margin: auto; margin-top: 2rem;  border: 1px solid black; padding: 0.5rem; background-color: rgba(0,0,0,0.1); font-weight: bold; text-align: center;" >
         <header>
-            Return completed form with paymety by November 10, 2022 to:
+            Return completed form with payment by November 9, 2024 to:
         </header>
         <div>Patrick Hachey</div>
         <div>1 Bryant Drive</div>
