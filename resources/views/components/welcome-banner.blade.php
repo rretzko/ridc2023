@@ -1,6 +1,6 @@
 <style>
     #welcome{
-        background-color: navy;
+        background-color: midnightblue;
         border-radius: 1rem;
         color: gold;
         font-family: "Times New Roman";

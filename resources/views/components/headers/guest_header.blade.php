@@ -66,7 +66,7 @@
 
     </style>
 
-    <header id="choir_img_header">
+    <header id="choir_img_header" style="border-radius: 25px ">
         <img id="choir" src="{{ asset('assets/images/roxInvitationalBanner.png') }}" alt="Roxbury Choir banner" />
     </header>
 

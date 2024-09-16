@@ -67,7 +67,7 @@
                     color: powderblue;
                 }
                 #schedule{
-                    background-color: navy;
+                    background-color: midnightblue;
                     border-radius: 1rem;
                     padding: 0.5rem 0;
                 }
