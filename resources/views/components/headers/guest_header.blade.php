@@ -66,8 +66,12 @@
 
     </style>
 
-    <header id="choir_img_header" style="border-radius: 25px ">
-        <img id="choir" src="{{ asset('assets/images/roxInvitationalBanner.png') }}" alt="Roxbury Choir banner" />
+    <header id="choir_img_header" style="border-radius: 1rem ">
+        <img id="choir"
+             src="{{ asset('assets/images/roxInvitationalBanner.png') }}"
+             alt="Roxbury Choir banner"
+             style="border-radius: 1rem;"
+        />
     </header>
 
     {{-- MENU SITE RIBBON --}}
