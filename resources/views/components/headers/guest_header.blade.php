@@ -67,7 +67,7 @@
     </style>
 
     <header id="choir_img_header">
-        <img id="choir" src="{{ asset('assets/images/choir_cropped.png') }}" alt="Roxbury Choir image" />
+        <img id="choir" src="{{ asset('assets/images/roxInvitationalBanner.png') }}" alt="Roxbury Choir banner" />
     </header>
 
     {{-- MENU SITE RIBBON --}}
