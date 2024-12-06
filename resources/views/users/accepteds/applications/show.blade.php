@@ -97,6 +97,14 @@
                 <data>{!! $application->ensemblesBlock !!}</data>
             </div>
 
+            <hr />
+
+            {{-- COST --}}
+            <div class="text-group">
+                <label>Cost</label>
+                <data>${{ $event->ensemble_fee }} per ensemble</data>
+            </div>
+
         </div>
 
     </section>
