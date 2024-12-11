@@ -191,6 +191,7 @@
             <div class="instructions text-center">
                 Return form with payment by Friday, November 10, 2023 to:<br />
                 <div class="font-bold flex flex-col text-center">
+                    <div>Your check should be made out to: <b>RHS CHOIR</b> and sent to:</div>
                     <div>Patrick Hachey</div>
                     <div>1 Bryant Drive</div>
                     <div>Succasunna, NJ 07876</div>
