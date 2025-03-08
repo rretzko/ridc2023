@@ -19,6 +19,7 @@ class DescriptionController extends Controller
             [
                 'descr' => ['required','string'],
                 'ensemble_name' => ['required','string','max:60'],
+                'directed_by' => ['required','string','max:60'],
             ]
         );
 
@@ -26,6 +27,7 @@ class DescriptionController extends Controller
             [
                 'descr' => $request['descr'],
                 'ensemble_name' => $request['ensemble_name'],
+                'directed_by' => $request['directed_by'],
             ]
         );
 

@@ -12,8 +12,13 @@
         </div>
 
         <div class="input-group">
-            <lable for="ensemble_name">Name</lable>
+            <label for="ensemble_name">Name</label>
             <input type="text" name="ensemble_name" value="{{ $ensemble->ensemble_name }}" />
+        </div>
+
+        <div class="input-group">
+            <label for="directed_by">Directed By</label>
+            <input type="text" name="directed_by" value="{{ $ensemble->directed_by }}" />
         </div>
 
         <div class="input-group">
