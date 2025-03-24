@@ -28,6 +28,7 @@ class StudentRosterExport implements FromCollection, WithHeadings, WithMapping
             ->where('event_ensembles.event_id', $currentEventId)
             ->where('students.class_of', '>=', $eventYear)
             ->where('ensemble_school.school_id', '!=', 120) //FJR Academy
+            ->where('event_ensembles.accepted', 1)
             ->distinct()
             ->select("students.id")
             ->pluck("students.id")
