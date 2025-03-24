@@ -2,8 +2,10 @@
 
 namespace App\Exports;
 
+use App\Models\CurrentEvent;
 use App\Models\School;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -16,7 +18,22 @@ class StudentRosterExport implements FromCollection, WithHeadings, WithMapping
     */
     public function collection()
     {
-        return Student::whereNot('school_id', 120)
+        $currentEventId = CurrentEvent::currentEvent()->id;
+        $eventYear = CurrentEvent::seniorYear();
+
+        $ids = DB::table("students")
+            ->join('ensemble_school', 'students.school_id', '=', 'ensemble_school.school_id')
+            ->join('ensembles', 'ensemble_school.ensemble_id', '=', 'ensembles.id')
+            ->join('event_ensembles', 'ensembles.id', '=', 'event_ensembles.ensemble_id')
+            ->where('event_ensembles.event_id', $currentEventId)
+            ->where('students.class_of', '>=', $eventYear)
+            ->where('ensemble_school.school_id', '!=', 120) //FJR Academy
+            ->distinct()
+            ->select("students.id")
+            ->pluck("students.id")
+            ->toArray();
+
+        return Student::whereIn('id', $ids)
             ->get()
             ->sortBy(['schoolName','fullNameAlpha']);
     }

@@ -51,6 +51,7 @@ class EquipmentExport implements FromCollection, WithMapping, WithHeadings
     {
         $setup = Setup::find($row['id']);
 
+        if($setup->ensembleName === 'A cappella Ensemble'){ dd($setup);}
         return [
             $setup->schoolName,
             $setup->ensembleName,

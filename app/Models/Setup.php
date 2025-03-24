@@ -23,7 +23,8 @@ class Setup extends Model
         $ensemble = Ensemble::find($this->ensemble_id);
         $schoolId = $ensemble->schools()->first()->id;
         $userId = Person::where('school_id', $schoolId)->first()->user_id;
-
+        $user = User::find($userId);
+if(! $user){ dd('userId: ' . $userId . ' | ensembleName: ' . $ensemble->ensemble_name . ' (' . $ensemble->id . ')');}
         return User::find($userId)->name;
     }
 
