@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Carbon\Carbon;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Model;
