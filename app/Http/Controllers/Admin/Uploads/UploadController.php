@@ -28,7 +28,7 @@ class UploadController extends Controller
         $adjudicators = $target->adjudicators;
         $ensembles = $target->ensembles;
         $schools = $target->schools;
-
+dd($schools);
         $daytime = (Carbon::now()->format('G') < 17);
 
         return view('admin.uploads.index', [

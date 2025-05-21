@@ -42,7 +42,7 @@
             {{-- INVITATION  --}}
             <div id="invitation" style="color: black; display: flex; flex-direction: column; text-align: center; margin: 1rem 0; padding: 0 1rem;">
                 <header style="font-weight: bold; font-family: 'Times New Roman';">
-                    Thank you for your interest in our 33rd Annual Concert, Show, Jazz and Pop Choir Invitational!
+                    Thank you for your interest in our 34th Annual Concert, Show, Jazz and Pop Choir Invitational!
                 </header>
                 <div>
                     It is very exciting for us to host a festival of this nature, and we are thrilled at your interest in joining us!
@@ -107,8 +107,8 @@
                         <li class="list-odd">Application Phase: early-October - November</li>
                         <li class="list-even">Selection Phase: mid-November</li>
                         <li class="list-odd">Acceptance Phase: mid-December</li>
-                        <li class="list-even">Program Completion Phase: mid-December - March 1, 2025</li>
-                        <li class="list-odd">Festival: Saturday, March 29, 2025</li>
+                        <li class="list-even">Program Completion Phase: mid-December - March 1, 2026</li>
+                        <li class="list-odd">Festival: Saturday, March 28, 2026</li>
                     </ul>
                 </div>
             </div>
