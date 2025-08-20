@@ -133,7 +133,7 @@
             </div>
 
             <div class="flex flex-col">
-                <x-tables.ensembles-table :application=$application />
+                <x-tables.ensembles-table :application={{ $application }} />
                 <div class="flex flex-row flex-wrap space-x-1 m-auto mt-1 mb-1">
                     <input type="text" style="width: 18rem;" name="newensemblename" placeholder="Add a new ensemble name and type" value="" class="@error('newensemblename') bg-red-100 @enderror" >
                     @error('newensemblename')
@@ -210,7 +210,14 @@
                     Please click the button to submit the form and recalculate your invoice.
                 </div>
                 <div>
-                    <input style="background-color: black; color: white; max-width: 10rem;"  class="rounded-full px-2 m-auto" type="submit" name="submit" value="Submit">
+                    @php($acceptApplications = false)
+                    @if($acceptApplications)
+                        <input style="background-color: black; color: white; max-width: 10rem;"  class="rounded-full px-2 m-auto" type="submit" name="submit" value="Submit">
+                    @else
+                        <div>
+                            Applications will be accepted after January 1, 2026.
+                        </div>
+                    @endif
                 </div>
             </div>
 
