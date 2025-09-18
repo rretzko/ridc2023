@@ -215,7 +215,7 @@
                         <input style="background-color: black; color: white; max-width: 10rem;"  class="rounded-full px-2 m-auto" type="submit" name="submit" value="Submit">
                     @else
                         <div>
-                            Applications will be accepted after October 1, 2025.
+                            Applications will be accepted starting Wednesday, October 1, 2025.
                         </div>
                     @endif
                 </div>
