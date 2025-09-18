@@ -210,12 +210,12 @@
                     Please click the button to submit the form and recalculate your invoice.
                 </div>
                 <div>
-                    @php($acceptApplications = false)
+                    @php($acceptApplications = true)
                     @if($acceptApplications)
                         <input style="background-color: black; color: white; max-width: 10rem;"  class="rounded-full px-2 m-auto" type="submit" name="submit" value="Submit">
                     @else
                         <div>
-                            Applications will be accepted after January 1, 2026.
+                            Applications will be accepted after October 1, 2026.
                         </div>
                     @endif
                 </div>
