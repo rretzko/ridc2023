@@ -59,12 +59,12 @@ class Soloist extends Model
 
     public function getFullNameAttribute(): string
     {
-        return Student::find($this->student_id)->fullName;
+        return Student::find($this->student_id)?->fullName ?? '';
     }
 
     public function getFullNameAlphaAttribute(): string
     {
-        return Student::find($this->student_id)->fullNameAlpha;
+        return Student::find($this->student_id)?->fullNameAlpha ?? '';
     }
 
     public function getSchoolNameAttribute(): string
