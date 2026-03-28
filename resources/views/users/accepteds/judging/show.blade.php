@@ -48,6 +48,7 @@
                 table{border-collapse: collapse; width: auto;}
                 td,th{border: 1px solid black; padding: 0 0.5rem;}
             </style>
+            <div>Recordings will be available after the event closes...</div>
             <table class="mx-auto">
                 <thead>
                 <tr>
@@ -60,23 +61,23 @@
                     <th>Comments</th>
                 </tr>
                 </thead>
-                <tbody>
-                @forelse($fileUploads AS $file)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $file->eventName }}</td>
-                        <td>{{ $file->portion ? 'Daytime' : 'Showcase' }}</td>
-                        <td>{{ $file->ensembleName }}</td>
-                        <td>{{ $file->adjudicatorName }}</td>
-                        <td class="text-center">{{ $file->partial }}</td>
-                        <td>{!! $file->mp3Player !!}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="7">No Recordings found</td>
-                    </tr>
-                @endforelse
-                </tbody>
+{{--                <tbody>--}}
+{{--                @forelse($fileUploads AS $file)--}}
+{{--                    <tr>--}}
+{{--                        <td>{{ $loop->iteration }}</td>--}}
+{{--                        <td>{{ $file->eventName }}</td>--}}
+{{--                        <td>{{ $file->portion ? 'Daytime' : 'Showcase' }}</td>--}}
+{{--                        <td>{{ $file->ensembleName }}</td>--}}
+{{--                        <td>{{ $file->adjudicatorName }}</td>--}}
+{{--                        <td class="text-center">{{ $file->partial }}</td>--}}
+{{--                        <td>{!! $file->mp3Player !!}</td>--}}
+{{--                    </tr>--}}
+{{--                @empty--}}
+{{--                    <tr>--}}
+{{--                        <td colspan="7">No Recordings found</td>--}}
+{{--                    </tr>--}}
+{{--                @endforelse--}}
+{{--                </tbody>--}}
             </table>
         </div>
 
